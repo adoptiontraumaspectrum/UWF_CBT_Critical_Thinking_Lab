@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)file:///C:/Users/atola/Downloads/academic-integrity-quiz(2).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Integrity Quiz · SOW6125 Psychopathology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Academic Integrity Quiz · SOW6125 Psychopathology_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --page:#E5EAED;
+    --surface:#FFFFFF;
+    --chart:#FCFBF8;
+    --ink:#16232C;
+    --ink-soft:#495a65;
+    --ink-faint:#8494a0;
+    --line:#D4DDE2;
+    --line-soft:#E7EDF0;
+    --petrol:#1F5C5A;
+    --petrol-deep:#164543;
+    --petrol-tint:#E4EFEE;
+    --ochre:#A9641F;
+    --ochre-tint:#F5EADB;
+    --rose:#9c3743;
+    --rose-tint:#f6e6e7;
+    --green:#2f6b47;
+    --green-tint:#e5f0e8;
+    --shadow:0 1px 2px rgba(22,35,44,.06),0 8px 28px -12px rgba(22,35,44,.22);
+    --serif:'Spectral',Georgia,serif;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--petrol-deep);
+    color:#eaf3f2;
+    padding:34px 24px 30px;
+    border-bottom:3px solid var(--ochre);
+  }
+  .masthead-inner{max-width:1120px;margin:0 auto;}
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#8fc4c0;
+    margin:0 0 10px;
+  }
+  .masthead h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(28px,4.6vw,46px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  .masthead h1 em{font-style:italic;color:#e7b984;font-weight:500;}
+  .masthead p{
+    max-width:60ch;
+    margin:0;
+    color:#c4dbd9;
+    font-size:15.5px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px 90px;}
+
+  /* ---------- How it works ---------- */
+  .howto{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    margin:-26px 0 26px;
+    position:relative;
+    z-index:2;
+  }
+  .howto h2{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:0 0 16px;
+  }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+  }
+  .step-item{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:6px;
+    padding:3px 8px;
+    flex-shrink:0;
+    line-height:1.3;
+  }
+  .step-item p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .step-item strong{color:var(--ink);display:block;font-size:14.5px;}
+
+  /* ---------- Case navigator ---------- */
+  .nav-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin:6px 0 14px;
+  }
+  .nav-head h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:600;
+    margin:0;
+  }
+  .progress{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:.03em;
+  }
+  .progress b{color:var(--petrol);}
+  .caselist{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .case-chip{
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:11px 13px;
+    cursor:pointer;
+    font-family:var(--sans);
+    color:var(--ink);
+    transition:border-color .16s,box-shadow .16s,transform .16s;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .case-chip:hover{border-color:var(--petrol);transform:translateY(-1px);box-shadow:var(--shadow);}
+  .case-chip.active{border-color:var(--petrol);box-shadow:0 0 0 2px var(--petrol-tint);}
+  .case-chip .cid{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .case-chip .ctitle{font-size:13.5px;font-weight:500;line-height:1.25;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;}
+  .case-chip.done .dot{background:var(--green);}
+  .case-chip.active .cid{color:var(--petrol);}
+
+  /* ---------- Case file ---------- */
+  .casefile{
+    background:var(--chart);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:16px;
+  }
+  .file-header{
+    background:var(--petrol);
+    color:#eef6f5;
+    padding:18px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .file-header .fid{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    color:#a9d3cf;
+  }
+  .file-header .fname{
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:600;
+    margin:2px 0 0;
+    color:#fff;
+  }
+  .stamp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#e7b984;
+    border:1px solid rgba(231,185,132,.55);
+    border-radius:5px;
+    padding:5px 9px;
+    transform:rotate(-3deg);
+    white-space:nowrap;
+  }
+  .file-body{padding:26px;}
+
+  .demo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:1px;
+    background:var(--line-soft);
+    border:1px solid var(--line-soft);
+    border-radius:9px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .demo-cell{background:var(--chart);padding:11px 14px;}
+  .demo-cell .lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:2px;
+  }
+  .demo-cell .val{font-size:14px;font-weight:500;}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:24px 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .vignette{font-family:var(--serif);font-size:17px;line-height:1.65;color:#26333c;}
+  .vignette p{margin:0 0 13px;}
+  .vignette p:last-child{margin-bottom:0;}
+
+  /* ---------- Worksheet ---------- */
+  .worksheet{
+    margin-top:28px;
+    border-top:2px dashed var(--line);
+    padding-top:24px;
+  }
+  .ws-title{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .ws-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 20px;}
+  .ws-step{margin-bottom:18px;}
+  .ws-step label{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:6px;
+  }
+  .ws-step label .n{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:5px;
+    padding:1px 7px;
+    font-weight:600;
+  }
+  .ws-step .hint{font-weight:400;color:var(--ink-faint);font-size:12.5px;}
+  textarea,select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    resize:vertical;
+  }
+  textarea{min-height:58px;line-height:1.5;}
+  textarea:focus,select:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-tint);}
+  select{cursor:pointer;height:44px;}
+
+  .ws-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .btn{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14.5px;
+    border-radius:8px;
+    padding:11px 20px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .15s,border-color .15s,transform .12s;
+  }
+  .btn-primary{background:var(--petrol);color:#fff;}
+  .btn-primary:hover{background:var(--petrol-deep);}
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-ghost{background:transparent;color:var(--petrol);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--petrol);}
+
+  /* ---------- Answer key ---------- */
+  .answer{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    overflow:hidden;
+    background:var(--surface);
+    animation:reveal .32s ease;
+  }
+  @keyframes reveal{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .answer-head{
+    padding:14px 20px;
+    background:var(--ochre-tint);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .answer-head .akey-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .verdict{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    padding:4px 11px;
+    border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .verdict.match{background:var(--green-tint);color:var(--green);}
+  .verdict.miss{background:var(--rose-tint);color:var(--rose);}
+  .answer-body{padding:20px 22px;}
+  .dx-name{
+    font-family:var(--serif);
+    font-size:23px;
+    font-weight:600;
+    margin:0 0 2px;
+    color:var(--petrol-deep);
+  }
+  .dx-code{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin-bottom:16px;}
+  .akey-block{margin-bottom:16px;}
+  .akey-block h4{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 7px;
+  }
+  .akey-block ul{margin:0;padding-left:0;list-style:none;}
+  .akey-block li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:6px;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .akey-block li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--petrol);
+  }
+  .akey-block.diff li::before{background:var(--ochre);}
+  .akey-block p{margin:0;font-size:14.5px;line-height:1.55;}
+  .pearl{
+    background:var(--petrol-tint);
+    border-left:3px solid var(--petrol);
+    border-radius:0 8px 8px 0;
+    padding:12px 16px;
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .pearl strong{color:var(--petrol-deep);}
+
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    margin-top:34px;
+    background:var(--rose-tint);
+    border:1px solid #ecc9cd;
+    border-radius:11px;
+    padding:16px 20px;
+    font-size:13.5px;
+    line-height:1.55;
+    color:#6e2a33;
+  }
+  .disclaimer strong{color:var(--rose);}
+
+  .empty{
+    text-align:center;
+    color:var(--ink-faint);
+    font-style:italic;
+    padding:60px 20px;
+    font-family:var(--serif);
+    font-size:18px;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-faint);
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.05em;
+    padding:26px 20px 10px;
+  }
+
+  @media (max-width:560px){
+    .file-header{flex-direction:column;align-items:flex-start;}
+    .masthead{padding:28px 18px 26px;}
+    .wrap{padding:0 16px 70px;}
+    .howto{padding:20px;}
+    .file-body{padding:20px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto;}
+  }
+
+  .quiz-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin:2px 0 4px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.02em;}
+  .quiz-meta b{color:var(--petrol);}
+  .policy{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:22px 24px;margin:18px 0 26px;}
+  .policy h2{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--petrol);margin:0 0 14px;}
+  .policy-item{padding:12px 0;border-top:1px solid var(--line-soft);}
+  .policy-item:first-of-type{border-top:none;padding-top:0;}
+  .policy-item h3{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:0 0 4px;color:#20303a;}
+  .policy-item p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-soft);}
+  .policy-item .flag{color:var(--rose);font-weight:600;}
+  .qcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px;scroll-margin-top:14px;}
+  .qcard.correct{border-color:var(--green);box-shadow:0 0 0 2px var(--green-tint);}
+  .qcard.incorrect{border-color:var(--rose);box-shadow:0 0 0 2px var(--rose-tint);}
+  .qnum{font-family:var(--mono);font-size:12px;color:var(--ochre);background:var(--ochre-tint);border-radius:5px;padding:2px 8px;font-weight:600;}
+  .qstem{font-family:var(--serif);font-size:17.5px;line-height:1.5;margin:10px 0 15px;color:#20303a;}
+  .opt{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin-bottom:9px;cursor:pointer;transition:border-color .14s,background .14s;background:var(--chart);}
+  .opt:hover{border-color:var(--petrol);}
+  .opt input{margin-top:3px;accent-color:var(--petrol);flex-shrink:0;width:16px;height:16px;cursor:pointer;}
+  .opt .oletter{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink-soft);flex-shrink:0;}
+  .opt .otext{font-size:14.5px;line-height:1.45;}
+  .opt.sel{border-color:var(--petrol);background:var(--petrol-tint);}
+  .opt.key-correct{border-color:var(--green);background:var(--green-tint);}
+  .opt.key-wrong{border-color:var(--rose);background:var(--rose-tint);}
+  .opt.locked{cursor:default;}
+  .rationale{margin-top:10px;border-left:3px solid var(--petrol);background:var(--petrol-tint);border-radius:0 8px 8px 0;padding:10px 15px;font-size:14px;line-height:1.5;display:none;}
+  .rationale.show{display:block;}
+  .rationale .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:3px;}
+  .rationale.miss{border-left-color:var(--rose);background:var(--rose-tint);}
+  .rationale.miss .tag{color:var(--rose);}
+  .attest{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px;margin:22px 0 4px;}
+  .attest h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 12px;}
+  .attest-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;}
+  .attest-row .fld{flex:1;min-width:180px;}
+  .attest-row label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px;}
+  .attest-row input[type=text],.attest-row input[type=date]{width:100%;font-family:var(--sans);font-size:14.5px;color:var(--ink);background:var(--chart);border:1px solid var(--line);border-radius:8px;padding:9px 12px;}
+  .attest-check{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;line-height:1.5;cursor:pointer;}
+  .attest-check input{margin-top:3px;width:18px;height:18px;accent-color:var(--petrol);flex-shrink:0;cursor:pointer;}
+  .quiz-actions{position:sticky;bottom:0;background:linear-gradient(transparent,var(--page) 34%);padding:18px 0 4px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .scorebar{display:none;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:18px 22px;margin-bottom:16px;align-items:center;gap:18px;flex-wrap:wrap;}
+  .scorebar.show{display:flex;animation:reveal .3s ease;}
+  .score-ring{font-family:var(--serif);font-weight:600;font-size:30px;color:var(--petrol-deep);background:var(--petrol-tint);border-radius:12px;padding:10px 18px;line-height:1;}
+  .score-txt{font-size:15px;color:var(--ink-soft);}
+  .score-txt b{color:var(--ink);font-size:16px;}
+  .warn{background:var(--ochre-tint);border:1px solid #e6d3b3;border-radius:10px;padding:10px 15px;font-size:13px;color:#6f4b18;margin-bottom:16px;display:none;}
+  .warn.show{display:block;}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">SOW6125 Psychopathology · Fall 2026 · Required</p>
+    <h1>Academic Integrity <em>Quiz</em></h1>
+    <p>Read the course policy below, then answer all twelve items. This quiz confirms your attendance and, per course policy, is required for financial-aid disbursement. Due Sunday, August 23 (11:59 p.m. CST).</p>
+  </div>
+</header>
+<div class="wrap">
+
+  <section class="policy">
+    <h2>Course policy — read before you begin</h2>
+    <div class="policy-item">
+      <h3>Generative AI is not permitted</h3>
+      <p>Using AI of any kind (e.g., ChatGPT, Grammarly, QuillBot) to generate, revise, or complete academic work is considered plagiarism. <span class="flag">Any assignment with AI-generated content receives a zero and may result in a zero for the course.</span> If you are unsure whether a tool or process counts as AI use, ask the instructor before submitting — asking in advance is encouraged.</p>
+    </div>
+    <div class="policy-item">
+      <h3>Do your own work</h3>
+      <p>Write in your own voice and cite the textbook and DSM-5-TR in APA 7th. Ground claims in specific concepts and criteria in your own words, and use concrete details a generic answer would miss — including from your own de-identified practicum experience. Discussions need an initial post plus substantive replies to two classmates by name.</p>
+    </div>
+    <div class="policy-item">
+      <h3>Originality checks</h3>
+      <p>Some papers may be submitted to Turnitin to verify originality. You may opt out within two weeks of the start of the term, and the instructor will use alternative methods.</p>
+    </div>
+    <div class="policy-item">
+      <h3>Deadlines &amp; late work</h3>
+      <p>Assignments are due Mondays at 11:59 p.m. CST; this quiz is due Sunday, Aug 23, and quizzes are not reopened once the due date passes. Late work is accepted only for documented extenuating circumstances — contact the instructor promptly, and before the deadline when foreseeable.</p>
+    </div>
+  </section>
+
+  <div class="quiz-meta">
+    <span><b>12</b> questions</span><span>Single best answer</span><span>Attestation required to submit</span>
+  </div>
+
+  <div class="warn" id="warn">Please answer every question and complete the attestation before submitting — anything missing is highlighted below.</div>
+  <div class="scorebar" id="scorebar">
+    <div class="score-ring" id="scoreRing">0 / 12</div>
+    <div class="score-txt" id="scoreTxt"></div>
+  </div>
+
+  <div id="quiz"><div class="qcard" id="qc-1"><span class="qnum">Question 1</span><div class="qstem">In this course, using a tool such as ChatGPT, Grammarly, or QuillBot to generate, revise, or complete academic work is:</div><label class="opt" data-q="1" data-opt="A"><input type="radio" name="q1" value="A"><span class="oletter">A</span><span class="otext">acceptable as long as you disclose it</span></label><label class="opt" data-q="1" data-opt="B"><input type="radio" name="q1" value="B"><span class="oletter">B</span><span class="otext">acceptable for grammar and spelling only</span></label><label class="opt" data-q="1" data-opt="C"><input type="radio" name="q1" value="C"><span class="oletter">C</span><span class="otext">considered plagiarism</span></label><label class="opt" data-q="1" data-opt="D"><input type="radio" name="q1" value="D"><span class="oletter">D</span><span class="otext">acceptable in discussions but not in papers</span></label><div class="rationale" id="rat-1"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-2"><span class="qnum">Question 2</span><div class="qstem">If an assignment includes AI-generated content, the stated consequence is:</div><label class="opt" data-q="2" data-opt="A"><input type="radio" name="q2" value="A"><span class="oletter">A</span><span class="otext">a written warning on the first offense</span></label><label class="opt" data-q="2" data-opt="B"><input type="radio" name="q2" value="B"><span class="oletter">B</span><span class="otext">a zero for that assignment, and it may result in a zero for the course</span></label><label class="opt" data-q="2" data-opt="C"><input type="radio" name="q2" value="C"><span class="oletter">C</span><span class="otext">a chance to resubmit with a penalty</span></label><label class="opt" data-q="2" data-opt="D"><input type="radio" name="q2" value="D"><span class="oletter">D</span><span class="otext">a 10% grade deduction</span></label><div class="rationale" id="rat-2"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-3"><span class="qnum">Question 3</span><div class="qstem">You are unsure whether a particular tool or process counts as “AI use.” The course's recommended step is to:</div><label class="opt" data-q="3" data-opt="A"><input type="radio" name="q3" value="A"><span class="oletter">A</span><span class="otext">submit it and explain afterward if asked</span></label><label class="opt" data-q="3" data-opt="B"><input type="radio" name="q3" value="B"><span class="oletter">B</span><span class="otext">decide for yourself and note it in the paper</span></label><label class="opt" data-q="3" data-opt="C"><input type="radio" name="q3" value="C"><span class="oletter">C</span><span class="otext">ask a classmate what they did</span></label><label class="opt" data-q="3" data-opt="D"><input type="radio" name="q3" value="D"><span class="oletter">D</span><span class="otext">ask the instructor before submitting</span></label><div class="rationale" id="rat-3"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-4"><span class="qnum">Question 4</span><div class="qstem">The course restricts AI-generated or AI-revised work primarily because:</div><label class="opt" data-q="4" data-opt="A"><input type="radio" name="q4" value="A"><span class="oletter">A</span><span class="otext">AI tools are always factually wrong</span></label><label class="opt" data-q="4" data-opt="B"><input type="radio" name="q4" value="B"><span class="oletter">B</span><span class="otext">the course exists to build your own critical thinking, original ideas, and confidence in your abilities</span></label><label class="opt" data-q="4" data-opt="C"><input type="radio" name="q4" value="C"><span class="oletter">C</span><span class="otext">the university charges for AI software</span></label><label class="opt" data-q="4" data-opt="D"><input type="radio" name="q4" value="D"><span class="oletter">D</span><span class="otext">it is an unrelated campus-wide rule</span></label><div class="rationale" id="rat-4"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-5"><span class="qnum">Question 5</span><div class="qstem">Regarding originality checking with Turnitin, the policy states that:</div><label class="opt" data-q="5" data-opt="A"><input type="radio" name="q5" value="A"><span class="oletter">A</span><span class="otext">every assignment is checked and there is no way to opt out</span></label><label class="opt" data-q="5" data-opt="B"><input type="radio" name="q5" value="B"><span class="oletter">B</span><span class="otext">some papers may be submitted to verify originality, and you may opt out within two weeks of the start of the term</span></label><label class="opt" data-q="5" data-opt="C"><input type="radio" name="q5" value="C"><span class="oletter">C</span><span class="otext">Turnitin is never used in this course</span></label><label class="opt" data-q="5" data-opt="D"><input type="radio" name="q5" value="D"><span class="oletter">D</span><span class="otext">students must purchase Turnitin access themselves</span></label><div class="rationale" id="rat-5"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-6"><span class="qnum">Question 6</span><div class="qstem">The Academic Integrity Quiz is due:</div><label class="opt" data-q="6" data-opt="A"><input type="radio" name="q6" value="A"><span class="oletter">A</span><span class="otext">the first Monday of the term, like other assignments</span></label><label class="opt" data-q="6" data-opt="B"><input type="radio" name="q6" value="B"><span class="oletter">B</span><span class="otext">Sunday, August 23</span></label><label class="opt" data-q="6" data-opt="C"><input type="radio" name="q6" value="C"><span class="oletter">C</span><span class="otext">together with the Final Paper in December</span></label><label class="opt" data-q="6" data-opt="D"><input type="radio" name="q6" value="D"><span class="oletter">D</span><span class="otext">at any point before the term ends</span></label><div class="rationale" id="rat-6"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-7"><span class="qnum">Question 7</span><div class="qstem">Beyond the points it is worth, completing the Academic Integrity Quiz by its deadline also:</div><label class="opt" data-q="7" data-opt="A"><input type="radio" name="q7" value="A"><span class="oletter">A</span><span class="otext">unlocks extra-credit opportunities</span></label><label class="opt" data-q="7" data-opt="B"><input type="radio" name="q7" value="B"><span class="oletter">B</span><span class="otext">lets you skip one discussion</span></label><label class="opt" data-q="7" data-opt="C"><input type="radio" name="q7" value="C"><span class="oletter">C</span><span class="otext">confirms attendance and is required for financial-aid disbursement</span></label><label class="opt" data-q="7" data-opt="D"><input type="radio" name="q7" value="D"><span class="oletter">D</span><span class="otext">waives late penalties for the rest of the term</span></label><div class="rationale" id="rat-7"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-8"><span class="qnum">Question 8</span><div class="qstem">Most assignments in this course are due:</div><label class="opt" data-q="8" data-opt="A"><input type="radio" name="q8" value="A"><span class="oletter">A</span><span class="otext">Fridays at noon CST</span></label><label class="opt" data-q="8" data-opt="B"><input type="radio" name="q8" value="B"><span class="oletter">B</span><span class="otext">Mondays at 11:59 p.m. CST</span></label><label class="opt" data-q="8" data-opt="C"><input type="radio" name="q8" value="C"><span class="oletter">C</span><span class="otext">Sundays at midnight CST</span></label><label class="opt" data-q="8" data-opt="D"><input type="radio" name="q8" value="D"><span class="oletter">D</span><span class="otext">whenever the module closes</span></label><div class="rationale" id="rat-8"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-9"><span class="qnum">Question 9</span><div class="qstem">Under the course policy, late work is accepted:</div><label class="opt" data-q="9" data-opt="A"><input type="radio" name="q9" value="A"><span class="oletter">A</span><span class="otext">always, with an automatic point penalty</span></label><label class="opt" data-q="9" data-opt="B"><input type="radio" name="q9" value="B"><span class="oletter">B</span><span class="otext">never, for any reason</span></label><label class="opt" data-q="9" data-opt="C"><input type="radio" name="q9" value="C"><span class="oletter">C</span><span class="otext">only for documented extenuating circumstances (e.g., severe weather, family emergency, illness or accident)</span></label><label class="opt" data-q="9" data-opt="D"><input type="radio" name="q9" value="D"><span class="oletter">D</span><span class="otext">if you email the instructor after the deadline</span></label><div class="rationale" id="rat-9"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-10"><span class="qnum">Question 10</span><div class="qstem">When writing your own work in this course, you are expected to:</div><label class="opt" data-q="10" data-opt="A"><input type="radio" name="q10" value="A"><span class="oletter">A</span><span class="otext">mirror the textbook's wording closely so nothing is misstated</span></label><label class="opt" data-q="10" data-opt="B"><input type="radio" name="q10" value="B"><span class="oletter">B</span><span class="otext">write in your own voice and cite the textbook and DSM-5-TR in APA 7th style</span></label><label class="opt" data-q="10" data-opt="C"><input type="radio" name="q10" value="C"><span class="oletter">C</span><span class="otext">avoid citations so the writing reads as fully original</span></label><label class="opt" data-q="10" data-opt="D"><input type="radio" name="q10" value="D"><span class="oletter">D</span><span class="otext">submit a polished final answer that no longer shows your reasoning</span></label><div class="rationale" id="rat-10"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-11"><span class="qnum">Question 11</span><div class="qstem">In discussions, a “substantive reply” to a classmate means:</div><label class="opt" data-q="11" data-opt="A"><input type="radio" name="q11" value="A"><span class="oletter">A</span><span class="otext">posting brief praise such as “Great job!” to two peers</span></label><label class="opt" data-q="11" data-opt="B"><input type="radio" name="q11" value="B"><span class="oletter">B</span><span class="otext">replying to two classmates by name and engaging their specific points</span></label><label class="opt" data-q="11" data-opt="C"><input type="radio" name="q11" value="C"><span class="oletter">C</span><span class="otext">reposting your own initial post under theirs</span></label><label class="opt" data-q="11" data-opt="D"><input type="radio" name="q11" value="D"><span class="oletter">D</span><span class="otext">replying to one classmate is sufficient</span></label><div class="rationale" id="rat-11"><span class="tag"></span><span class="rtext"></span></div></div><div class="qcard" id="qc-12"><span class="qnum">Question 12</span><div class="qstem">When you draw on your practicum experience in an assignment, integrity and social-work ethics require you to:</div><label class="opt" data-q="12" data-opt="A"><input type="radio" name="q12" value="A"><span class="oletter">A</span><span class="otext">include the client's real name so the example is verifiable</span></label><label class="opt" data-q="12" data-opt="B"><input type="radio" name="q12" value="B"><span class="oletter">B</span><span class="otext">use de-identified details that protect client confidentiality</span></label><label class="opt" data-q="12" data-opt="C"><input type="radio" name="q12" value="C"><span class="oletter">C</span><span class="otext">avoid using any real clinical examples at all</span></label><label class="opt" data-q="12" data-opt="D"><input type="radio" name="q12" value="D"><span class="oletter">D</span><span class="otext">attach the agency's records as evidence</span></label><div class="rationale" id="rat-12"><span class="tag"></span><span class="rtext"></span></div></div></div>
+
+  <section class="attest" id="attest">
+    <h3>Attestation</h3>
+    <div class="attest-row">
+      <div class="fld"><label for="nm">Full name</label><input type="text" id="nm" placeholder="Your name" autocomplete="name"></div>
+      <div class="fld"><label for="dt">Date</label><input type="date" id="dt"></div>
+    </div>
+    <label class="attest-check"><input type="checkbox" id="ack">
+      <span>I have read and understand the SOW6125 academic integrity and generative-AI policy. I affirm that the work I submit in this course will be my own, completed without AI-generated or AI-revised content, and cited appropriately.</span>
+    </label>
+  </section>
+
+  <div class="quiz-actions">
+    <button class="btn btn-primary" id="submitBtn">Submit quiz</button>
+    <button class="btn btn-ghost" id="resetBtn">Reset</button>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Practice / study version.</strong> This page scores itself in the browser, so the answer key lives in the page and nothing you enter is saved or transmitted. The graded, attendance-confirming Academic Integrity Quiz must be completed in Canvas by Sunday, Aug 23 for credit and financial-aid purposes. Use this version to review the policy and check your understanding.
+  </div>
+  <footer>SOW6125 PSYCHOPATHOLOGY · ACADEMIC INTEGRITY QUIZ · FALL 2026</footer>
+</div>
+<script>
+const QUIZ = {"num": "AIQ", "title": "Academic Integrity Quiz", "questions": [{"n": 1, "stem": "In this course, using a tool such as ChatGPT, Grammarly, or QuillBot to generate, revise, or complete academic work is:", "options": {"A": "acceptable as long as you disclose it", "B": "acceptable for grammar and spelling only", "C": "considered plagiarism", "D": "acceptable in discussions but not in papers"}, "correct": "C", "rationale": "The policy states that AI use of any kind \u2014 to generate, revise, or complete academic work \u2014 is considered plagiarism."}, {"n": 2, "stem": "If an assignment includes AI-generated content, the stated consequence is:", "options": {"A": "a written warning on the first offense", "B": "a zero for that assignment, and it may result in a zero for the course", "C": "a chance to resubmit with a penalty", "D": "a 10% grade deduction"}, "correct": "B", "rationale": "Any assignment containing AI-generated content receives a zero, and it may result in a zero for the course."}, {"n": 3, "stem": "You are unsure whether a particular tool or process counts as \u201cAI use.\u201d The course's recommended step is to:", "options": {"A": "submit it and explain afterward if asked", "B": "decide for yourself and note it in the paper", "C": "ask a classmate what they did", "D": "ask the instructor before submitting"}, "correct": "D", "rationale": "The policy explicitly encourages asking the instructor in advance whenever you are unsure."}, {"n": 4, "stem": "The course restricts AI-generated or AI-revised work primarily because:", "options": {"A": "AI tools are always factually wrong", "B": "the course exists to build your own critical thinking, original ideas, and confidence in your abilities", "C": "the university charges for AI software", "D": "it is an unrelated campus-wide rule"}, "correct": "B", "rationale": "The policy frames doing your own work as how critical thinking, original ideas, and confidence actually grow \u2014 skills the course is designed to develop."}, {"n": 5, "stem": "Regarding originality checking with Turnitin, the policy states that:", "options": {"A": "every assignment is checked and there is no way to opt out", "B": "some papers may be submitted to verify originality, and you may opt out within two weeks of the start of the term", "C": "Turnitin is never used in this course", "D": "students must purchase Turnitin access themselves"}, "correct": "B", "rationale": "Some papers may go to Turnitin; students may opt out within two weeks of the term start, and the instructor then uses alternative methods."}, {"n": 6, "stem": "The Academic Integrity Quiz is due:", "options": {"A": "the first Monday of the term, like other assignments", "B": "Sunday, August 23", "C": "together with the Final Paper in December", "D": "at any point before the term ends"}, "correct": "B", "rationale": "This quiz is the one Sunday deadline in the course: Sunday, Aug 23. Quizzes are not reopened once the due date passes."}, {"n": 7, "stem": "Beyond the points it is worth, completing the Academic Integrity Quiz by its deadline also:", "options": {"A": "unlocks extra-credit opportunities", "B": "lets you skip one discussion", "C": "confirms attendance and is required for financial-aid disbursement", "D": "waives late penalties for the rest of the term"}, "correct": "C", "rationale": "Completing the quiz by Aug 23 confirms attendance and is required for financial-aid disbursement."}, {"n": 8, "stem": "Most assignments in this course are due:", "options": {"A": "Fridays at noon CST", "B": "Mondays at 11:59 p.m. CST", "C": "Sundays at midnight CST", "D": "whenever the module closes"}, "correct": "B", "rationale": "All assignments are due Mondays at 11:59 p.m. CST; the Academic Integrity Quiz is the single Sunday exception."}, {"n": 9, "stem": "Under the course policy, late work is accepted:", "options": {"A": "always, with an automatic point penalty", "B": "never, for any reason", "C": "only for documented extenuating circumstances (e.g., severe weather, family emergency, illness or accident)", "D": "if you email the instructor after the deadline"}, "correct": "C", "rationale": "Late work is accepted only for documented extenuating circumstances; contact the instructor promptly, and before the deadline when it is foreseeable."}, {"n": 10, "stem": "When writing your own work in this course, you are expected to:", "options": {"A": "mirror the textbook's wording closely so nothing is misstated", "B": "write in your own voice and cite the textbook and DSM-5-TR in APA 7th style", "C": "avoid citations so the writing reads as fully original", "D": "submit a polished final answer that no longer shows your reasoning"}, "correct": "B", "rationale": "The policy asks you to write in your own voice and cite the textbook and DSM-5-TR (APA 7th), grounding claims in specific concepts and criteria in your own words."}, {"n": 11, "stem": "In discussions, a \u201csubstantive reply\u201d to a classmate means:", "options": {"A": "posting brief praise such as \u201cGreat job!\u201d to two peers", "B": "replying to two classmates by name and engaging their specific points", "C": "reposting your own initial post under theirs", "D": "replying to one classmate is sufficient"}, "correct": "B", "rationale": "Discussions require an initial post plus substantive replies to two classmates by name that engage their specific points \u2014 not generic praise."}, {"n": 12, "stem": "When you draw on your practicum experience in an assignment, integrity and social-work ethics require you to:", "options": {"A": "include the client's real name so the example is verifiable", "B": "use de-identified details that protect client confidentiality", "C": "avoid using any real clinical examples at all", "D": "attach the agency's records as evidence"}, "correct": "B", "rationale": "The course directs you to use concrete details from your own de-identified practicum experience \u2014 protecting confidentiality is both an integrity and an ethical obligation in social work."}]};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+let graded=false;
+
+function render(){
+  document.getElementById('quiz').innerHTML = QUIZ.questions.map(q => {
+    const opts=['A','B','C','D'].map(L =>
+      '<label class="opt" data-q="'+q.n+'" data-opt="'+L+'">'+
+        '<input type="radio" name="q'+q.n+'" value="'+L+'">'+
+        '<span class="oletter">'+L+'</span>'+
+        '<span class="otext">'+esc(q.options[L])+'</span>'+
+      '</label>').join('');
+    return '<div class="qcard" id="qc-'+q.n+'"><span class="qnum">Question '+q.n+'</span>'+
+      '<div class="qstem">'+esc(q.stem)+'</div>'+opts+
+      '<div class="rationale" id="rat-'+q.n+'"><span class="tag"></span><span class="rtext"></span></div></div>';
+  }).join('');
+  document.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+    if(graded) return;
+    o.closest('.qcard').querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+    o.classList.add('sel'); o.querySelector('input').checked=true;
+  }));
+}
+
+function submit(){
+  const unanswered = QUIZ.questions.filter(q=>!document.querySelector('input[name="q'+q.n+'"]:checked'));
+  const ack = document.getElementById('ack').checked;
+  const nm = document.getElementById('nm').value.trim();
+  const missingAttest = !ack || !nm;
+  QUIZ.questions.forEach(q=>document.getElementById('qc-'+q.n).classList.remove('incorrect'));
+  document.getElementById('attest').style.outline='';
+  if(unanswered.length || missingAttest){
+    document.getElementById('warn').classList.add('show');
+    unanswered.forEach(q=>document.getElementById('qc-'+q.n).classList.add('incorrect'));
+    if(missingAttest) document.getElementById('attest').style.outline='2px solid var(--rose)';
+    (unanswered[0]?document.getElementById('qc-'+unanswered[0].n):document.getElementById('attest')).scrollIntoView({block:'center'});
+    return;
+  }
+  document.getElementById('warn').classList.remove('show');
+  graded=true; let score=0;
+  QUIZ.questions.forEach(q=>{
+    const chosen=document.querySelector('input[name="q'+q.n+'"]:checked').value;
+    const card=document.getElementById('qc-'+q.n);
+    const right=chosen===q.correct; if(right)score++;
+    card.classList.add(right?'correct':'incorrect');
+    card.querySelectorAll('.opt').forEach(o=>{
+      const L=o.getAttribute('data-opt'); o.classList.add('locked'); o.classList.remove('sel');
+      o.querySelector('input').disabled=true;
+      if(L===q.correct)o.classList.add('key-correct'); else if(L===chosen)o.classList.add('key-wrong');
+    });
+    const rat=document.getElementById('rat-'+q.n); rat.classList.add('show'); if(!right)rat.classList.add('miss');
+    rat.querySelector('.tag').textContent = right?('Correct — '+q.correct):('Correct answer: '+q.correct);
+    rat.querySelector('.rtext').textContent=q.rationale;
+  });
+  document.getElementById('scoreRing').textContent=score+' / 12';
+  const pct=Math.round(score/12*100);
+  document.getElementById('scoreTxt').innerHTML='<b>'+pct+'%</b> — review the highlighted answers and rationales below. Remember to complete the official quiz in Canvas by Aug 23.';
+  document.getElementById('scorebar').classList.add('show');
+  const b=document.getElementById('submitBtn'); b.textContent='Submitted'; b.disabled=true;
+  document.getElementById('scorebar').scrollIntoView({block:'start'});
+}
+
+function reset(){
+  graded=false;
+  document.getElementById('scorebar').classList.remove('show');
+  document.getElementById('warn').classList.remove('show');
+  document.getElementById('attest').style.outline='';
+  document.getElementById('ack').checked=false; document.getElementById('nm').value=''; document.getElementById('dt').value='';
+  const b=document.getElementById('submitBtn'); b.textContent='Submit quiz'; b.disabled=false;
+  render(); window.scrollTo({top:0});
+}
+document.getElementById('submitBtn').addEventListener('click',submit);
+document.getElementById('resetBtn').addEventListener('click',reset);
+render();
+</script>
+
+
+</body></html>
