@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Critical Thinking 1 — Weigh the Tradeoffs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F7F6;--card:#FFFFFF;--ink:#1B2A29;--muted:#5C6B6A;--faint:#8A9897;
+    --accent:#2E6E68;--accent-deep:#22524D;--accent-soft:#DCE8E5;--accent-wash:#EDF4F2;
+    --best:#2E6E68;--best-soft:#E4F0ED;--worst:#A6462F;--worst-soft:#F4E5E0;--amber:#B07D22;--amber-soft:#FBF4E6;
+    --line:#E4E9E7;--shadow:0 1px 2px rgba(27,42,41,.04),0 8px 28px rgba(27,42,41,.06);
+    --serif:"Spectral",Georgia,serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;padding:32px 20px 72px;}
+  .wrap{max-width:840px;margin:0 auto;}
+  .eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 10px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,5vw,38px);line-height:1.1;margin:0 0 14px;letter-spacing:-.01em;}
+  .lede{color:var(--muted);font-size:17px;margin:0 0 10px;max-width:64ch;}
+  .how{background:var(--accent-wash);border:1px solid #D3E4DF;border-radius:12px;padding:16px 20px;margin:22px 0 30px;font-size:15px;color:var(--ink);}
+  .how b{color:var(--accent-deep);}
+  .scen{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:26px 28px;margin:0 0 26px;}
+  .scen .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent);margin:0 0 10px;}
+  .scen h2{font-family:var(--serif);font-size:21px;font-weight:500;line-height:1.35;margin:0 0 6px;}
+  .setting{font-size:14px;color:var(--faint);margin:0 0 18px;}
+  .opt{border:1px solid var(--line);border-radius:12px;padding:15px 16px 15px 18px;margin:0 0 12px;transition:border-color .15s,background .15s;}
+  .opt .otext{font-size:15.5px;color:var(--ink);margin:0 0 12px;}
+  .opt .otext .oid{font-weight:600;color:var(--accent-deep);margin-right:7px;}
+  .picks{display:flex;gap:10px;flex-wrap:wrap;}
+  .pick{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;background:#fff;user-select:none;transition:all .13s;}
+  .pick:hover{border-color:var(--accent);color:var(--ink);}
+  .pick.on-best{background:var(--best-soft);border-color:var(--best);color:var(--best);font-weight:600;}
+  .pick.on-worst{background:var(--worst-soft);border-color:var(--worst);color:var(--worst);font-weight:600;}
+  .pick .dotp{width:11px;height:11px;border-radius:50%;border:2px solid currentColor;}
+  .opt.sel-best{border-color:var(--best);background:#F7FBFA;}
+  .opt.sel-worst{border-color:var(--worst);background:#FDF8F6;}
+  .reason{margin:16px 0 4px;}
+  .reason label{display:block;font-size:13px;color:var(--faint);margin-bottom:7px;}
+  .reason textarea{width:100%;font-family:var(--sans);font-size:14.5px;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px 13px;resize:vertical;min-height:64px;background:#FAFBFB;}
+  .reason textarea:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);}
+  button{font-family:var(--sans);cursor:pointer;border:none;border-radius:10px;font-weight:600;transition:background .15s,opacity .15s,transform .05s;}
+  button:active{transform:translateY(1px);}
+  .btn{background:var(--accent);color:#fff;padding:11px 20px;font-size:14.5px;}
+  .btn:hover{background:var(--accent-deep);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .warn{color:var(--worst);font-size:13.5px;margin:10px 0 0;display:none;}
+  .analysis{display:none;margin-top:20px;padding-top:22px;border-top:1px solid var(--line);}
+  .analysis.show{display:block;}
+  .analysis h3{font-family:var(--serif);font-size:16px;margin:0 0 14px;color:var(--ink);}
+  .verdict{border-radius:11px;padding:13px 15px;margin:0 0 11px;font-size:14.5px;line-height:1.5;}
+  .verdict .vh{font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+  .verdict.v-best{background:var(--best-soft);border:1px solid #BEDBD4;}
+  .verdict.v-best .vh{color:var(--best);}
+  .verdict.v-worst{background:var(--worst-soft);border:1px solid #E7C9BF;}
+  .verdict.v-worst .vh{color:var(--worst);}
+  .verdict.v-mid{background:#F7F9F8;border:1px solid var(--line);}
+  .verdict.v-mid .vh{color:var(--muted);}
+  .verdict .pill{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:2px 8px;border-radius:99px;background:#fff;}
+  .v-best .pill{color:var(--best);}.v-worst .pill{color:var(--worst);}.v-mid .pill{color:var(--muted);}
+  .takeaway{background:var(--amber-soft);border:1px solid #EBD9B4;border-radius:11px;padding:14px 16px;font-size:14.5px;color:var(--ink);margin-top:6px;}
+  .takeaway .k{color:var(--amber);font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:5px;}
+  .youmatch{font-size:13.5px;color:var(--muted);margin:0 0 14px;padding:10px 13px;background:#F7F9F8;border-radius:9px;}
+  .youmatch b{color:var(--ink);}
+  .close{background:var(--accent-deep);color:#fff;border-radius:16px;padding:26px 28px;margin-top:8px;}
+  .close h2{font-family:var(--serif);font-size:22px;margin:0 0 10px;color:#fff;}
+  .close p{color:#D7E6E2;font-size:15.5px;margin:0;max-width:66ch;}
+  .note{font-size:13px;color:var(--faint);margin:24px 0 0;}
+  @media (max-width:480px){body{padding:20px 14px 56px;}.scen{padding:20px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">CBT for Anxiety Disorders · Critical Thinking 1</p>
+  <h1>Weigh the Tradeoffs</h1>
+  <p class="lede">In the room, there's rarely a single right move — there are competing goods and real costs. This exercise trains the judgment the manual can't script.</p>
+  <div class="how">
+    For each scenario, choose the response you find <b>most defensible</b> and the one you find <b>least defensible</b>, and jot your reasoning. Then reveal an analysis of every option's tradeoffs. Several options are genuinely defensible; the goal isn't to guess a key — it's to reason about <b>why</b>.
+  </div>
+  <div id="scenarios"></div>
+  <div class="close">
+    <h2>The habit to keep</h2>
+    <p>Strong clinical reasoning names what each option prioritizes and what it costs — safety, alliance, fidelity, momentum — before committing. When you disagreed with the analysis, the useful question isn't "was I wrong?" but "which value was I weighting, and is that the right call for this client, right now?"</p>
+  </div>
+  <p class="note">This is a reasoning exercise, not a graded quiz. Nothing is submitted or stored.</p>
+</div>
+
+<script>
+const SCENARIOS = [
+ {
+  tag:"Engagement & ambivalence",
+  setting:"Maggie, Session 3 — she completed the thought log but seems flat.",
+  stem:"Maggie says: \u201cI did the thought log, but honestly, this all feels kind of pointless.\u201d",
+  options:[
+    {id:"A",text:"Validate the frustration, get curious about what specifically felt pointless, and revisit the rationale for the work together.",
+     verdict:"best",label:"Strong",an:"Treats ambivalence as information, not resistance. Exploring what felt pointless keeps her collaborating and often surfaces a fixable misunderstanding about how the work helps."},
+    {id:"B",text:"Reassure her that CBT is evidence-based and the research clearly shows it works, then continue the agenda.",
+     verdict:"worst",label:"Weakest",an:"Answers an experiential concern with authority. It can feel dismissive, skips the chance to explore, and leans on the therapist's expertise rather than her own engagement \u2014 the opposite of collaborative empiricism."},
+    {id:"C",text:"Acknowledge it briefly, then review one thought-log entry together and draw out what she actually noticed.",
+     verdict:"best",label:"Also strong",an:"Addresses the doubt experientially \u2014 letting the tool demonstrate its own value. Slightly less exploratory than (A), but a legitimate, engagement-preserving choice, especially with a client who prefers doing over discussing."}
+  ],
+  best:["A","C"], worst:["B"],
+  takeaway:"Both A and C are defensible; they trade off exploration against momentum. B is the weak choice because it meets a felt concern with reassurance and authority."
+ },
+ {
+  tag:"Exposure pacing",
+  setting:"Mid-treatment — two graded exposures have gone well.",
+  stem:"The client says: \u201cThese are going fine \u2014 can we just skip ahead to the hardest one? I want this over with.\u201d",
+  options:[
+    {id:"A",text:"Agree \u2014 her motivation is high and momentum matters; jump to the top of the hierarchy.",
+     verdict:"worst",label:"Weakest",an:"A failed top-of-hierarchy attempt can produce a distressing setback and raise dropout risk. High motivation is an asset to channel, not a reason to abandon graded progression."},
+    {id:"B",text:"Validate her drive, explain graded progression, and negotiate a step that's a real stretch but still likely to succeed.",
+     verdict:"best",label:"Strong",an:"Honors her motivation and the mechanism at once: it keeps the win probable (protecting mastery and adherence) while still advancing meaningfully. The collaborative negotiation also models pacing she can use herself."},
+    {id:"C",text:"Decline and repeat the previous exposure to be safe.",
+     verdict:"mid",label:"Too cautious",an:"Not unsafe, but likely to feel invalidating and can stall momentum. Over-caution has a cost too \u2014 it can signal you don't trust her progress and waste her readiness."}
+  ],
+  best:["B"], worst:["A"],
+  takeaway:"B threads the needle. A is weakest (setback/dropout risk); C errs the other way \u2014 over-caution that stalls a motivated client. Good pacing is a stretch that can still succeed."
+ },
+ {
+  tag:"Risk vs. structure",
+  setting:"Session 6 — a graded exposure is planned for today.",
+  stem:"While setting the agenda, the client mentions in passing: \u201cI've been feeling like a burden lately \u2014 sometimes wondering what the point of it all is.\u201d",
+  options:[
+    {id:"A",text:"Note it, complete the planned exposure to keep momentum, and circle back to the comment at the end of session.",
+     verdict:"worst",label:"Weakest",an:"Deferring a possible risk disclosure to the end of session is the core error: safety is assessed when it surfaces, not scheduled around the agenda. Momentum never outranks a risk cue."},
+    {id:"B",text:"Pause the agenda and conduct a focused, proportionate risk and safety assessment before deciding how to proceed.",
+     verdict:"best",label:"Strong",an:"Safety-first and proportionate. Pausing to assess directly \u2014 then deciding collaboratively whether and how to continue \u2014 is exactly the standardization\u2013flexibility balance. The exposure can wait; this cannot."},
+    {id:"C",text:"End the session immediately and direct her to emergency services.",
+     verdict:"mid",label:"Disproportionate",an:"An over-reaction to a passing comment that hasn't yet been assessed. It can rupture the alliance and skips the step that actually informs the decision \u2014 a proportionate assessment first."}
+  ],
+  best:["B"], worst:["A"],
+  takeaway:"B is clearly indicated. A is the weak choice (deferring risk to the agenda's convenience); C over-reacts before assessing. Assess first, then calibrate the response to what you find."
+ }
+];
+
+const host = document.getElementById('scenarios');
+SCENARIOS.forEach((sc, si)=>{
+  const card = document.createElement('div');
+  card.className = 'scen';
+  card.innerHTML = `
+    <p class="tag">Scenario ${si+1} · ${sc.tag}</p>
+    <h2>${sc.stem}</h2>
+    <p class="setting">${sc.setting}</p>
+    <div class="opts"></div>
+    <div class="reason"><label>Your reasoning (what are you prioritizing, and what does your pick cost?)</label><textarea placeholder="One or two sentences\u2026"></textarea></div>
+    <button class="btn">Reveal the analysis</button>
+    <p class="warn">Pick both a most- and least-defensible option first (they can't be the same).</p>
+    <div class="analysis"></div>`;
+  const optWrap = card.querySelector('.opts');
+  const state = {best:null, worst:null};
+
+  sc.options.forEach(o=>{
+    const row = document.createElement('div');
+    row.className = 'opt'; row.dataset.id = o.id;
+    row.innerHTML = `
+      <p class="otext"><span class="oid">${o.id}.</span>${o.text}</p>
+      <div class="picks">
+        <span class="pick p-best" data-k="best"><span class="dotp"></span>Most defensible</span>
+        <span class="pick p-worst" data-k="worst"><span class="dotp"></span>Least defensible</span>
+      </div>`;
+    optWrap.appendChild(row);
+    row.querySelectorAll('.pick').forEach(pk=>{
+      pk.addEventListener('click', ()=>{
+        const k = pk.dataset.k;                 // 'best' | 'worst'
+        const other = k==='best'?'worst':'best';
+        if(state[k]===o.id){ state[k]=null; }    // toggle off
+        else { state[k]=o.id; if(state[other]===o.id) state[other]=null; } // can't be same
+        paint();
+      });
+    });
+  });
+
+  function paint(){
+    optWrap.querySelectorAll('.opt').forEach(row=>{
+      const id = row.dataset.id;
+      row.classList.toggle('sel-best', state.best===id);
+      row.classList.toggle('sel-worst', state.worst===id);
+      const pb=row.querySelector('.p-best'), pw=row.querySelector('.p-worst');
+      pb.classList.toggle('on-best', state.best===id);
+      pw.classList.toggle('on-worst', state.worst===id);
+    });
+  }
+
+  const btn = card.querySelector('.btn');
+  const warn = card.querySelector('.warn');
+  const analysis = card.querySelector('.analysis');
+  btn.addEventListener('click', ()=>{
+    if(!state.best || !state.worst){ warn.style.display='block'; return; }
+    warn.style.display='none';
+    // lock picks
+    card.querySelectorAll('.pick').forEach(p=>p.style.pointerEvents='none');
+    btn.style.display='none';
+
+    const bestOK = sc.best.includes(state.best);
+    const worstOK = sc.worst.includes(state.worst);
+    let html = `<h3>How the options compare</h3>`;
+    html += `<div class="youmatch">Your read \u2014 most defensible: <b>${state.best}</b> ${bestOK?'\u2713 aligns with the stronger options':'\u2014 worth revisiting against the analysis'} &nbsp;·&nbsp; least defensible: <b>${state.worst}</b> ${worstOK?'\u2713':'\u2014 see below'}</div>`;
+    sc.options.forEach(o=>{
+      const cls = o.verdict==='best'?'v-best':(o.verdict==='worst'?'v-worst':'v-mid');
+      html += `<div class="verdict ${cls}"><div class="vh"><span class="pill">${o.label}</span> Option ${o.id}</div>${o.an}</div>`;
+    });
+    html += `<div class="takeaway"><span class="k">The tradeoff</span>${sc.takeaway}</div>`;
+    analysis.innerHTML = html;
+    analysis.classList.add('show');
+  });
+
+  host.appendChild(card);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Critical Thinking 3 — Build the Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F7F6;--card:#FFFFFF;--ink:#1B2A29;--muted:#5C6B6A;--faint:#8A9897;
+    --accent:#2E6E68;--accent-deep:#22524D;--accent-soft:#DCE8E5;--accent-wash:#EDF4F2;
+    --ok:#2E6E68;--ok-soft:#E4F0ED;--miss:#A6462F;--miss-soft:#F4E5E0;--amber:#B07D22;--amber-soft:#FBF4E6;
+    --line:#E4E9E7;--shadow:0 1px 2px rgba(27,42,41,.04),0 8px 28px rgba(27,42,41,.06);
+    --serif:"Spectral",Georgia,serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;padding:32px 20px 72px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  .eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 10px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,5vw,38px);line-height:1.1;margin:0 0 14px;letter-spacing:-.01em;}
+  .lede{color:var(--muted);font-size:17px;margin:0 0 10px;max-width:64ch;}
+  .how{background:var(--accent-wash);border:1px solid #D3E4DF;border-radius:12px;padding:16px 20px;margin:22px 0 26px;font-size:15px;}
+  .how b{color:var(--accent-deep);}
+  h2.part{font-family:var(--serif);font-size:24px;font-weight:600;margin:34px 0 6px;}
+  .psub{color:var(--muted);font-size:15px;margin:0 0 20px;max-width:66ch;}
+  .brief{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:0 0 22px;box-shadow:var(--shadow);}
+  .brief .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent);margin:0 0 6px;}
+  .brief p{margin:0;font-size:15px;color:var(--ink);}
+  .row{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:15px 16px;margin:0 0 11px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .row .data{flex:1;min-width:240px;font-size:15px;color:var(--ink);}
+  .row .data .q{color:var(--faint);font-style:italic;}
+  select{font-family:var(--sans);font-size:14px;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#FAFBFB;min-width:210px;cursor:pointer;}
+  select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);}
+  .rfb{flex-basis:100%;display:none;font-size:13.5px;border-radius:9px;padding:10px 12px;line-height:1.5;}
+  .rfb.show{display:block;}
+  .rfb.ok{background:var(--ok-soft);border:1px solid #BEDBD4;color:var(--ink);}
+  .rfb.miss{background:var(--miss-soft);border:1px solid #E7C9BF;color:var(--ink);}
+  .rfb .tag{font-weight:600;}
+  .rfb.ok .tag{color:var(--ok);}.rfb.miss .tag{color:var(--miss);}
+  button{font-family:var(--sans);cursor:pointer;border:none;border-radius:10px;font-weight:600;transition:background .15s,opacity .15s,transform .05s;}
+  button:active{transform:translateY(1px);}
+  .btn{background:var(--accent);color:#fff;padding:12px 24px;font-size:14.5px;}
+  .btn:hover{background:var(--accent-deep);}
+  .actions{margin:20px 0 6px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .score{display:none;font-family:var(--serif);font-size:17px;color:var(--accent-deep);}
+  .score.show{display:inline;}
+  .warn{color:var(--miss);font-size:14px;display:none;margin:8px 0 0;}
+  /* part B */
+  .hyp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px;}
+  .hcard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fff;box-shadow:var(--shadow);}
+  .hcard .hh{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--accent-deep);margin:0 0 7px;}
+  .hcard p{margin:0;font-size:14.5px;color:var(--muted);}
+  .evrow{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;margin:0 0 10px;}
+  .evrow .etext{font-size:15px;color:var(--ink);margin:0 0 11px;}
+  .segs{display:flex;gap:8px;flex-wrap:wrap;}
+  .seg{flex:1;min-width:130px;text-align:center;border:1px solid var(--line);border-radius:9px;padding:8px 6px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;background:#fff;transition:all .12s;}
+  .seg:hover{border-color:var(--accent);color:var(--ink);}
+  .seg.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-deep);}
+  .evfb{display:none;margin-top:10px;font-size:13px;color:var(--muted);background:#F7F9F8;border-radius:8px;padding:9px 11px;}
+  .evfb.show{display:block;}
+  .verdict{margin:18px 0 0;}
+  .verdict .vq{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 10px;}
+  .vpick{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px;}
+  .vp{border:1px solid var(--line);border-radius:10px;padding:10px 16px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;background:#fff;}
+  .vp.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-deep);}
+  .reason label{display:block;font-size:13px;color:var(--faint);margin:0 0 7px;}
+  .reason textarea{width:100%;font-family:var(--sans);font-size:14.5px;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px 13px;resize:vertical;min-height:70px;background:#FAFBFB;}
+  .reason textarea:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);}
+  .expert{display:none;margin-top:20px;background:var(--amber-soft);border:1px solid #EBD9B4;border-radius:12px;padding:16px 18px;font-size:14.5px;line-height:1.55;}
+  .expert.show{display:block;}
+  .expert .k{color:var(--amber);font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:6px;}
+  .close{background:var(--accent-deep);color:#fff;border-radius:16px;padding:26px 28px;margin-top:30px;}
+  .close h2{font-family:var(--serif);font-size:22px;margin:0 0 10px;color:#fff;}
+  .close p{color:#D7E6E2;font-size:15.5px;margin:0;max-width:68ch;}
+  .note{font-size:13px;color:var(--faint);margin:24px 0 0;}
+  @media (max-width:560px){body{padding:20px 14px 56px;}.hyp{grid-template-columns:1fr;}.row{padding:14px;}select{min-width:0;width:100%;}.seg{min-width:0;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">CBT for Anxiety Disorders · Critical Thinking 3</p>
+  <h1>Build the Case</h1>
+  <p class="lede">Formulation turns scattered facts into a working model of what's keeping a client stuck. It asks you to organize evidence — then decide what it best supports.</p>
+  <div class="how">
+    <b>Part A:</b> assign each piece of Maggie's presentation to the formulation component it best fits. <b>Part B:</b> weigh two competing hypotheses about what's maintaining her anxiety, sort the evidence, and commit to a reading. Reveal the expert analysis to compare your reasoning.
+  </div>
+
+  <div class="brief">
+    <p class="k">Case brief · Maggie</p>
+    <p>Magda “Maggie” Perez, 34, referred for generalized anxiety. Recently assigned to lead a high-visibility project at work. The details below come from her intake and first sessions.</p>
+  </div>
+
+  <h2 class="part">Part A · Map the evidence</h2>
+  <p class="psub">For each data point, choose the formulation component it best represents. One is deliberately a protective factor — good formulations note strengths, not just problems.</p>
+  <div id="mapRows"></div>
+  <div class="actions"><button class="btn" id="revealA">Reveal the mapping</button><span class="score" id="scoreA"></span></div>
+  <p class="warn" id="warnA">Assign a component to every data point first.</p>
+
+  <h2 class="part">Part B · Weigh two hypotheses</h2>
+  <p class="psub">Two experienced clinicians formulate Maggie's maintaining mechanism differently. Neither is a trick answer — the skill is reasoning about which the evidence better supports, while staying open to both.</p>
+  <div class="hyp">
+    <div class="hcard"><div class="hh">Hypothesis 1 — Inflated responsibility &amp; control</div><p>Her anxiety is maintained mainly by a belief that safety depends on staying in control of everything, driving checking and over-preparation.</p></div>
+    <div class="hcard"><div class="hh">Hypothesis 2 — Intolerance of uncertainty</div><p>Her anxiety is maintained mainly by an inability to tolerate not knowing, driving avoidance of situations with unpredictable outcomes.</p></div>
+  </div>
+  <div id="evRows"></div>
+  <div class="verdict">
+    <p class="vq">On balance, which hypothesis does the evidence better support as the <em>primary</em> mechanism?</p>
+    <div class="vpick" id="vpick">
+      <div class="vp" data-v="h1">Hypothesis 1</div>
+      <div class="vp" data-v="h2">Hypothesis 2</div>
+      <div class="vp" data-v="both">Both — held together</div>
+    </div>
+    <div class="reason"><label>Your reasoning — which evidence tipped it, and what would make you revise?</label><textarea placeholder="Two or three sentences…"></textarea></div>
+  </div>
+  <div class="actions"><button class="btn" id="revealB">Reveal the expert analysis</button></div>
+  <p class="warn" id="warnB">Sort each piece of evidence and pick a verdict first.</p>
+  <div class="expert" id="expertB"></div>
+
+  <div class="close">
+    <h2>What good formulation reasoning looks like</h2>
+    <p>Evidence rarely points cleanly to one answer. A strong clinician weighs the preponderance, names which data are ambiguous, holds more than one hypothesis when the case warrants it, and treats the formulation as a testable draft — revised as new evidence (and the client's response to intervention) comes in. Certainty is not the goal; a defensible, revisable model is.</p>
+  </div>
+  <p class="note">This is a reasoning exercise, not a graded quiz. Nothing is submitted or stored.</p>
+</div>
+
+<script>
+/* ---------- Part A ---------- */
+const COMPONENTS = ["Situation / trigger","Automatic thought","Core belief","Emotion","Physical sensation","Behaviour / safety behaviour","Protective factor"];
+const DATA = [
+ {t:"\u201cIf I don't reply to every email immediately, something bad will happen.\u201d", a:"Automatic thought",
+  why:"A specific, situational appraisal that pops up in the moment \u2014 the hallmark of an automatic thought, sitting above the deeper belief."},
+ {t:"Racing heart and tense shoulders in the hour before meetings.", a:"Physical sensation",
+  why:"Bodily arousal \u2014 the physiological channel of the anxiety response."},
+ {t:"Re-reads and rewrites routine messages many times before sending.", a:"Behaviour / safety behaviour",
+  why:"An action intended to prevent a feared outcome; it lowers anxiety briefly while maintaining it \u2014 a classic safety behaviour."},
+ {t:"\u201cI'm only safe if I stay on top of absolutely everything.\u201d", a:"Core belief",
+  why:"A global, absolute rule about safety and control that organizes many situations \u2014 core-belief level, not a one-off thought."},
+ {t:"Being assigned to lead a high-visibility project at work.", a:"Situation / trigger",
+  why:"The external activating event that sets the cycle in motion."},
+ {t:"Feels dread and irritability building across the workday.", a:"Emotion",
+  why:"The felt emotional state \u2014 distinct from the thoughts that drive it and the body sensations that accompany it."},
+ {t:"Has a close, supportive relationship with her sister and reliably does between-session homework.", a:"Protective factor",
+  why:"Strengths and resources that support treatment and buffer risk \u2014 essential to a balanced formulation, not just a list of problems."},
+ {t:"Cancels social plans to keep working and \u201cstay prepared.\u201d", a:"Behaviour / safety behaviour",
+  why:"Avoidance in the service of over-preparation \u2014 another safety behaviour that narrows her life and keeps the anxiety going."}
+];
+
+const mapHost = document.getElementById('mapRows');
+const aPicks = {};
+DATA.forEach((d,i)=>{
+  const row=document.createElement('div'); row.className='row'; row.dataset.i=i;
+  const opts = ['<option value="">Choose component\u2026</option>'].concat(COMPONENTS.map(c=>`<option value="${c}">${c}</option>`)).join('');
+  row.innerHTML = `<div class="data">${d.t}</div><select>${opts}</select><div class="rfb"></div>`;
+  row.querySelector('select').addEventListener('change', e=>{ aPicks[i]=e.target.value; });
+  mapHost.appendChild(row);
+});
+document.getElementById('revealA').addEventListener('click', ()=>{
+  if(Object.values(aPicks).filter(Boolean).length < DATA.length){ document.getElementById('warnA').style.display='block'; return; }
+  document.getElementById('warnA').style.display='none';
+  let correct=0;
+  DATA.forEach((d,i)=>{
+    const row=mapHost.querySelector(`.row[data-i="${i}"]`);
+    row.querySelector('select').disabled=true;
+    const mine=aPicks[i], ok=mine===d.a;
+    if(ok) correct++;
+    const fb=row.querySelector('.rfb');
+    fb.className='rfb show '+(ok?'ok':'miss');
+    fb.innerHTML = ok
+      ? `<span class="tag">\u2713 ${d.a}.</span> ${d.why}`
+      : `<span class="tag">Best fit: ${d.a}.</span> ${d.why} <em>(You chose: ${mine}.)</em>`;
+  });
+  const sc=document.getElementById('scoreA');
+  sc.textContent = `${correct} of ${DATA.length} mapped to the best-fit component.`;
+  sc.classList.add('show');
+  document.getElementById('revealA').style.display='none';
+});
+
+/* ---------- Part B ---------- */
+const EVID = [
+ {t:"\u201cI'm only safe if I stay on top of everything.\u201d", lean:"h1",
+  why:"A control/responsibility belief \u2014 squarely Hypothesis 1."},
+ {t:"Re-reads and rewrites messages many times before sending.", lean:"both",
+  why:"Reads as both: checking to stay in control (H1) and reducing the uncertainty of how a message will land (H2)."},
+ {t:"Cancels unpredictable social plans to keep working.", lean:"both",
+  why:"Over-preparation points to H1; avoiding an unpredictable social situation points to H2. Genuinely ambiguous."},
+ {t:"Racing heart before meetings with uncertain outcomes.", lean:"h2",
+  why:"Arousal tied specifically to not knowing how things will go \u2014 leans toward intolerance of uncertainty (H2)."}
+];
+const evHost=document.getElementById('evRows');
+const bPicks={};
+EVID.forEach((e,i)=>{
+  const row=document.createElement('div'); row.className='evrow'; row.dataset.i=i;
+  row.innerHTML = `<p class="etext">${e.t}</p>
+    <div class="segs">
+      <div class="seg" data-v="h1">Supports H1</div>
+      <div class="seg" data-v="h2">Supports H2</div>
+      <div class="seg" data-v="both">Both / neutral</div>
+    </div><div class="evfb"></div>`;
+  row.querySelectorAll('.seg').forEach(sg=>{
+    sg.addEventListener('click', ()=>{
+      if(row.dataset.locked) return;
+      bPicks[i]=sg.dataset.v;
+      row.querySelectorAll('.seg').forEach(s=>s.classList.remove('on'));
+      sg.classList.add('on');
+    });
+  });
+  evHost.appendChild(row);
+});
+let vVerdict=null;
+document.querySelectorAll('#vpick .vp').forEach(vp=>{
+  vp.addEventListener('click', ()=>{
+    if(vp.closest('#vpick').dataset.locked) return;
+    vVerdict=vp.dataset.v;
+    document.querySelectorAll('#vpick .vp').forEach(x=>x.classList.remove('on'));
+    vp.classList.add('on');
+  });
+});
+document.getElementById('revealB').addEventListener('click', ()=>{
+  if(Object.values(bPicks).filter(Boolean).length < EVID.length || !vVerdict){ document.getElementById('warnB').style.display='block'; return; }
+  document.getElementById('warnB').style.display='none';
+  EVID.forEach((e,i)=>{
+    const row=evHost.querySelector(`.evrow[data-i="${i}"]`); row.dataset.locked='1';
+    const fb=row.querySelector('.evfb'); fb.classList.add('show');
+    const leanLabel = e.lean==='h1'?'Leans H1':(e.lean==='h2'?'Leans H2':'Reads as both');
+    fb.innerHTML = `<b>${leanLabel}.</b> ${e.why}`;
+  });
+  document.getElementById('vpick').dataset.locked='1';
+  const exp=document.getElementById('expertB');
+  exp.innerHTML = `<span class="k">Expert analysis</span>
+    Both mechanisms are clearly present, and the strongest formulations hold them together rather than forcing a choice. That said, the <b>preponderance of specific evidence leans to Hypothesis 1</b>: the explicit control-and-responsibility belief, the checking and rewriting, and the over-preparation all cluster around control. Hypothesis 2 is unmistakably active too \u2014 the arousal before uncertain meetings and the cancelled unpredictable plans \u2014 and several data points (rewriting, cancelling plans) legitimately support both. A defensible reading: <b>control/responsibility as the primary thread, with intolerance of uncertainty woven through it</b>. If \u201cBoth\u201d was your verdict, that's well-supported; if you chose H1, the control-cluster justifies it. The real test is what you'd do next \u2014 e.g., a behavioural experiment dropping a safety behaviour \u2014 and letting her response refine the model.`;
+  exp.classList.add('show');
+  document.getElementById('revealB').style.display='none';
+});
+</script>
+</body>
+</html>

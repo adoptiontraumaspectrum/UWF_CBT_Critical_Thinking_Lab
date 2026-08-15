@@ -1,31 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UWF CBT Critical Thinking Lab — Quizzes</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
-    h1 { border-bottom: 2px solid #333; padding-bottom: 8px; }
-    li { margin: 10px 0; }
-    a { text-decoration: none; color: #0645ad; }
-    a:hover { text-decoration: underline; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UWF CBT Clinical Reasoning Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F5F7F6;--card:#FFFFFF;--ink:#1B2A29;--muted:#5C6B6A;--faint:#8A9897;
+   --accent:#2E6E68;--deep:#22524D;--soft:#DCE8E5;--wash:#EDF4F2;--amber:#B07D22;--clay:#A6462F;
+   --line:#E4E9E7;--shadow:0 1px 2px rgba(27,42,41,.04),0 8px 26px rgba(27,42,41,.06);
+   --serif:"Spectral",Georgia,serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;padding:40px 20px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  .hero{background:var(--deep);border-radius:20px;padding:38px 40px;color:#fff;margin:0 0 34px;}
+  .hero .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);font-weight:600;margin:0 0 12px;}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.5vw,44px);line-height:1.05;margin:0 0 12px;letter-spacing:-.01em;}
+  .hero p{color:#D3E4DF;font-size:17px;margin:0;max-width:64ch;}
+  h2{font-family:var(--serif);font-size:25px;font-weight:600;color:var(--deep);margin:36px 0 6px;}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 18px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:0 0 8px;}
+  .card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px;text-decoration:none;color:inherit;transition:transform .12s,box-shadow .12s,border-color .12s;}
+  .card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 10px 30px rgba(27,42,41,.12);}
+  .card .ct{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);}
+  .card h3{font-family:var(--serif);font-size:19px;margin:8px 0 8px;color:var(--ink);}
+  .card p{font-size:14px;color:var(--muted);margin:0;}
+  .big{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .feature{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px 24px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s;}
+  .feature:hover{transform:translateY(-3px);border-color:var(--accent);}
+  .feature .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
+  .feature.lab .tag{color:var(--accent);}
+  .feature.integrity .tag{color:var(--amber);}
+  .feature.final .tag{color:var(--clay);}
+  .feature h3{font-family:var(--serif);font-size:20px;margin:8px 0 8px;}
+  .feature p{font-size:14.5px;color:var(--muted);margin:0;}
+  .quizcard{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:10px 8px;}
+  .quizcard ul{list-style:none;margin:0;padding:0;}
+  .quizcard li{border-bottom:1px solid var(--line);}
+  .quizcard li:last-child{border-bottom:none;}
+  .quizcard a{display:block;padding:13px 18px;text-decoration:none;color:var(--ink);font-size:15.5px;font-weight:500;transition:background .1s,color .1s;border-radius:8px;}
+  .quizcard a:hover{background:var(--wash);color:var(--deep);}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:13px;}
+  @media(max-width:680px){.grid,.big{grid-template-columns:1fr;}.hero{padding:28px 24px;}}
+</style>
 </head>
 <body>
-  <h1>CBT for Anxiety — Quizzes</h1>
-  <p>Select a session quiz below:</p>
-  <ol>
-    <li><a href="Quizzes/Quiz%201%20%E2%80%94%20Foundations,%20Manualization%20%26%20Session%201%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 1 — Foundations, Manualization & Session 1</a></li>
-    <li><a href="Quizzes/Quiz%202%20%E2%80%94%20Session%202_%20Worry%20Time%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 2 — Worry Time</a></li>
-    <li><a href="Quizzes/Quiz%203%20%E2%80%94%20Session%203_%20Engagement%20%26%20Skill%20Introduction%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 3 — Engagement & Skill Introduction</a></li>
-    <li><a href="Quizzes/Quiz%204%20%E2%80%94%20Session%204_%20Risk%20Assessment%20%26%20Emotional%20Activation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 4 — Risk Assessment & Emotional Activation</a></li>
-    <li><a href="Quizzes/Quiz%205%20%E2%80%94%20Session%205_%20Exposure%20%26%20Self-Regulation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 5 — Exposure & Self-Regulation</a></li>
-    <li><a href="Quizzes/Quiz%206%20%E2%80%94%20Session%206_%20Advancing%20Exposure%20%26%20Self-Regulation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 6 — Advancing Exposure & Self-Regulation</a></li>
-    <li><a href="Quizzes/Quiz%207%20%E2%80%94%20Session%207_%20Advanced%20Exposure%20%26%20Autonomy%20Development%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 7 — Advanced Exposure & Autonomy Development</a></li>
-    <li><a href="Quizzes/Quiz%208%20%E2%80%94%20Session%208_%20Thought%20Interruption%20%26%20Guilt%20Reprocessing%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 8 — Thought Interruption & Guilt Reprocessing</a></li>
-    <li><a href="Quizzes/Quiz%209%20%E2%80%94%20Session%209_%20Core%20Belief%20Revision%20%26%20Identity%20Restructuring%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 9 — Core Belief Revision & Identity Restructuring</a></li>
-    <li><a href="Quizzes/Quiz%2010%20%E2%80%94%20Session%2010_%20Relapse%20Prevention%20%26%20Treatment%20Consolidation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 10 — Relapse Prevention & Treatment Consolidation</a></li>
-  </ol>
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">University of West Florida · MSW</p>
+    <h1>CBT for Anxiety — Clinical Reasoning Lab</h1>
+    <p>Self-check quizzes, critical-thinking exercises, and an interactive case-conceptualization lab for the manualized CBT course. Everything runs in your browser.</p>
+  </div>
+
+  <h2>Critical Thinking Exercises</h2>
+  <p class="sub">Reason through clinical judgment — not recall. Three self-contained exercises.</p>
+  <div class="grid">
+      <a class="card" href="ct1-weigh-the-tradeoffs.html"><span class="ct">Critical Thinking 1</span><h3>Weigh the Tradeoffs</h3><p>Clinical decision analysis — judgment under competing goods.</p></a>
+      <a class="card" href="ct2-spot-the-drift.html"><span class="ct">Critical Thinking 2</span><h3>Spot the Drift</h3><p>Telling on-model fidelity from justified flexibility and drift.</p></a>
+      <a class="card" href="ct3-build-the-case.html"><span class="ct">Critical Thinking 3</span><h3>Build the Case</h3><p>Mapping evidence to a formulation and weighing hypotheses.</p></a>
+  </div>
+
+  <h2>Case Conceptualization Lab &amp; more</h2>
+  <p class="sub">Applied clinical-reasoning lab, the integrity self-check, and the final project brief.</p>
+  <div class="big">
+    <a class="feature lab" href="case-conceptualization-lab.html"><span class="tag">Interactive Lab</span><h3>Case Conceptualization Lab</h3><p>Map evidence to a formulation, surface strengths, weigh competing hypotheses, and screen for risk across five practice cases.</p></a>
+    <a class="feature integrity" href="academic-integrity-quiz.html"><span class="tag">Start here</span><h3>Syllabus &amp; Academic Integrity Quiz</h3><p>An 8-question self-check on the course's academic-integrity and generative-AI policy.</p></a>
+    <a class="feature final" href="final-project.html"><span class="tag">Capstone</span><h3>Final Project — Case Conceptualization Paper</h3><p>The assignment brief, required components, and grading rubric. Due Mon, Nov 30.</p></a>
+  </div>
+
+  <h2>Session Quizzes</h2>
+  <p class="sub">Ten open-book self-checks with instant feedback and rationales — one per session.</p>
+  <div class="quizcard">
+    <ul>
+      <li><a href="Quizzes/Quiz%201%20%E2%80%94%20Foundations,%20Manualization%20%26%20Session%201%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 1 — Foundations, Manualization & Session 1</a></li>
+      <li><a href="Quizzes/Quiz%202%20%E2%80%94%20Session%202_%20Worry%20Time%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 2 — Session 2: Worry Time</a></li>
+      <li><a href="Quizzes/Quiz%203%20%E2%80%94%20Session%203_%20Engagement%20%26%20Skill%20Introduction%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 3 — Session 3: Engagement & Skill Introduction</a></li>
+      <li><a href="Quizzes/Quiz%204%20%E2%80%94%20Session%204_%20Risk%20Assessment%20%26%20Emotional%20Activation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 4 — Session 4: Risk Assessment & Emotional Activation</a></li>
+      <li><a href="Quizzes/Quiz%205%20%E2%80%94%20Session%205_%20Exposure%20%26%20Self-Regulation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 5 — Session 5: Exposure & Self-Regulation</a></li>
+      <li><a href="Quizzes/Quiz%206%20%E2%80%94%20Session%206_%20Advancing%20Exposure%20%26%20Self-Regulation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 6 — Session 6: Advancing Exposure & Self-Regulation</a></li>
+      <li><a href="Quizzes/Quiz%207%20%E2%80%94%20Session%207_%20Advanced%20Exposure%20%26%20Autonomy%20Development%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 7 — Session 7: Advanced Exposure & Autonomy Development</a></li>
+      <li><a href="Quizzes/Quiz%208%20%E2%80%94%20Session%208_%20Thought%20Interruption%20%26%20Guilt%20Reprocessing%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 8 — Session 8: Thought Interruption & Guilt Reprocessing</a></li>
+      <li><a href="Quizzes/Quiz%209%20%E2%80%94%20Session%209_%20Core%20Belief%20Revision%20%26%20Identity%20Restructuring%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 9 — Session 9: Core Belief Revision & Identity Restructuring</a></li>
+      <li><a href="Quizzes/Quiz%2010%20%E2%80%94%20Session%2010_%20Relapse%20Prevention%20%26%20Treatment%20Consolidation%20%C2%B7%20CBT%20for%20Anxiety.html">Quiz 10 — Session 10: Relapse Prevention & Treatment Consolidation</a></li>
+    </ul>
+  </div>
+
+  <footer>CBT for Anxiety Disorders · Fall 2026 · These pages are self-contained study tools and run entirely in the browser.</footer>
+</div>
 </body>
 </html>

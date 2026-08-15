@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Critical Thinking 2 — Spot the Drift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F7F6;--card:#FFFFFF;--ink:#1B2A29;--muted:#5C6B6A;--faint:#8A9897;
+    --accent:#2E6E68;--accent-deep:#22524D;--accent-soft:#DCE8E5;--accent-wash:#EDF4F2;
+    --ok:#2E6E68;--ok-soft:#E4F0ED;--flex:#B07D22;--flex-soft:#FBF4E6;--drift:#A6462F;--drift-soft:#F4E5E0;
+    --line:#E4E9E7;--shadow:0 1px 2px rgba(27,42,41,.04),0 8px 28px rgba(27,42,41,.06);
+    --serif:"Spectral",Georgia,serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;padding:32px 20px 72px;}
+  .wrap{max-width:840px;margin:0 auto;}
+  .eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 10px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,5vw,38px);line-height:1.1;margin:0 0 14px;letter-spacing:-.01em;}
+  .lede{color:var(--muted);font-size:17px;margin:0 0 10px;max-width:64ch;}
+  .how{background:var(--accent-wash);border:1px solid #D3E4DF;border-radius:12px;padding:16px 20px;margin:22px 0 24px;font-size:15px;}
+  .how b{color:var(--accent-deep);}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 28px;}
+  .lg{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:6px 13px;background:#fff;}
+  .lg .sw{width:12px;height:12px;border-radius:50%;}
+  .sw.ok{background:var(--ok);}.sw.flex{background:var(--flex);}.sw.drift{background:var(--drift);}
+  .ctx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:0 0 22px;box-shadow:var(--shadow);}
+  .ctx .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent);margin:0 0 6px;}
+  .ctx p{margin:0;font-size:15px;color:var(--ink);}
+  .move{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:20px 22px;margin:0 0 16px;}
+  .move .mnum{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:14px;margin:0 0 6px;}
+  .move .mtext{font-size:16px;color:var(--ink);margin:0 0 15px;line-height:1.5;}
+  .choices{display:flex;gap:9px;flex-wrap:wrap;}
+  .ch{flex:1;min-width:150px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:10px 8px;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;background:#fff;transition:all .13s;}
+  .ch:hover{border-color:var(--accent);color:var(--ink);}
+  .ch.pick-ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);}
+  .ch.pick-flex{background:var(--flex-soft);border-color:var(--flex);color:var(--flex);}
+  .ch.pick-drift{background:var(--drift-soft);border-color:var(--drift);color:var(--drift);}
+  .fb{display:none;margin-top:15px;border-radius:11px;padding:13px 15px;font-size:14.5px;line-height:1.5;}
+  .fb.show{display:block;}
+  .fb .fh{font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:13px;letter-spacing:.03em;text-transform:uppercase;}
+  .fb.f-ok{background:var(--ok-soft);border:1px solid #BEDBD4;}.fb.f-ok .fh{color:var(--ok);}
+  .fb.f-flex{background:var(--flex-soft);border:1px solid #EBD9B4;}.fb.f-flex .fh{color:var(--flex);}
+  .fb.f-drift{background:var(--drift-soft);border:1px solid #E7C9BF;}.fb.f-drift .fh{color:var(--drift);}
+  .fb .yr{font-size:13px;color:var(--muted);margin-top:7px;}
+  button{font-family:var(--sans);cursor:pointer;border:none;border-radius:10px;font-weight:600;transition:background .15s,opacity .15s,transform .05s;}
+  button:active{transform:translateY(1px);}
+  .btn{background:var(--accent);color:#fff;padding:13px 26px;font-size:15px;}
+  .btn:hover{background:var(--accent-deep);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .actions{margin:24px 0 8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .score{display:none;font-family:var(--serif);font-size:18px;color:var(--accent-deep);}
+  .score.show{display:inline;}
+  .warn{color:var(--drift);font-size:14px;display:none;margin:10px 0 0;}
+  .close{background:var(--accent-deep);color:#fff;border-radius:16px;padding:26px 28px;margin-top:22px;}
+  .close h2{font-family:var(--serif);font-size:22px;margin:0 0 10px;color:#fff;}
+  .close p{color:#D7E6E2;font-size:15.5px;margin:0;max-width:66ch;}
+  .note{font-size:13px;color:var(--faint);margin:24px 0 0;}
+  @media (max-width:520px){body{padding:20px 14px 56px;}.move,.ctx{padding:18px;}.ch{min-width:0;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">CBT for Anxiety Disorders · Critical Thinking 2</p>
+  <h1>Spot the Drift</h1>
+  <p class="lede">A manual sets the structure; skilled clinicians flex within it. The hard judgment is telling principled flexibility apart from drift off the model.</p>
+  <div class="how">
+    Read each clinician move and classify it. <b>On-model</b> follows the CBT structure. <b>Justified flexibility</b> is a principled deviation that still protects the treatment's core. <b>Drift</b> abandons the model without clinical justification. Some moves are deliberately close calls — decide, then reveal the reasoning.
+  </div>
+  <div class="legend">
+    <span class="lg"><span class="sw ok"></span>On-model fidelity</span>
+    <span class="lg"><span class="sw flex"></span>Justified flexibility</span>
+    <span class="lg"><span class="sw drift"></span>Drift</span>
+  </div>
+  <div class="ctx"><p class="k">The session</p><p>Maggie, around Session 4. She arrives somewhat activated after a hard week. Classify each of the clinician's moves as the session unfolds.</p></div>
+  <div id="moves"></div>
+  <div class="actions">
+    <button class="btn" id="reveal">Reveal the analysis</button>
+    <span class="score" id="score"></span>
+  </div>
+  <p class="warn" id="warn">Classify every move first.</p>
+  <div class="close">
+    <h2>The distinction that matters</h2>
+    <p>Flexibility and drift can look alike from the outside — both depart from the plan. What separates them is whether the departure is <em>principled and protects the core</em> (attending to safety or emotion, then returning to structure) or simply <em>lets the structure dissolve</em> (skipped homework review, agenda-free supportive talk). Ask of any deviation: what core component am I protecting, and will I return to the arc?</p>
+  </div>
+  <p class="note">This is a reasoning exercise, not a graded quiz. Nothing is submitted or stored.</p>
+</div>
+
+<script>
+const MOVES = [
+ {t:"Opens with a brief mood check and a 0\u201310 anxiety rating before anything else.",
+  a:"ok", why:"Standard session structure. Opening with a mood check orients the session and tracks change over time."},
+ {t:"Skips reviewing last week's worry-time homework, explaining \u201cthere's a lot to cover today.\u201d",
+  a:"drift", why:"Homework review is a core component, and skipping it is the single most common drift from manualized CBT \u2014 it also signals that between-session work is optional."},
+ {t:"Maggie tears up describing a fight with her sister; the clinician pauses the agenda, stays with the emotion, uses a brief grounding skill, then returns to the plan.",
+  a:"flex", why:"A principled deviation: attending to strong affect and regulating before continuing protects the alliance and the work, and the clinician explicitly returns to the structure. This is the standardization\u2013flexibility balance in action."},
+ {t:"Collaboratively sets the day's agenda with Maggie, naming two items and checking her priorities.",
+  a:"ok", why:"Collaborative agenda-setting is a defining feature of a CBT session \u2014 structure built with the client, not imposed on her."},
+ {t:"Maggie mentions passing thoughts that \u201cthings would be easier if I weren't here\u201d; the clinician notes it to ask about at the end and continues the agenda.",
+  a:"drift", why:"Deferring a possible risk cue to the end of session is drift, not flexibility: safety is assessed when it surfaces. Flexibility would mean pausing to assess now \u2014 postponing it protects the agenda at the client's expense."},
+ {t:"Spends the final 20 minutes in open-ended supportive conversation about Maggie's week, teaching no skill and setting no task.",
+  a:"drift", why:"The session dissolves into unstructured supportive talk. Warmth is welcome, but with no skill, no agenda, and no homework, the hour has drifted away from the skills-based model."},
+ {t:"Because Maggie is still dysregulated, the clinician shortens the planned exposure, consolidates a coping skill instead, and documents the rationale for the change.",
+  a:"flex", why:"A justified, documented adjustment: matching the intervention to the client's current state while preserving the treatment's direction. Titrating the work \u2014 and recording why \u2014 is competent flexibility, not drift."},
+ {t:"Closes by summarizing the session and collaboratively setting a manageable homework task.",
+  a:"ok", why:"Summary plus collaborative homework is the standard close \u2014 it consolidates the session and carries the work between meetings."}
+];
+const LABELS = {ok:"On-model", flex:"Justified flexibility", drift:"Drift"};
+
+const host = document.getElementById('moves');
+const picks = {};
+MOVES.forEach((m,i)=>{
+  const el = document.createElement('div');
+  el.className='move'; el.dataset.i=i;
+  el.innerHTML = `
+    <p class="mnum">Move ${i+1}</p>
+    <p class="mtext">${m.t}</p>
+    <div class="choices">
+      <div class="ch" data-v="ok">On-model</div>
+      <div class="ch" data-v="flex">Justified flexibility</div>
+      <div class="ch" data-v="drift">Drift</div>
+    </div>
+    <div class="fb"></div>`;
+  el.querySelectorAll('.ch').forEach(ch=>{
+    ch.addEventListener('click', ()=>{
+      if(el.dataset.locked) return;
+      picks[i]=ch.dataset.v;
+      el.querySelectorAll('.ch').forEach(c=>{c.classList.remove('pick-ok','pick-flex','pick-drift');});
+      ch.classList.add('pick-'+ch.dataset.v);
+    });
+  });
+  host.appendChild(el);
+});
+
+document.getElementById('reveal').addEventListener('click', ()=>{
+  if(Object.keys(picks).length < MOVES.length){ document.getElementById('warn').style.display='block'; return; }
+  document.getElementById('warn').style.display='none';
+  let correct=0;
+  MOVES.forEach((m,i)=>{
+    const el = host.querySelector(`.move[data-i="${i}"]`);
+    el.dataset.locked='1';
+    const mine = picks[i];
+    if(mine===m.a) correct++;
+    const fb = el.querySelector('.fb');
+    fb.className = 'fb show f-'+m.a;
+    const match = mine===m.a;
+    fb.innerHTML = `<div class="fh">${LABELS[m.a]}</div>${m.why}
+      <div class="yr">Your call: <b>${LABELS[mine]}</b> ${match?'\u2014 matches.':'\u2014 compare with the reasoning above.'}</div>`;
+  });
+  const sc = document.getElementById('score');
+  sc.textContent = `You matched ${correct} of ${MOVES.length} — the reasoning matters more than the count.`;
+  sc.classList.add('show');
+  document.getElementById('reveal').style.display='none';
+});
+</script>
+</body>
+</html>
