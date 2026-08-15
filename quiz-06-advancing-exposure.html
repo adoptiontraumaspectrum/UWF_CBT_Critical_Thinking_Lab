@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz 6 — Session 6: Advancing Exposure &amp; Self-Regulation · CBT for Anxiety</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F7F6;--card:#FFFFFF;--ink:#1B2A29;--muted:#5C6B6A;--faint:#8A9897;
+    --accent:#2E6E68;--accent-deep:#22524D;--accent-soft:#DCE8E5;
+    --correct:#2E6E68;--correct-soft:#E4F0ED;--incorrect:#A6462F;--incorrect-soft:#F4E5E0;
+    --line:#E4E9E7;--shadow:0 1px 2px rgba(27,42,41,.04),0 8px 28px rgba(27,42,41,.06);
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;padding:32px 20px 72px;}
+  .wrap{max-width:660px;margin:0 auto;}
+  .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 10px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4.6vw,36px);line-height:1.1;margin:0 0 12px;letter-spacing:-.01em;}
+  .lede{color:var(--muted);font-size:16px;margin:0 0 10px;max-width:56ch;}
+  .covers{color:var(--faint);font-size:14px;margin:0 0 28px;max-width:60ch;font-style:italic;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;box-shadow:var(--shadow);}
+  .meter{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+  .meter .track{flex:1;height:5px;background:var(--line);border-radius:99px;overflow:hidden;}
+  .meter .fill{height:100%;background:var(--accent);border-radius:99px;transition:width .35s cubic-bezier(.4,0,.2,1);}
+  .meter .count{font-size:13px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .qnum{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:15px;margin:0 0 6px;}
+  .qtext{font-family:var(--serif);font-size:21px;line-height:1.35;font-weight:500;margin:0 0 22px;}
+  .options{display:flex;flex-direction:column;gap:11px;margin:0 0 6px;}
+  .opt{display:flex;align-items:flex-start;gap:13px;border:1px solid var(--line);border-radius:11px;padding:14px 16px;cursor:pointer;background:#fff;transition:border-color .15s,background .15s;}
+  .opt:hover{border-color:var(--accent);background:#FAFDFC;}
+  .opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #C4CFCD;margin-top:1px;transition:border-color .15s;display:grid;place-items:center;}
+  .opt .dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .15s;}
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft);}
+  .opt.sel .dot{border-color:var(--accent);}
+  .opt.sel .dot::after{transform:scale(1);}
+  .opt .lbl{font-size:15.5px;color:var(--ink);}
+  .opt.locked{cursor:default;}
+  .opt.locked:hover{border-color:var(--line);background:#fff;}
+  .opt.reveal-correct{border-color:var(--correct);background:var(--correct-soft);}
+  .opt.reveal-correct:hover{border-color:var(--correct);background:var(--correct-soft);}
+  .opt.reveal-correct .dot{border-color:var(--correct);}
+  .opt.reveal-wrong{border-color:var(--incorrect);background:var(--incorrect-soft);}
+  .opt.reveal-wrong:hover{border-color:var(--incorrect);background:var(--incorrect-soft);}
+  .opt.reveal-wrong .dot{border-color:var(--incorrect);}
+  .opt .mark{margin-left:auto;font-weight:700;font-size:14px;align-self:center;}
+  .opt.reveal-correct .mark{color:var(--correct);}
+  .opt.reveal-wrong .mark{color:var(--incorrect);}
+  /* bottom feedback box */
+  .feedback{margin-top:20px;border-radius:11px;padding:16px 18px;font-size:15px;display:none;}
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--correct-soft);border:1px solid #BEDBD4;}
+  .feedback.no{background:var(--incorrect-soft);border:1px solid #E7C9BF;}
+  .feedback .head{font-weight:600;display:flex;align-items:center;gap:9px;margin-bottom:8px;font-size:15px;}
+  .feedback.ok .head{color:var(--correct);}
+  .feedback.no .head{color:var(--incorrect);}
+  .feedback .head .mk{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;flex:none;}
+  .feedback.ok .head .mk{background:var(--correct);}
+  .feedback.no .head .mk{background:var(--incorrect);}
+  .feedback .ans{font-size:15px;margin:0 0 10px;}
+  .feedback .ans .k{color:var(--faint);}
+  .feedback .ans .txt{color:var(--incorrect);font-weight:500;}
+  .feedback .why{font-size:14.5px;color:var(--muted);line-height:1.55;margin:0;}
+  .feedback .why .k{color:var(--accent);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:4px;}
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px;}
+  button{font-family:var(--sans);cursor:pointer;border:none;border-radius:10px;font-weight:600;transition:background .15s,opacity .15s,transform .05s;}
+  button:active{transform:translateY(1px);}
+  .btn{background:var(--accent);color:#fff;padding:12px 22px;font-size:15px;}
+  .btn:hover{background:var(--accent-deep);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .btn.ghost{background:transparent;color:var(--muted);padding:12px 8px;}
+  .btn.ghost:hover{color:var(--ink);}
+  .btn.ghost:disabled{opacity:.3;}
+  .field{margin:0 0 4px;}
+  .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px;font-weight:500;}
+  .field input{width:100%;font-family:var(--sans);font-size:15px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#FAFBFB;color:var(--ink);}
+  .field input:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);}
+  .note{font-size:13px;color:var(--faint);margin:18px 0 0;line-height:1.5;}
+  .band{border-radius:12px;padding:22px 24px;margin:0 0 24px;background:var(--accent-soft);border:1px solid #CBDEDA;}
+  .band .score{font-family:var(--serif);font-size:44px;font-weight:600;line-height:1;color:var(--accent-deep);}
+  .band .score small{font-size:20px;color:var(--muted);font-weight:400;}
+  .band .interp{font-family:var(--serif);font-size:18px;font-style:italic;margin:8px 0 4px;color:var(--ink);}
+  .band .interp-sub{font-size:14px;color:var(--muted);margin:0;}
+  .review-h{font-family:var(--serif);font-size:16px;font-weight:600;margin:26px 0 14px;padding-top:22px;border-top:1px solid var(--line);}
+  .rev{border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin-bottom:12px;}
+  .rev .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .rev.ok .tag{color:var(--correct);}
+  .rev.no .tag{color:var(--incorrect);}
+  .rev .tag .mk{width:16px;height:16px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700;}
+  .rev.ok .tag .mk{background:var(--correct);}
+  .rev.no .tag .mk{background:var(--incorrect);}
+  .rev .rq{font-family:var(--serif);font-size:16px;font-weight:500;margin:0 0 10px;}
+  .rev .ln{font-size:14.5px;margin:3px 0;}
+  .rev .ln .k{color:var(--faint);}
+  .rev .yours.wrong{color:var(--incorrect);}
+  .rev .right{color:var(--correct);}
+  .rev .why{font-size:14px;color:var(--muted);margin:11px 0 0;padding:11px 13px;background:#F7F9F8;border-radius:8px;border-left:3px solid var(--accent);}
+  .results-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .hidden{display:none;}
+  .name-out{font-size:14px;color:var(--muted);margin:0 0 4px;}
+  @media (max-width:480px){body{padding:20px 14px 56px;}.card{padding:20px;}.qtext{font-size:19px;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+  @media print{body{background:#fff;padding:0;}.card{box-shadow:none;border:none;padding:0;}.results-actions,.note{display:none;}.band{border:1px solid #ccc;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="start">
+    <p class="eyebrow">CBT for Anxiety Disorders · Quiz 6</p>
+    <h1>Session 6: Advancing Exposure &amp; Self-Regulation</h1>
+    <p class="lede">Eight items on this session’s material. Choose the single best answer and check it — if you miss one, the correct answer and a short rationale appear below the question. Retake as often as you like.</p>
+    <p class="covers">Covers: Part IX — Session 6; graded progression; habituation; transfer to homework; safety behaviors.</p>
+    <div class="card">
+      <div class="field">
+        <label for="sname">Your name <span style="color:var(--faint);font-weight:400;">(optional — only used if you print your results)</span></label>
+        <input id="sname" type="text" placeholder="e.g., Jordan Rivera" autocomplete="name">
+      </div>
+      <button class="btn" id="beginBtn" style="margin-top:16px;">Begin quiz</button>
+    </div>
+    <p class="note">This runs entirely in your browser. Nothing is submitted or stored — it’s a study tool.</p>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <div class="card">
+      <div class="meter"><div class="track"><div class="fill" id="fill"></div></div><span class="count" id="count"></span></div>
+      <p class="qnum" id="qnum"></p>
+      <p class="qtext" id="qtext"></p>
+      <div class="options" id="options" role="radiogroup" aria-label="Answer choices"></div>
+      <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+      <div class="nav">
+        <button class="btn ghost" id="backBtn">← Back</button>
+        <button class="btn" id="actionBtn" disabled>Check answer</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="hidden">
+    <div class="card">
+      <p id="nameOut" class="name-out hidden"></p>
+      <div class="band">
+        <div class="score" id="scoreNum"></div>
+        <p class="interp" id="interp"></p>
+        <p class="interp-sub" id="interpSub"></p>
+      </div>
+      <div id="reviewList"></div>
+      <div class="results-actions">
+        <button class="btn" id="retakeBtn">Retake (reshuffled)</button>
+        <button class="btn ghost" id="printBtn">Print / Save results</button>
+      </div>
+    </div>
+    <p class="note">Reviewing the rationales — especially for anything you missed — is where the learning happens.</p>
+  </section>
+</div>
+
+<script>
+const QUIZ = {"num": 6, "title": "Quiz 6 — Session 6: Advancing Exposure & Self-Regulation", "questions": [{"prompt": "New learning during exposure is best supported by exposures that are:", "options": [{"text": "Repeated, of sufficient duration, and progressing in difficulty", "correct": true}, {"text": "Brief and infrequent", "correct": false}, {"text": "Abandoned as soon as distress rises", "correct": false}, {"text": "Confined to the therapy office", "correct": false}], "rationale": "Repetition, adequate duration, and graded progression support habituation and durable new learning."}, {"prompt": "Transferring exposure into homework is important chiefly because it:", "options": [{"text": "Fills session time", "correct": false}, {"text": "Generalizes gains from the office into the client’s real-world contexts", "correct": true}, {"text": "Reduces the therapist’s workload", "correct": false}, {"text": "Is an optional extra", "correct": false}], "rationale": "Homework exposure generalizes learning beyond the office, which is essential to durable change."}, {"prompt": "A client completes exposures but always brings a “safety person.” This is best understood as:", "options": [{"text": "Ideal social support to encourage", "correct": false}, {"text": "A required component of exposure", "correct": false}, {"text": "A safety behavior that can blunt new learning and should be faded over time", "correct": true}, {"text": "A form of cognitive restructuring", "correct": false}], "rationale": "A safety person can prevent the client from learning they can cope alone; such behaviors are gradually faded."}, {"prompt": "A client’s SUDS no longer rise much during an item that once provoked high distress. This most likely indicates:", "options": [{"text": "The exposure has become harmful", "correct": false}, {"text": "Overall treatment failure", "correct": false}, {"text": "A need to stop exposure work", "correct": false}, {"text": "Progress — the item may be ready to move down the hierarchy as a harder step is introduced", "correct": true}], "rationale": "Reduced reactivity to a previously distressing item signals progress and readiness to advance the hierarchy."}, {"prompt": "When an exposure goes poorly and distress spikes without relief, the best response is to:", "options": [{"text": "Process what happened, troubleshoot (e.g., avoidance, too-large a step), and adjust the plan", "correct": true}, {"text": "Conclude that exposure is ineffective for this client", "correct": false}, {"text": "Repeat the identical exposure with no changes", "correct": false}, {"text": "Terminate treatment", "correct": false}], "rationale": "A difficult exposure is data: the clinician processes and troubleshoots, then adjusts the step size or removes interfering avoidance."}, {"prompt": "Which instruction best reflects exposure principles?", "options": [{"text": "“Leave the moment you feel anxious.”", "correct": false}, {"text": "“Stay with the situation and notice what happens to your anxiety over time.”", "correct": true}, {"text": "“Distract yourself the entire time.”", "correct": false}, {"text": "“Only do it if you can stay calm.”", "correct": false}], "rationale": "Remaining in the situation and observing the natural course of anxiety supports new learning; escape and distraction undermine it."}, {"prompt": "As treatment advances, self-regulation skills are increasingly meant to be:", "options": [{"text": "Applied by the therapist on the client’s behalf", "correct": false}, {"text": "Discontinued entirely", "correct": false}, {"text": "Self-directed by the client during real-world exposures", "correct": true}, {"text": "A replacement for exposure", "correct": false}], "rationale": "The arc moves toward the client independently deploying regulation skills in vivo."}, {"prompt": "A client repeatedly avoids logging her exposures. The best clinical move is to:", "options": [{"text": "Ignore it and proceed", "correct": false}, {"text": "Penalize the client for noncompliance", "correct": false}, {"text": "Stop assigning homework altogether", "correct": false}, {"text": "Explore the barriers, simplify the log, and reconnect it to the client’s goals", "correct": true}], "rationale": "Troubleshooting barriers and lowering the burden while reconnecting to goals restores adherence collaboratively."}]};
+const QUESTIONS = QUIZ.questions;
+
+const startEl=document.getElementById('start');
+const quizEl=document.getElementById('quiz');
+const resultsEl=document.getElementById('results');
+
+let order=[],shuffled=[],answers=[],checked=[],cur=0;
+
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function build(){
+  order=shuffle(QUESTIONS.map((_,i)=>i));
+  shuffled=order.map(qi=>shuffle(QUESTIONS[qi].options));
+  answers=order.map(()=>null);
+  checked=order.map(()=>false);
+  cur=0;
+}
+
+function renderQuestion(){
+  const q=QUESTIONS[order[cur]];
+  const opts=shuffled[cur];
+  const n=order.length;
+  const isChecked=checked[cur];
+
+  document.getElementById('fill').style.width=((cur)/n*100)+'%';
+  document.getElementById('count').textContent=`Question ${cur+1} of ${n}`;
+  document.getElementById('qnum').textContent=`Item ${cur+1}`;
+  document.getElementById('qtext').textContent=q.prompt;
+
+  const box=document.getElementById('options');
+  box.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const el=document.createElement('label');
+    let cls='opt';
+    if(answers[cur]===i && !isChecked) cls+=' sel';
+    if(isChecked){
+      cls+=' locked';
+      if(opt.correct) cls+=' reveal-correct';
+      else if(answers[cur]===i) cls+=' reveal-wrong';
+    }
+    el.className=cls;
+    el.setAttribute('role','radio');
+    el.setAttribute('aria-checked',answers[cur]===i?'true':'false');
+    el.innerHTML=`<span class="dot" aria-hidden="true"></span><span class="lbl"></span>`;
+    el.querySelector('.lbl').textContent=opt.text;
+    if(isChecked && (opt.correct || answers[cur]===i)){
+      const m=document.createElement('span');m.className='mark';
+      m.textContent=opt.correct?'✓ Correct':'✗ Your choice';
+      el.appendChild(m);
+    }
+    if(!isChecked){
+      el.addEventListener('click',()=>{answers[cur]=i;renderQuestion();});
+    }
+    box.appendChild(el);
+  });
+
+  const fb=document.getElementById('feedback');
+  if(isChecked){
+    const chosen=answers[cur];
+    const wasCorrect=chosen!==null && opts[chosen].correct;
+    const rightText=opts.find(o=>o.correct).text;
+    fb.className='feedback show '+(wasCorrect?'ok':'no');
+    if(wasCorrect){
+      fb.innerHTML=`<div class="head"><span class="mk">✓</span>Correct</div>
+        <p class="why"><span class="k">Why</span></p>`;
+      fb.querySelector('.why').appendChild(document.createTextNode(q.rationale));
+    }else{
+      fb.innerHTML=`<div class="head"><span class="mk">✗</span>Not quite</div>
+        <p class="ans"><span class="k">Correct answer:</span> <span class="txt"></span></p>
+        <p class="why"><span class="k">Why</span></p>`;
+      fb.querySelector('.txt').textContent=rightText;
+      fb.querySelector('.why').appendChild(document.createTextNode(q.rationale));
+    }
+  }else{
+    fb.className='feedback';fb.innerHTML='';
+  }
+
+  document.getElementById('backBtn').disabled=(cur===0);
+  const btn=document.getElementById('actionBtn');
+  if(!isChecked){
+    btn.textContent='Check answer';
+    btn.disabled=(answers[cur]===null);
+  }else{
+    btn.textContent=(cur===n-1)?'See results':'Next →';
+    btn.disabled=false;
+  }
+}
+
+function action(){
+  const n=order.length;
+  if(!checked[cur]){
+    if(answers[cur]===null) return;
+    checked[cur]=true;
+    renderQuestion();
+  }else{
+    if(cur<n-1){cur++;renderQuestion();}
+    else{showResults();}
+  }
+}
+function back(){if(cur>0){cur--;renderQuestion();}}
+
+function showResults(){
+  quizEl.classList.add('hidden');
+  resultsEl.classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'auto'});
+  let correct=0;
+  order.forEach((qi,i)=>{if(answers[i]!==null && shuffled[i][answers[i]].correct)correct++;});
+  const n=order.length,pct=Math.round(correct/n*100);
+  document.getElementById('scoreNum').innerHTML=`${correct}<small> / ${n}  ·  ${pct}%</small>`;
+  let interp,sub;
+  if(pct>=90){interp="Strong command of this material.";sub="You’re well prepared on this session. Skim any missed rationale and move on.";}
+  else if(pct>=70){interp="Solid working grasp, with a few gaps.";sub="Review the items you missed below before the graded quiz.";}
+  else if(pct>=50){interp="Partial grasp — worth another pass.";sub="Read every rationale below, revisit the session reading, then retake.";}
+  else{interp="This material needs more time.";sub="Work through the rationales and the session reading, then retake.";}
+  document.getElementById('interp').textContent=interp;
+  document.getElementById('interpSub').textContent=sub;
+
+  const name=document.getElementById('sname').value.trim();
+  const nameOut=document.getElementById('nameOut');
+  if(name){nameOut.textContent=`${name} · ${QUIZ.title} · ${new Date().toLocaleDateString()}`;nameOut.classList.remove('hidden');}
+  else{nameOut.classList.add('hidden');}
+
+  const list=document.getElementById('reviewList');
+  list.innerHTML='<p class="review-h">Item-by-item review</p>';
+  order.forEach((qi,i)=>{
+    const q=QUESTIONS[qi],opts=shuffled[i],chosen=answers[i];
+    const wasCorrect=chosen!==null && opts[chosen].correct;
+    const rightText=opts.find(o=>o.correct).text;
+    const rev=document.createElement('div');
+    rev.className='rev '+(wasCorrect?'ok':'no');
+    rev.innerHTML=`<span class="tag"><span class="mk">${wasCorrect?'✓':'✗'}</span>${wasCorrect?'Correct':'Review this'}</span><p class="rq"></p>`;
+    rev.querySelector('.rq').textContent=`${i+1}. ${q.prompt}`;
+    const yours=document.createElement('p');yours.className='ln';
+    yours.innerHTML=`<span class="k">Your answer:</span> <span class="yours ${wasCorrect?'':'wrong'}"></span>`;
+    yours.querySelector('.yours').textContent=chosen!==null?opts[chosen].text:'(no answer)';
+    rev.appendChild(yours);
+    if(!wasCorrect){
+      const right=document.createElement('p');right.className='ln';
+      right.innerHTML=`<span class="k">Correct answer:</span> <span class="right"></span>`;
+      right.querySelector('.right').textContent=rightText;
+      rev.appendChild(right);
+    }
+    const why=document.createElement('p');why.className='why';why.textContent=q.rationale;
+    rev.appendChild(why);
+    list.appendChild(rev);
+  });
+}
+
+function beginQuiz(){
+  build();
+  startEl.classList.add('hidden');
+  resultsEl.classList.add('hidden');
+  quizEl.classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'auto'});
+  renderQuestion();
+}
+
+document.getElementById('beginBtn').addEventListener('click',beginQuiz);
+document.getElementById('retakeBtn').addEventListener('click',beginQuiz);
+document.getElementById('actionBtn').addEventListener('click',action);
+document.getElementById('backBtn').addEventListener('click',back);
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>
