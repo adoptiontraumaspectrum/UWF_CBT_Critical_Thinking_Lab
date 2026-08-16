@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/atola/Downloads/clinical-screening-measures(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinical Screening Measures — GAD-7 · PSWQ · PHQ-9 · PCL-5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Clinical Screening Measures — GAD-7 · PSWQ · PHQ-9 · PCL-5_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F4F0;
+    --raised:#FBFBF8;
+    --ink:#1F2629;
+    --ink-soft:#586158;
+    --ink-faint:#8A928B;
+    --line:#E1E4DC;
+    --line-soft:#ECEEE7;
+    --pine:#33574C;
+    --pine-deep:#254038;
+    --pine-tint:#E6EEE9;
+    --s-minimal:#4E8D6E;
+    --s-mild:#B99320;
+    --s-moderate:#D9812F;
+    --s-modsevere:#C85E36;
+    --s-severe:#B23A38;
+    --shadow:0 1px 2px rgba(31,38,41,.04),0 8px 24px rgba(31,38,41,.05);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- Masthead ---- */
+  header.masthead{
+    max-width:820px;
+    margin:0 auto;
+    padding:52px 24px 22px;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--pine);
+    font-weight:600;
+    margin:0 0 12px;
+  }
+  header.masthead h1{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:500;
+    font-size:clamp(30px,5vw,44px);
+    line-height:1.08;
+    letter-spacing:-.01em;
+    margin:0 0 14px;
+  }
+  header.masthead p.lede{
+    margin:0;
+    max-width:60ch;
+    color:var(--ink-soft);
+    font-size:16.5px;
+  }
+
+  .disclaimer{
+    max-width:820px;
+    margin:20px auto 0;
+    padding:0 24px;
+  }
+  .disclaimer .card{
+    background:var(--pine-tint);
+    border:1px solid #cfe0d6;
+    border-radius:12px;
+    padding:14px 18px;
+    font-size:14px;
+    color:var(--pine-deep);
+    line-height:1.5;
+  }
+  .disclaimer .card strong{font-weight:600;}
+
+  /* ---- Tab nav ---- */
+  nav.tabs{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    margin-top:26px;
+  }
+  nav.tabs .inner{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 16px;
+    display:flex;
+    gap:2px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav.tabs .inner::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    appearance:none;
+    background:none;
+    border:none;
+    font-family:inherit;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--ink-soft);
+    padding:16px 14px 13px;
+    cursor:pointer;
+    white-space:nowrap;
+    border-bottom:2.5px solid transparent;
+    transition:color .15s;
+  }
+  .tab-btn .code{font-weight:600;color:inherit;}
+  .tab-btn:hover{color:var(--ink);}
+  .tab-btn[aria-selected="true"]{
+    color:var(--pine-deep);
+    border-bottom-color:var(--pine);
+  }
+  .tab-btn:focus-visible{outline:2px solid var(--pine);outline-offset:-4px;border-radius:6px;}
+
+  /* ---- Panels ---- */
+  main{max-width:820px;margin:0 auto;padding:0 24px 100px;}
+  .panel{display:none;padding-top:30px;}
+  .panel.active{display:block;animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+  .measure-head h2{
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:500;
+    font-size:26px;
+    margin:0 0 4px;
+    letter-spacing:-.01em;
+  }
+  .measure-head .full{color:var(--ink-soft);font-size:15px;margin:0 0 16px;}
+  .prompt{
+    background:var(--raised);
+    border:1px solid var(--line);
+    border-left:3px solid var(--pine);
+    border-radius:10px;
+    padding:14px 18px;
+    margin:0 0 8px;
+    font-size:15.5px;
+  }
+  .prompt .timeframe{font-weight:600;color:var(--pine-deep);}
+  .scale-legend{
+    font-size:13px;
+    color:var(--ink-faint);
+    margin:0 0 22px;
+    padding-left:2px;
+  }
+
+  .event-field{margin:0 0 22px;}
+  .event-field label{display:block;font-size:14px;font-weight:500;margin-bottom:6px;color:var(--ink);}
+  .event-field textarea{
+    width:100%;
+    min-height:60px;
+    resize:vertical;
+    font-family:inherit;
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .event-field textarea:focus{outline:2px solid var(--pine);outline-offset:1px;border-color:var(--pine);}
+
+  /* ---- Items ---- */
+  .item{
+    padding:18px 0;
+    border-top:1px solid var(--line-soft);
+    display:grid;
+    grid-template-columns:30px 1fr;
+    gap:4px 12px;
+  }
+  .item:first-of-type{border-top:none;}
+  .item .num{
+    font-family:"Newsreader",serif;
+    font-size:16px;
+    color:var(--ink-faint);
+    padding-top:1px;
+  }
+  .item .stem{font-size:15.5px;line-height:1.45;padding-top:0;}
+  .item .options{
+    grid-column:2;
+    margin-top:11px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+  }
+  .opt{
+    flex:1 1 auto;
+    min-width:76px;
+    position:relative;
+  }
+  .opt input{position:absolute;opacity:0;width:0;height:0;}
+  .opt label{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:2px;
+    height:100%;
+    min-height:46px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:var(--raised);
+    cursor:pointer;
+    font-size:12.5px;
+    line-height:1.25;
+    color:var(--ink-soft);
+    transition:border-color .12s,background .12s,color .12s;
+  }
+  .opt label .v{
+    font-family:"Newsreader",serif;
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .opt label:hover{border-color:var(--pine);}
+  .opt input:checked + label{
+    background:var(--pine);
+    border-color:var(--pine);
+    color:#fff;
+  }
+  .opt input:checked + label .v{color:#fff;}
+  .opt input:focus-visible + label{outline:2px solid var(--pine-deep);outline-offset:2px;}
+
+  .item.impairment{
+    margin-top:14px;
+    border-top:1px dashed var(--line);
+    padding-top:20px;
+  }
+  .item.impairment .flag{
+    grid-column:2;
+    font-size:12px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    margin-bottom:2px;
+  }
+
+  /* ---- Score panel ---- */
+  .scorebar{
+    position:sticky;
+    bottom:0;
+    margin-top:30px;
+    background:var(--raised);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:20px 22px;
+  }
+  .score-top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .score-num{
+    font-family:"Newsreader",serif;
+    font-weight:500;
+    font-size:40px;
+    line-height:1;
+    letter-spacing:-.01em;
+  }
+  .score-num .max{font-size:20px;color:var(--ink-faint);}
+  .score-band{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:15px;
+    font-weight:600;
+    padding:6px 13px;
+    border-radius:999px;
+    background:var(--line-soft);
+    color:var(--ink-soft);
+  }
+  .score-band .dot{width:9px;height:9px;border-radius:50%;background:currentColor;}
+
+  .meter{margin:16px 0 4px;}
+  .meter-track{
+    display:flex;
+    height:12px;
+    border-radius:7px;
+    overflow:hidden;
+    position:relative;
+  }
+  .meter-seg{height:100%;}
+  .meter-marker{
+    position:absolute;
+    top:-5px;
+    width:2px;
+    height:22px;
+    background:var(--ink);
+    transform:translateX(-1px);
+    transition:left .25s cubic-bezier(.4,0,.2,1);
+    border-radius:1px;
+  }
+  .meter-marker::after{
+    content:"";
+    position:absolute;
+    top:-4px;left:-3px;
+    width:8px;height:8px;
+    background:var(--ink);
+    border-radius:50%;
+  }
+  .meter-labels{
+    display:flex;
+    justify-content:space-between;
+    margin-top:8px;
+    font-size:11px;
+    color:var(--ink-faint);
+  }
+  .score-note{
+    margin-top:14px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .score-note .progress{color:var(--ink-faint);}
+
+  .callout{
+    margin-top:14px;
+    background:#FBEEEC;
+    border:1px solid #E9C9C4;
+    border-radius:10px;
+    padding:13px 16px;
+    font-size:13.5px;
+    color:#7a352e;
+    line-height:1.5;
+    display:none;
+  }
+  .callout.show{display:block;}
+  .callout strong{font-weight:600;}
+
+  .cluster{
+    margin-top:14px;
+    font-size:13px;
+    display:none;
+  }
+  .cluster.show{display:block;}
+  .cluster-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:8px;
+  }
+  .cluster-cell{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 11px;
+  }
+  .cluster-cell .name{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);font-weight:600;}
+  .cluster-cell .val{font-size:13.5px;margin-top:2px;}
+  .cluster-cell.met .val{color:var(--pine);font-weight:600;}
+  .cluster-cell.unmet .val{color:var(--ink-soft);}
+  .cluster-verdict{margin-top:10px;font-size:13.5px;font-weight:500;}
+
+  .actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    appearance:none;
+    font-family:inherit;
+    font-size:13.5px;
+    font-weight:500;
+    padding:9px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    border:1px solid var(--line);
+    background:var(--raised);
+    color:var(--ink);
+    transition:background .12s,border-color .12s;
+  }
+  .btn:hover{border-color:var(--pine);}
+  .btn.primary{background:var(--pine);border-color:var(--pine);color:#fff;}
+  .btn.primary:hover{background:var(--pine-deep);}
+  .btn:focus-visible{outline:2px solid var(--pine-deep);outline-offset:2px;}
+
+  footer.foot{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 24px 60px;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    line-height:1.6;
+  }
+  footer.foot a{color:var(--pine);}
+
+  @media (max-width:560px){
+    .item{grid-template-columns:24px 1fr;}
+    .opt{flex-basis:calc(50% - 4px);}
+    .score-num{font-size:34px;}
+    header.masthead{padding-top:38px;}
+  }
+  @media print{
+    nav.tabs,.actions,.tab-btn{display:none!important;}
+    .panel{display:block!important;page-break-after:always;}
+    .scorebar{position:static;box-shadow:none;}
+    body{background:#fff;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="eyebrow">Self-report screening</p>
+  <h1>Clinical Screening Measures</h1>
+  <p class="lede">Four validated self-report instruments for anxiety, worry, depression, and post-traumatic stress. Answer every item to see a live total, a severity band, and where the score falls on the clinical range.</p>
+</header>
+
+<div class="disclaimer">
+  <div class="card">
+    <strong>These are screening tools, not diagnoses.</strong> Scores support clinical judgment — they don't replace an assessment by a qualified professional. If you're completing these for yourself and struggling, please reach out to a clinician or someone you trust.
+  </div>
+</div>
+
+<nav class="tabs" aria-label="Choose a measure">
+  <div class="inner" role="tablist">
+    <button class="tab-btn" role="tab" aria-selected="false" data-target="gad7"><span class="code">GAD-7</span> · Anxiety</button>
+    <button class="tab-btn" role="tab" aria-selected="false" data-target="pswq"><span class="code">PSWQ</span> · Worry</button>
+    <button class="tab-btn" role="tab" aria-selected="false" data-target="phq9"><span class="code">PHQ-9</span> · Depression</button>
+    <button class="tab-btn" role="tab" aria-selected="true" data-target="pcl5"><span class="code">PCL-5</span> · Trauma / PTSD</button>
+  </div>
+</nav>
+
+<main>
+  <section class="panel" id="gad7" role="tabpanel">
+    <div class="measure-head">
+      <h2>GAD-7</h2>
+      <p class="full">Generalized Anxiety Disorder 7-item scale</p>
+    </div>
+    <p class="prompt"><span class="timeframe">Over the last 2 weeks,</span> how often have you been bothered by the following problems?</p>
+    <p class="scale-legend">0 = Not at all  ·  1 = Several days  ·  2 = More than half the days  ·  3 = Nearly every day</p>
+    
+    <div class="items"><div class="item">
+      <span class="num">1</span>
+      <span class="stem">Feeling nervous, anxious, or on edge</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_1" id="gad7_1_0" value="0">
+      <label for="gad7_1_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_1" id="gad7_1_1" value="1">
+      <label for="gad7_1_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_1" id="gad7_1_2" value="2">
+      <label for="gad7_1_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_1" id="gad7_1_3" value="3">
+      <label for="gad7_1_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">2</span>
+      <span class="stem">Not being able to stop or control worrying</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_2" id="gad7_2_0" value="0">
+      <label for="gad7_2_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_2" id="gad7_2_1" value="1">
+      <label for="gad7_2_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_2" id="gad7_2_2" value="2">
+      <label for="gad7_2_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_2" id="gad7_2_3" value="3">
+      <label for="gad7_2_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">3</span>
+      <span class="stem">Worrying too much about different things</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_3" id="gad7_3_0" value="0">
+      <label for="gad7_3_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_3" id="gad7_3_1" value="1">
+      <label for="gad7_3_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_3" id="gad7_3_2" value="2">
+      <label for="gad7_3_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_3" id="gad7_3_3" value="3">
+      <label for="gad7_3_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">4</span>
+      <span class="stem">Trouble relaxing</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_4" id="gad7_4_0" value="0">
+      <label for="gad7_4_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_4" id="gad7_4_1" value="1">
+      <label for="gad7_4_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_4" id="gad7_4_2" value="2">
+      <label for="gad7_4_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_4" id="gad7_4_3" value="3">
+      <label for="gad7_4_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">5</span>
+      <span class="stem">Being so restless that it's hard to sit still</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_5" id="gad7_5_0" value="0">
+      <label for="gad7_5_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_5" id="gad7_5_1" value="1">
+      <label for="gad7_5_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_5" id="gad7_5_2" value="2">
+      <label for="gad7_5_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_5" id="gad7_5_3" value="3">
+      <label for="gad7_5_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">6</span>
+      <span class="stem">Becoming easily annoyed or irritable</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_6" id="gad7_6_0" value="0">
+      <label for="gad7_6_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_6" id="gad7_6_1" value="1">
+      <label for="gad7_6_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_6" id="gad7_6_2" value="2">
+      <label for="gad7_6_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_6" id="gad7_6_3" value="3">
+      <label for="gad7_6_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">7</span>
+      <span class="stem">Feeling afraid, as if something awful might happen</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_7" id="gad7_7_0" value="0">
+      <label for="gad7_7_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_7" id="gad7_7_1" value="1">
+      <label for="gad7_7_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_7" id="gad7_7_2" value="2">
+      <label for="gad7_7_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_7" id="gad7_7_3" value="3">
+      <label for="gad7_7_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item impairment">
+      <span class="num"></span>
+      <span class="flag">Functional impact — not scored</span>
+      <span class="stem">If you checked off any problems, how difficult have they made it to do your work, take care of things at home, or get along with other people?</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="gad7_imp" id="gad7_imp_0" value="0">
+      <label for="gad7_imp_0"><span class="v">0</span><span class="l">Not difficult</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_imp" id="gad7_imp_1" value="1">
+      <label for="gad7_imp_1"><span class="v">1</span><span class="l">Somewhat difficult</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_imp" id="gad7_imp_2" value="2">
+      <label for="gad7_imp_2"><span class="v">2</span><span class="l">Very difficult</span></label>
+    </span><span class="opt">
+      <input type="radio" name="gad7_imp" id="gad7_imp_3" value="3">
+      <label for="gad7_imp_3"><span class="v">3</span><span class="l">Extremely difficult</span></label>
+    </span></div>
+    </div></div>
+
+    <div class="scorebar">
+      <div class="score-top">
+        <div class="score-num"><span id="gad7_score">15</span><span class="max"> / 21</span></div>
+        <div class="score-band" id="gad7_band" style="color: var(--s-severe);"><span class="dot"></span><span class="band-label">Severe anxiety</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-track" id="gad7_track"><div class="meter-seg" style="width: 22.7273%; background: var(--s-minimal); opacity: 0.55;"></div><div class="meter-seg" style="width: 22.7273%; background: var(--s-mild); opacity: 0.55;"></div><div class="meter-seg" style="width: 22.7273%; background: var(--s-moderate); opacity: 0.55;"></div><div class="meter-seg" style="width: 31.8182%; background: var(--s-severe); opacity: 0.55;"></div><div class="meter-marker" id="gad7_marker" style="left: 71.4286%; display: block;"></div></div>
+        <div class="meter-labels"><span>0</span><span>21</span></div>
+      </div>
+      <p class="score-note"><span class="note-body">A total of 10 or more is the common cutoff for probable generalized anxiety disorder and usually warrants further evaluation.</span> <span class="progress" id="gad7_progress"></span></p>
+      <div class="callout" id="gad7_callout"></div>
+      
+      <div class="actions">
+        <button class="btn primary" data-action="print">Print / save PDF</button>
+        <button class="btn" data-action="reset" data-key="gad7">Clear answers</button>
+      </div>
+    </div></section>
+  <section class="panel" id="pswq" role="tabpanel">
+    <div class="measure-head">
+      <h2>PSWQ</h2>
+      <p class="full">Penn State Worry Questionnaire</p>
+    </div>
+    <p class="prompt">Rate how characteristic each statement is of you. Answer honestly, using the whole scale.</p>
+    <p class="scale-legend">1 = Not at all typical  ·  3 = Somewhat  ·  5 = Very typical</p>
+    
+    <div class="items"><div class="item">
+      <span class="num">1</span>
+      <span class="stem">If I don't have enough time to do everything, I don't worry about it.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_1" id="pswq_1_1" value="1">
+      <label for="pswq_1_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_1" id="pswq_1_2" value="2">
+      <label for="pswq_1_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_1" id="pswq_1_3" value="3">
+      <label for="pswq_1_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_1" id="pswq_1_4" value="4">
+      <label for="pswq_1_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_1" id="pswq_1_5" value="5">
+      <label for="pswq_1_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">2</span>
+      <span class="stem">My worries overwhelm me.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_2" id="pswq_2_1" value="1">
+      <label for="pswq_2_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_2" id="pswq_2_2" value="2">
+      <label for="pswq_2_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_2" id="pswq_2_3" value="3">
+      <label for="pswq_2_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_2" id="pswq_2_4" value="4">
+      <label for="pswq_2_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_2" id="pswq_2_5" value="5">
+      <label for="pswq_2_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">3</span>
+      <span class="stem">I don't tend to worry about things.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_3" id="pswq_3_1" value="1">
+      <label for="pswq_3_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_3" id="pswq_3_2" value="2">
+      <label for="pswq_3_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_3" id="pswq_3_3" value="3">
+      <label for="pswq_3_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_3" id="pswq_3_4" value="4">
+      <label for="pswq_3_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_3" id="pswq_3_5" value="5">
+      <label for="pswq_3_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">4</span>
+      <span class="stem">Many situations make me worry.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_4" id="pswq_4_1" value="1">
+      <label for="pswq_4_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_4" id="pswq_4_2" value="2">
+      <label for="pswq_4_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_4" id="pswq_4_3" value="3">
+      <label for="pswq_4_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_4" id="pswq_4_4" value="4">
+      <label for="pswq_4_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_4" id="pswq_4_5" value="5">
+      <label for="pswq_4_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">5</span>
+      <span class="stem">I know I shouldn't worry about things, but I just can't help it.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_5" id="pswq_5_1" value="1">
+      <label for="pswq_5_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_5" id="pswq_5_2" value="2">
+      <label for="pswq_5_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_5" id="pswq_5_3" value="3">
+      <label for="pswq_5_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_5" id="pswq_5_4" value="4">
+      <label for="pswq_5_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_5" id="pswq_5_5" value="5">
+      <label for="pswq_5_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">6</span>
+      <span class="stem">When I'm under pressure I worry a lot.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_6" id="pswq_6_1" value="1">
+      <label for="pswq_6_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_6" id="pswq_6_2" value="2">
+      <label for="pswq_6_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_6" id="pswq_6_3" value="3">
+      <label for="pswq_6_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_6" id="pswq_6_4" value="4">
+      <label for="pswq_6_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_6" id="pswq_6_5" value="5">
+      <label for="pswq_6_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">7</span>
+      <span class="stem">I'm always worrying about something.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_7" id="pswq_7_1" value="1">
+      <label for="pswq_7_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_7" id="pswq_7_2" value="2">
+      <label for="pswq_7_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_7" id="pswq_7_3" value="3">
+      <label for="pswq_7_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_7" id="pswq_7_4" value="4">
+      <label for="pswq_7_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_7" id="pswq_7_5" value="5">
+      <label for="pswq_7_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">8</span>
+      <span class="stem">I find it easy to dismiss worrisome thoughts.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_8" id="pswq_8_1" value="1">
+      <label for="pswq_8_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_8" id="pswq_8_2" value="2">
+      <label for="pswq_8_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_8" id="pswq_8_3" value="3">
+      <label for="pswq_8_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_8" id="pswq_8_4" value="4">
+      <label for="pswq_8_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_8" id="pswq_8_5" value="5">
+      <label for="pswq_8_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">9</span>
+      <span class="stem">As soon as I finish one task, I start to worry about everything else I have to do.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_9" id="pswq_9_1" value="1">
+      <label for="pswq_9_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_9" id="pswq_9_2" value="2">
+      <label for="pswq_9_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_9" id="pswq_9_3" value="3">
+      <label for="pswq_9_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_9" id="pswq_9_4" value="4">
+      <label for="pswq_9_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_9" id="pswq_9_5" value="5">
+      <label for="pswq_9_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">10</span>
+      <span class="stem">I never worry about anything.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_10" id="pswq_10_1" value="1">
+      <label for="pswq_10_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_10" id="pswq_10_2" value="2">
+      <label for="pswq_10_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_10" id="pswq_10_3" value="3">
+      <label for="pswq_10_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_10" id="pswq_10_4" value="4">
+      <label for="pswq_10_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_10" id="pswq_10_5" value="5">
+      <label for="pswq_10_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">11</span>
+      <span class="stem">When there's nothing more I can do about a concern, I don't worry about it anymore.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_11" id="pswq_11_1" value="1">
+      <label for="pswq_11_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_11" id="pswq_11_2" value="2">
+      <label for="pswq_11_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_11" id="pswq_11_3" value="3">
+      <label for="pswq_11_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_11" id="pswq_11_4" value="4">
+      <label for="pswq_11_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_11" id="pswq_11_5" value="5">
+      <label for="pswq_11_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">12</span>
+      <span class="stem">I've been a worrier all my life.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_12" id="pswq_12_1" value="1">
+      <label for="pswq_12_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_12" id="pswq_12_2" value="2">
+      <label for="pswq_12_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_12" id="pswq_12_3" value="3">
+      <label for="pswq_12_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_12" id="pswq_12_4" value="4">
+      <label for="pswq_12_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_12" id="pswq_12_5" value="5">
+      <label for="pswq_12_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">13</span>
+      <span class="stem">I notice that I've been worrying about things.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_13" id="pswq_13_1" value="1">
+      <label for="pswq_13_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_13" id="pswq_13_2" value="2">
+      <label for="pswq_13_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_13" id="pswq_13_3" value="3">
+      <label for="pswq_13_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_13" id="pswq_13_4" value="4">
+      <label for="pswq_13_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_13" id="pswq_13_5" value="5">
+      <label for="pswq_13_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">14</span>
+      <span class="stem">Once I start worrying, I can't stop.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_14" id="pswq_14_1" value="1">
+      <label for="pswq_14_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_14" id="pswq_14_2" value="2">
+      <label for="pswq_14_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_14" id="pswq_14_3" value="3">
+      <label for="pswq_14_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_14" id="pswq_14_4" value="4">
+      <label for="pswq_14_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_14" id="pswq_14_5" value="5">
+      <label for="pswq_14_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">15</span>
+      <span class="stem">I worry all the time.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_15" id="pswq_15_1" value="1">
+      <label for="pswq_15_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_15" id="pswq_15_2" value="2">
+      <label for="pswq_15_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_15" id="pswq_15_3" value="3">
+      <label for="pswq_15_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_15" id="pswq_15_4" value="4">
+      <label for="pswq_15_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_15" id="pswq_15_5" value="5">
+      <label for="pswq_15_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">16</span>
+      <span class="stem">I worry about projects until they're all done.</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pswq_16" id="pswq_16_1" value="1">
+      <label for="pswq_16_1"><span class="v">1</span><span class="l">Not at all typical</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_16" id="pswq_16_2" value="2">
+      <label for="pswq_16_2"><span class="v">2</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_16" id="pswq_16_3" value="3">
+      <label for="pswq_16_3"><span class="v">3</span><span class="l">Somewhat</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_16" id="pswq_16_4" value="4">
+      <label for="pswq_16_4"><span class="v">4</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pswq_16" id="pswq_16_5" value="5">
+      <label for="pswq_16_5"><span class="v">5</span><span class="l">Very typical</span></label>
+    </span></div>
+    </div></div>
+
+    <div class="scorebar">
+      <div class="score-top">
+        <div class="score-num"><span id="pswq_score">52</span><span class="max"> / 80</span></div>
+        <div class="score-band" id="pswq_band" style="color: var(--s-moderate);"><span class="dot"></span><span class="band-label">Moderate worry</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-track" id="pswq_track"><div class="meter-seg" style="width: 36.9231%; background: var(--s-minimal); opacity: 0.55;"></div><div class="meter-seg" style="width: 30.7692%; background: var(--s-moderate); opacity: 0.55;"></div><div class="meter-seg" style="width: 32.3077%; background: var(--s-severe); opacity: 0.55;"></div><div class="meter-marker" id="pswq_marker" style="left: 56.25%; display: block;"></div></div>
+        <div class="meter-labels"><span>16</span><span>80</span></div>
+      </div>
+      <p class="score-note"><span class="note-body">Scores run 16–80; higher means more pervasive, uncontrollable worry. People with generalized anxiety disorder typically average in the high 60s. Cutoffs vary by population.</span> <span class="progress" id="pswq_progress"></span></p>
+      <div class="callout" id="pswq_callout"></div>
+      
+      <div class="actions">
+        <button class="btn primary" data-action="print">Print / save PDF</button>
+        <button class="btn" data-action="reset" data-key="pswq">Clear answers</button>
+      </div>
+    </div></section>
+  <section class="panel" id="phq9" role="tabpanel">
+    <div class="measure-head">
+      <h2>PHQ-9</h2>
+      <p class="full">Patient Health Questionnaire 9-item depression module</p>
+    </div>
+    <p class="prompt"><span class="timeframe">Over the last 2 weeks,</span> how often have you been bothered by any of the following problems?</p>
+    <p class="scale-legend">0 = Not at all  ·  1 = Several days  ·  2 = More than half the days  ·  3 = Nearly every day</p>
+    
+    <div class="items"><div class="item">
+      <span class="num">1</span>
+      <span class="stem">Little interest or pleasure in doing things</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_1" id="phq9_1_0" value="0">
+      <label for="phq9_1_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_1" id="phq9_1_1" value="1">
+      <label for="phq9_1_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_1" id="phq9_1_2" value="2">
+      <label for="phq9_1_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_1" id="phq9_1_3" value="3">
+      <label for="phq9_1_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">2</span>
+      <span class="stem">Feeling down, depressed, or hopeless</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_2" id="phq9_2_0" value="0">
+      <label for="phq9_2_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_2" id="phq9_2_1" value="1">
+      <label for="phq9_2_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_2" id="phq9_2_2" value="2">
+      <label for="phq9_2_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_2" id="phq9_2_3" value="3">
+      <label for="phq9_2_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">3</span>
+      <span class="stem">Trouble falling or staying asleep, or sleeping too much</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_3" id="phq9_3_0" value="0">
+      <label for="phq9_3_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_3" id="phq9_3_1" value="1">
+      <label for="phq9_3_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_3" id="phq9_3_2" value="2">
+      <label for="phq9_3_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_3" id="phq9_3_3" value="3">
+      <label for="phq9_3_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">4</span>
+      <span class="stem">Feeling tired or having little energy</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_4" id="phq9_4_0" value="0">
+      <label for="phq9_4_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_4" id="phq9_4_1" value="1">
+      <label for="phq9_4_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_4" id="phq9_4_2" value="2">
+      <label for="phq9_4_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_4" id="phq9_4_3" value="3">
+      <label for="phq9_4_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">5</span>
+      <span class="stem">Poor appetite or overeating</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_5" id="phq9_5_0" value="0">
+      <label for="phq9_5_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_5" id="phq9_5_1" value="1">
+      <label for="phq9_5_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_5" id="phq9_5_2" value="2">
+      <label for="phq9_5_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_5" id="phq9_5_3" value="3">
+      <label for="phq9_5_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">6</span>
+      <span class="stem">Feeling bad about yourself — or that you're a failure or have let yourself or your family down</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_6" id="phq9_6_0" value="0">
+      <label for="phq9_6_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_6" id="phq9_6_1" value="1">
+      <label for="phq9_6_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_6" id="phq9_6_2" value="2">
+      <label for="phq9_6_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_6" id="phq9_6_3" value="3">
+      <label for="phq9_6_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">7</span>
+      <span class="stem">Trouble concentrating on things, such as reading the newspaper or watching television</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_7" id="phq9_7_0" value="0">
+      <label for="phq9_7_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_7" id="phq9_7_1" value="1">
+      <label for="phq9_7_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_7" id="phq9_7_2" value="2">
+      <label for="phq9_7_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_7" id="phq9_7_3" value="3">
+      <label for="phq9_7_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">8</span>
+      <span class="stem">Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you've been moving around a lot more than usual</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_8" id="phq9_8_0" value="0">
+      <label for="phq9_8_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_8" id="phq9_8_1" value="1">
+      <label for="phq9_8_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_8" id="phq9_8_2" value="2">
+      <label for="phq9_8_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_8" id="phq9_8_3" value="3">
+      <label for="phq9_8_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">9</span>
+      <span class="stem">Thoughts that you'd be better off dead, or of hurting yourself in some way</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_9" id="phq9_9_0" value="0">
+      <label for="phq9_9_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_9" id="phq9_9_1" value="1">
+      <label for="phq9_9_1"><span class="v">1</span><span class="l">Several days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_9" id="phq9_9_2" value="2">
+      <label for="phq9_9_2"><span class="v">2</span><span class="l">More than half the days</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_9" id="phq9_9_3" value="3">
+      <label for="phq9_9_3"><span class="v">3</span><span class="l">Nearly every day</span></label>
+    </span></div>
+    </div><div class="item impairment">
+      <span class="num"></span>
+      <span class="flag">Functional impact — not scored</span>
+      <span class="stem">If you checked off any problems, how difficult have they made it to do your work, take care of things at home, or get along with other people?</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="phq9_imp" id="phq9_imp_0" value="0">
+      <label for="phq9_imp_0"><span class="v">0</span><span class="l">Not difficult</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_imp" id="phq9_imp_1" value="1">
+      <label for="phq9_imp_1"><span class="v">1</span><span class="l">Somewhat difficult</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_imp" id="phq9_imp_2" value="2">
+      <label for="phq9_imp_2"><span class="v">2</span><span class="l">Very difficult</span></label>
+    </span><span class="opt">
+      <input type="radio" name="phq9_imp" id="phq9_imp_3" value="3">
+      <label for="phq9_imp_3"><span class="v">3</span><span class="l">Extremely difficult</span></label>
+    </span></div>
+    </div></div>
+
+    <div class="scorebar">
+      <div class="score-top">
+        <div class="score-num"><span id="phq9_score">22</span><span class="max"> / 27</span></div>
+        <div class="score-band" id="phq9_band" style="color: var(--s-severe);"><span class="dot"></span><span class="band-label">Severe depression</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-track" id="phq9_track"><div class="meter-seg" style="width: 17.8571%; background: var(--s-minimal); opacity: 0.55;"></div><div class="meter-seg" style="width: 17.8571%; background: var(--s-mild); opacity: 0.55;"></div><div class="meter-seg" style="width: 17.8571%; background: var(--s-moderate); opacity: 0.55;"></div><div class="meter-seg" style="width: 17.8571%; background: var(--s-modsevere); opacity: 0.55;"></div><div class="meter-seg" style="width: 28.5714%; background: var(--s-severe); opacity: 0.55;"></div><div class="meter-marker" id="phq9_marker" style="left: 81.4815%; display: block;"></div></div>
+        <div class="meter-labels"><span>0</span><span>27</span></div>
+      </div>
+      <p class="score-note"><span class="note-body">A total of 10 or more suggests probable major depression. Item 9 asks about thoughts of death or self-harm and is reviewed regardless of the total score.</span> <span class="progress" id="phq9_progress"></span></p>
+      <div class="callout show" id="phq9_callout"><strong>Item 9 was endorsed.</strong> Any level of thoughts of death or self-harm is worth taking seriously and discussing with a clinician promptly. If you or someone you're assessing is in immediate danger, contact local emergency services. In the U.S., the 988 Suicide &amp; Crisis Lifeline can be reached by calling or texting <strong>988</strong>; many countries have their own crisis lines.</div>
+      
+      <div class="actions">
+        <button class="btn primary" data-action="print">Print / save PDF</button>
+        <button class="btn" data-action="reset" data-key="phq9">Clear answers</button>
+      </div>
+    </div></section>
+  <section class="panel active" id="pcl5" role="tabpanel">
+    <div class="measure-head">
+      <h2>PCL-5</h2>
+      <p class="full">PTSD Checklist for DSM-5</p>
+    </div>
+    <p class="prompt"><span class="timeframe">In the past month,</span> how much were you bothered by each problem, in relation to a stressful experience?</p>
+    <p class="scale-legend">0 = Not at all  ·  1 = A little bit  ·  2 = Moderately  ·  3 = Quite a bit  ·  4 = Extremely</p>
+    <div class="event-field">
+      <label for="pcl5_event">The stressful experience these questions refer to (optional)</label>
+      <textarea id="pcl5_event" placeholder="Briefly note the event you have in mind while answering."></textarea>
+    </div>
+    <div class="items"><div class="item">
+      <span class="num">1</span>
+      <span class="stem">Repeated, disturbing, and unwanted memories of the stressful experience</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_1" id="pcl5_1_0" value="0">
+      <label for="pcl5_1_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_1" id="pcl5_1_1" value="1">
+      <label for="pcl5_1_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_1" id="pcl5_1_2" value="2">
+      <label for="pcl5_1_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_1" id="pcl5_1_3" value="3">
+      <label for="pcl5_1_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_1" id="pcl5_1_4" value="4">
+      <label for="pcl5_1_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">2</span>
+      <span class="stem">Repeated, disturbing dreams of the stressful experience</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_2" id="pcl5_2_0" value="0">
+      <label for="pcl5_2_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_2" id="pcl5_2_1" value="1">
+      <label for="pcl5_2_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_2" id="pcl5_2_2" value="2">
+      <label for="pcl5_2_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_2" id="pcl5_2_3" value="3">
+      <label for="pcl5_2_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_2" id="pcl5_2_4" value="4">
+      <label for="pcl5_2_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">3</span>
+      <span class="stem">Suddenly feeling or acting as if the stressful experience were actually happening again (as if you were reliving it)</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_3" id="pcl5_3_0" value="0">
+      <label for="pcl5_3_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_3" id="pcl5_3_1" value="1">
+      <label for="pcl5_3_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_3" id="pcl5_3_2" value="2">
+      <label for="pcl5_3_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_3" id="pcl5_3_3" value="3">
+      <label for="pcl5_3_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_3" id="pcl5_3_4" value="4">
+      <label for="pcl5_3_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">4</span>
+      <span class="stem">Feeling very upset when something reminded you of the stressful experience</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_4" id="pcl5_4_0" value="0">
+      <label for="pcl5_4_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_4" id="pcl5_4_1" value="1">
+      <label for="pcl5_4_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_4" id="pcl5_4_2" value="2">
+      <label for="pcl5_4_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_4" id="pcl5_4_3" value="3">
+      <label for="pcl5_4_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_4" id="pcl5_4_4" value="4">
+      <label for="pcl5_4_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">5</span>
+      <span class="stem">Having strong physical reactions when something reminded you of the stressful experience (heart pounding, trouble breathing, sweating)</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_5" id="pcl5_5_0" value="0">
+      <label for="pcl5_5_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_5" id="pcl5_5_1" value="1">
+      <label for="pcl5_5_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_5" id="pcl5_5_2" value="2">
+      <label for="pcl5_5_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_5" id="pcl5_5_3" value="3">
+      <label for="pcl5_5_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_5" id="pcl5_5_4" value="4">
+      <label for="pcl5_5_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">6</span>
+      <span class="stem">Avoiding memories, thoughts, or feelings related to the stressful experience</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_6" id="pcl5_6_0" value="0">
+      <label for="pcl5_6_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_6" id="pcl5_6_1" value="1">
+      <label for="pcl5_6_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_6" id="pcl5_6_2" value="2">
+      <label for="pcl5_6_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_6" id="pcl5_6_3" value="3">
+      <label for="pcl5_6_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_6" id="pcl5_6_4" value="4">
+      <label for="pcl5_6_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">7</span>
+      <span class="stem">Avoiding external reminders of the stressful experience (people, places, conversations, activities, objects, or situations)</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_7" id="pcl5_7_0" value="0">
+      <label for="pcl5_7_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_7" id="pcl5_7_1" value="1">
+      <label for="pcl5_7_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_7" id="pcl5_7_2" value="2">
+      <label for="pcl5_7_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_7" id="pcl5_7_3" value="3">
+      <label for="pcl5_7_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_7" id="pcl5_7_4" value="4">
+      <label for="pcl5_7_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">8</span>
+      <span class="stem">Trouble remembering important parts of the stressful experience</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_8" id="pcl5_8_0" value="0">
+      <label for="pcl5_8_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_8" id="pcl5_8_1" value="1">
+      <label for="pcl5_8_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_8" id="pcl5_8_2" value="2">
+      <label for="pcl5_8_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_8" id="pcl5_8_3" value="3">
+      <label for="pcl5_8_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_8" id="pcl5_8_4" value="4">
+      <label for="pcl5_8_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">9</span>
+      <span class="stem">Having strong negative beliefs about yourself, other people, or the world (e.g. I am bad, something is seriously wrong with me, no one can be trusted, the world is completely dangerous)</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_9" id="pcl5_9_0" value="0">
+      <label for="pcl5_9_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_9" id="pcl5_9_1" value="1">
+      <label for="pcl5_9_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_9" id="pcl5_9_2" value="2">
+      <label for="pcl5_9_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_9" id="pcl5_9_3" value="3">
+      <label for="pcl5_9_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_9" id="pcl5_9_4" value="4">
+      <label for="pcl5_9_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">10</span>
+      <span class="stem">Blaming yourself or someone else for the stressful experience or what happened after it</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_10" id="pcl5_10_0" value="0">
+      <label for="pcl5_10_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_10" id="pcl5_10_1" value="1">
+      <label for="pcl5_10_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_10" id="pcl5_10_2" value="2">
+      <label for="pcl5_10_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_10" id="pcl5_10_3" value="3">
+      <label for="pcl5_10_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_10" id="pcl5_10_4" value="4">
+      <label for="pcl5_10_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">11</span>
+      <span class="stem">Having strong negative feelings such as fear, horror, anger, guilt, or shame</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_11" id="pcl5_11_0" value="0">
+      <label for="pcl5_11_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_11" id="pcl5_11_1" value="1">
+      <label for="pcl5_11_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_11" id="pcl5_11_2" value="2">
+      <label for="pcl5_11_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_11" id="pcl5_11_3" value="3">
+      <label for="pcl5_11_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_11" id="pcl5_11_4" value="4">
+      <label for="pcl5_11_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">12</span>
+      <span class="stem">Loss of interest in activities you used to enjoy</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_12" id="pcl5_12_0" value="0">
+      <label for="pcl5_12_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_12" id="pcl5_12_1" value="1">
+      <label for="pcl5_12_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_12" id="pcl5_12_2" value="2">
+      <label for="pcl5_12_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_12" id="pcl5_12_3" value="3">
+      <label for="pcl5_12_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_12" id="pcl5_12_4" value="4">
+      <label for="pcl5_12_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">13</span>
+      <span class="stem">Feeling distant or cut off from other people</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_13" id="pcl5_13_0" value="0">
+      <label for="pcl5_13_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_13" id="pcl5_13_1" value="1">
+      <label for="pcl5_13_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_13" id="pcl5_13_2" value="2">
+      <label for="pcl5_13_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_13" id="pcl5_13_3" value="3">
+      <label for="pcl5_13_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_13" id="pcl5_13_4" value="4">
+      <label for="pcl5_13_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">14</span>
+      <span class="stem">Trouble experiencing positive feelings (being unable to feel happiness or loving feelings toward people close to you)</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_14" id="pcl5_14_0" value="0">
+      <label for="pcl5_14_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_14" id="pcl5_14_1" value="1">
+      <label for="pcl5_14_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_14" id="pcl5_14_2" value="2">
+      <label for="pcl5_14_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_14" id="pcl5_14_3" value="3">
+      <label for="pcl5_14_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_14" id="pcl5_14_4" value="4">
+      <label for="pcl5_14_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">15</span>
+      <span class="stem">Irritable behavior, angry outbursts, or acting aggressively</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_15" id="pcl5_15_0" value="0">
+      <label for="pcl5_15_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_15" id="pcl5_15_1" value="1">
+      <label for="pcl5_15_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_15" id="pcl5_15_2" value="2">
+      <label for="pcl5_15_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_15" id="pcl5_15_3" value="3">
+      <label for="pcl5_15_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_15" id="pcl5_15_4" value="4">
+      <label for="pcl5_15_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">16</span>
+      <span class="stem">Taking too many risks or doing things that could cause you harm</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_16" id="pcl5_16_0" value="0">
+      <label for="pcl5_16_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_16" id="pcl5_16_1" value="1">
+      <label for="pcl5_16_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_16" id="pcl5_16_2" value="2">
+      <label for="pcl5_16_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_16" id="pcl5_16_3" value="3">
+      <label for="pcl5_16_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_16" id="pcl5_16_4" value="4">
+      <label for="pcl5_16_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">17</span>
+      <span class="stem">Being superalert, watchful, or on guard</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_17" id="pcl5_17_0" value="0">
+      <label for="pcl5_17_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_17" id="pcl5_17_1" value="1">
+      <label for="pcl5_17_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_17" id="pcl5_17_2" value="2">
+      <label for="pcl5_17_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_17" id="pcl5_17_3" value="3">
+      <label for="pcl5_17_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_17" id="pcl5_17_4" value="4">
+      <label for="pcl5_17_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">18</span>
+      <span class="stem">Feeling jumpy or easily startled</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_18" id="pcl5_18_0" value="0">
+      <label for="pcl5_18_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_18" id="pcl5_18_1" value="1">
+      <label for="pcl5_18_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_18" id="pcl5_18_2" value="2">
+      <label for="pcl5_18_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_18" id="pcl5_18_3" value="3">
+      <label for="pcl5_18_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_18" id="pcl5_18_4" value="4">
+      <label for="pcl5_18_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">19</span>
+      <span class="stem">Having difficulty concentrating</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_19" id="pcl5_19_0" value="0">
+      <label for="pcl5_19_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_19" id="pcl5_19_1" value="1">
+      <label for="pcl5_19_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_19" id="pcl5_19_2" value="2">
+      <label for="pcl5_19_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_19" id="pcl5_19_3" value="3">
+      <label for="pcl5_19_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_19" id="pcl5_19_4" value="4">
+      <label for="pcl5_19_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div><div class="item">
+      <span class="num">20</span>
+      <span class="stem">Trouble falling or staying asleep</span>
+      <div class="options"><span class="opt">
+      <input type="radio" name="pcl5_20" id="pcl5_20_0" value="0">
+      <label for="pcl5_20_0"><span class="v">0</span><span class="l">Not at all</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_20" id="pcl5_20_1" value="1">
+      <label for="pcl5_20_1"><span class="v">1</span><span class="l">A little bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_20" id="pcl5_20_2" value="2">
+      <label for="pcl5_20_2"><span class="v">2</span><span class="l">Moderately</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_20" id="pcl5_20_3" value="3">
+      <label for="pcl5_20_3"><span class="v">3</span><span class="l">Quite a bit</span></label>
+    </span><span class="opt">
+      <input type="radio" name="pcl5_20" id="pcl5_20_4" value="4">
+      <label for="pcl5_20_4"><span class="v">4</span><span class="l">Extremely</span></label>
+    </span></div>
+    </div></div>
+
+    <div class="scorebar">
+      <div class="score-top">
+        <div class="score-num"><span id="pcl5_score">0</span><span class="max"> / 80</span></div>
+        <div class="score-band" id="pcl5_band" style="color: var(--s-minimal);"><span class="dot"></span><span class="band-label">Awaiting answers</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-track" id="pcl5_track"><div class="meter-seg" style="width: 38.2716%; background: var(--s-minimal); opacity: 0.55;"></div><div class="meter-seg" style="width: 61.7284%; background: var(--s-severe); opacity: 0.55;"></div><div class="meter-marker" id="pcl5_marker" style="left: 0%; display: none;"></div></div>
+        <div class="meter-labels"><span>0</span><span>80</span></div>
+      </div>
+      <p class="score-note"><span class="note-body">A total of 31–33 or higher suggests probable PTSD. The DSM-5 symptom-cluster rule below is a second, structured way to read a provisional diagnosis — an item counts toward its cluster when rated Moderately (2) or higher.</span> <span class="progress" id="pcl5_progress">Answered 0 of 20 items — total is provisional until all are complete.</span></p>
+      <div class="callout" id="pcl5_callout"></div>
+      <div class="cluster show" id="pcl5_cluster">
+      <div style="font-weight:600;">DSM-5 symptom clusters (items rated 2+)</div>
+      <div class="cluster-grid">
+        <div class="cluster-cell unmet" id="pcl5_cl_B"><div class="name">B · Intrusion (need ≥1)</div><div class="val">0 items rated 2+ </div></div>
+        <div class="cluster-cell unmet" id="pcl5_cl_C"><div class="name">C · Avoidance (need ≥1)</div><div class="val">0 items rated 2+ </div></div>
+        <div class="cluster-cell unmet" id="pcl5_cl_D"><div class="name">D · Mood &amp; cognition (need ≥2)</div><div class="val">0 items rated 2+ </div></div>
+        <div class="cluster-cell unmet" id="pcl5_cl_E"><div class="name">E · Arousal (need ≥2)</div><div class="val">0 items rated 2+ </div></div>
+      </div>
+      <div class="cluster-verdict" id="pcl5_verdict" style="color: var(--ink-faint);">Complete all 20 items for a valid cluster reading.</div>
+    </div>
+      <div class="actions">
+        <button class="btn primary" data-action="print">Print / save PDF</button>
+        <button class="btn" data-action="reset" data-key="pcl5">Clear answers</button>
+      </div>
+    </div></section>
+</main>
+
+<footer class="foot">
+  <p><strong>About the measures.</strong> The GAD-7 and PHQ-9 (Spitzer, Kroenke, Williams and colleagues) were developed as part of the PRIME-MD PHQ and may be reproduced without permission for clinical and research use. The PCL-5 was developed by the U.S. National Center for PTSD and is in the public domain. The PSWQ (Meyer, Miller, Metzger &amp; Borkovec, 1990) is widely used in research and practice. Interpretation cutoffs are conventional guides drawn from the validation literature and vary by setting and population.</p>
+</footer>
+
+<script>
+"use strict";
+
+/* ---------- Response scales ---------- */
+const FREQ = [
+  {v:0,l:"Not at all"},
+  {v:1,l:"Several days"},
+  {v:2,l:"More than half the days"},
+  {v:3,l:"Nearly every day"}
+];
+const TYPICAL = [
+  {v:1,l:"Not at all typical"},
+  {v:2,l:""},
+  {v:3,l:"Somewhat"},
+  {v:4,l:""},
+  {v:5,l:"Very typical"}
+];
+const BOTHER = [
+  {v:0,l:"Not at all"},
+  {v:1,l:"A little bit"},
+  {v:2,l:"Moderately"},
+  {v:3,l:"Quite a bit"},
+  {v:4,l:"Extremely"}
+];
+const IMPAIR = [
+  {v:0,l:"Not difficult"},
+  {v:1,l:"Somewhat difficult"},
+  {v:2,l:"Very difficult"},
+  {v:3,l:"Extremely difficult"}
+];
+
+/* ---------- Measures ---------- */
+const MEASURES = {
+  gad7:{
+    title:"GAD-7", full:"Generalized Anxiety Disorder 7-item scale",
+    timeframe:"Over the last 2 weeks,", prompt:"how often have you been bothered by the following problems?",
+    scale:FREQ, min:0, max:21, condition:"anxiety",
+    items:[
+      "Feeling nervous, anxious, or on edge",
+      "Not being able to stop or control worrying",
+      "Worrying too much about different things",
+      "Trouble relaxing",
+      "Being so restless that it's hard to sit still",
+      "Becoming easily annoyed or irritable",
+      "Feeling afraid, as if something awful might happen"
+    ],
+    impairment:true,
+    bands:[
+      {min:0,max:4, l:"Minimal anxiety", c:"--s-minimal"},
+      {min:5,max:9, l:"Mild anxiety", c:"--s-mild"},
+      {min:10,max:14,l:"Moderate anxiety", c:"--s-moderate"},
+      {min:15,max:21,l:"Severe anxiety", c:"--s-severe"}
+    ],
+    note:"A total of 10 or more is the common cutoff for probable generalized anxiety disorder and usually warrants further evaluation."
+  },
+  pswq:{
+    title:"PSWQ", full:"Penn State Worry Questionnaire",
+    timeframe:"", prompt:"Rate how characteristic each statement is of you. Answer honestly, using the whole scale.",
+    scale:TYPICAL, min:16, max:80, condition:"worry",
+    reverse:[1,3,8,10,11],
+    items:[
+      "If I don't have enough time to do everything, I don't worry about it.",
+      "My worries overwhelm me.",
+      "I don't tend to worry about things.",
+      "Many situations make me worry.",
+      "I know I shouldn't worry about things, but I just can't help it.",
+      "When I'm under pressure I worry a lot.",
+      "I'm always worrying about something.",
+      "I find it easy to dismiss worrisome thoughts.",
+      "As soon as I finish one task, I start to worry about everything else I have to do.",
+      "I never worry about anything.",
+      "When there's nothing more I can do about a concern, I don't worry about it anymore.",
+      "I've been a worrier all my life.",
+      "I notice that I've been worrying about things.",
+      "Once I start worrying, I can't stop.",
+      "I worry all the time.",
+      "I worry about projects until they're all done."
+    ],
+    bands:[
+      {min:16,max:39,l:"Low worry", c:"--s-minimal"},
+      {min:40,max:59,l:"Moderate worry", c:"--s-moderate"},
+      {min:60,max:80,l:"High worry", c:"--s-severe"}
+    ],
+    note:"Scores run 16–80; higher means more pervasive, uncontrollable worry. People with generalized anxiety disorder typically average in the high 60s. Cutoffs vary by population."
+  },
+  phq9:{
+    title:"PHQ-9", full:"Patient Health Questionnaire 9-item depression module",
+    timeframe:"Over the last 2 weeks,", prompt:"how often have you been bothered by any of the following problems?",
+    scale:FREQ, min:0, max:27, condition:"depression",
+    items:[
+      "Little interest or pleasure in doing things",
+      "Feeling down, depressed, or hopeless",
+      "Trouble falling or staying asleep, or sleeping too much",
+      "Feeling tired or having little energy",
+      "Poor appetite or overeating",
+      "Feeling bad about yourself — or that you're a failure or have let yourself or your family down",
+      "Trouble concentrating on things, such as reading the newspaper or watching television",
+      "Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you've been moving around a lot more than usual",
+      "Thoughts that you'd be better off dead, or of hurting yourself in some way"
+    ],
+    impairment:true,
+    riskItem:9,
+    bands:[
+      {min:0,max:4, l:"Minimal or none", c:"--s-minimal"},
+      {min:5,max:9, l:"Mild depression", c:"--s-mild"},
+      {min:10,max:14,l:"Moderate depression", c:"--s-moderate"},
+      {min:15,max:19,l:"Moderately severe", c:"--s-modsevere"},
+      {min:20,max:27,l:"Severe depression", c:"--s-severe"}
+    ],
+    note:"A total of 10 or more suggests probable major depression. Item 9 asks about thoughts of death or self-harm and is reviewed regardless of the total score."
+  },
+  pcl5:{
+    title:"PCL-5", full:"PTSD Checklist for DSM-5",
+    timeframe:"In the past month,", prompt:"how much were you bothered by each problem, in relation to a stressful experience?",
+    scale:BOTHER, min:0, max:80, condition:"post-traumatic stress",
+    event:true,
+    items:[
+      "Repeated, disturbing, and unwanted memories of the stressful experience",
+      "Repeated, disturbing dreams of the stressful experience",
+      "Suddenly feeling or acting as if the stressful experience were actually happening again (as if you were reliving it)",
+      "Feeling very upset when something reminded you of the stressful experience",
+      "Having strong physical reactions when something reminded you of the stressful experience (heart pounding, trouble breathing, sweating)",
+      "Avoiding memories, thoughts, or feelings related to the stressful experience",
+      "Avoiding external reminders of the stressful experience (people, places, conversations, activities, objects, or situations)",
+      "Trouble remembering important parts of the stressful experience",
+      "Having strong negative beliefs about yourself, other people, or the world (e.g. I am bad, something is seriously wrong with me, no one can be trusted, the world is completely dangerous)",
+      "Blaming yourself or someone else for the stressful experience or what happened after it",
+      "Having strong negative feelings such as fear, horror, anger, guilt, or shame",
+      "Loss of interest in activities you used to enjoy",
+      "Feeling distant or cut off from other people",
+      "Trouble experiencing positive feelings (being unable to feel happiness or loving feelings toward people close to you)",
+      "Irritable behavior, angry outbursts, or acting aggressively",
+      "Taking too many risks or doing things that could cause you harm",
+      "Being superalert, watchful, or on guard",
+      "Feeling jumpy or easily startled",
+      "Having difficulty concentrating",
+      "Trouble falling or staying asleep"
+    ],
+    clusters:{B:[1,2,3,4,5],C:[6,7],D:[8,9,10,11,12,13,14],E:[15,16,17,18,19,20]},
+    bands:[
+      {min:0,max:30, l:"Below provisional threshold", c:"--s-minimal"},
+      {min:31,max:80,l:"At or above threshold", c:"--s-severe"}
+    ],
+    note:"A total of 31–33 or higher suggests probable PTSD. The DSM-5 symptom-cluster rule below is a second, structured way to read a provisional diagnosis — an item counts toward its cluster when rated Moderately (2) or higher."
+  }
+};
+
+/* ---------- Render ---------- */
+function optionsHTML(name, scale, idx){
+  return scale.map(o=>{
+    const id = `${name}_${idx}_${o.v}`;
+    const label = o.l ? `<span class="l">${o.l}</span>` : "";
+    return `<span class="opt">
+      <input type="radio" name="${name}_${idx}" id="${id}" value="${o.v}">
+      <label for="${id}"><span class="v">${o.v}</span>${label}</label>
+    </span>`;
+  }).join("");
+}
+
+function renderMeasure(key){
+  const m = MEASURES[key];
+  const el = document.getElementById(key);
+
+  let itemsHTML = m.items.map((stem,i)=>{
+    const n = i+1;
+    return `<div class="item">
+      <span class="num">${n}</span>
+      <span class="stem">${stem}</span>
+      <div class="options">${optionsHTML(key, m.scale, n)}</div>
+    </div>`;
+  }).join("");
+
+  if(m.impairment){
+    itemsHTML += `<div class="item impairment">
+      <span class="num"></span>
+      <span class="flag">Functional impact — not scored</span>
+      <span class="stem">If you checked off any problems, how difficult have they made it to do your work, take care of things at home, or get along with other people?</span>
+      <div class="options">${optionsHTML(key, IMPAIR, "imp")}</div>
+    </div>`;
+  }
+
+  const eventHTML = m.event ? `<div class="event-field">
+      <label for="${key}_event">The stressful experience these questions refer to (optional)</label>
+      <textarea id="${key}_event" placeholder="Briefly note the event you have in mind while answering."></textarea>
+    </div>` : "";
+
+  const promptHTML = m.timeframe
+    ? `<p class="prompt"><span class="timeframe">${m.timeframe}</span> ${m.prompt}</p>`
+    : `<p class="prompt">${m.prompt}</p>`;
+
+  const scaleWords = m.scale.filter(o=>o.l).map(o=>`${o.v} = ${o.l}`).join("  ·  ");
+
+  const clusterHTML = m.clusters ? `<div class="cluster" id="${key}_cluster">
+      <div style="font-weight:600;">DSM-5 symptom clusters (items rated 2+)</div>
+      <div class="cluster-grid">
+        <div class="cluster-cell" id="${key}_cl_B"><div class="name">B · Intrusion (need ≥1)</div><div class="val">—</div></div>
+        <div class="cluster-cell" id="${key}_cl_C"><div class="name">C · Avoidance (need ≥1)</div><div class="val">—</div></div>
+        <div class="cluster-cell" id="${key}_cl_D"><div class="name">D · Mood & cognition (need ≥2)</div><div class="val">—</div></div>
+        <div class="cluster-cell" id="${key}_cl_E"><div class="name">E · Arousal (need ≥2)</div><div class="val">—</div></div>
+      </div>
+      <div class="cluster-verdict" id="${key}_verdict"></div>
+    </div>` : "";
+
+  el.innerHTML = `
+    <div class="measure-head">
+      <h2>${m.title}</h2>
+      <p class="full">${m.full}</p>
+    </div>
+    ${promptHTML}
+    <p class="scale-legend">${scaleWords}</p>
+    ${eventHTML}
+    <div class="items">${itemsHTML}</div>
+
+    <div class="scorebar">
+      <div class="score-top">
+        <div class="score-num"><span id="${key}_score">0</span><span class="max"> / ${m.max}</span></div>
+        <div class="score-band" id="${key}_band"><span class="dot"></span><span class="band-label">Awaiting answers</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-track" id="${key}_track"></div>
+        <div class="meter-labels"><span>${m.min}</span><span>${m.max}</span></div>
+      </div>
+      <p class="score-note"><span class="note-body">${m.note}</span> <span class="progress" id="${key}_progress"></span></p>
+      <div class="callout" id="${key}_callout"></div>
+      ${clusterHTML}
+      <div class="actions">
+        <button class="btn primary" data-action="print">Print / save PDF</button>
+        <button class="btn" data-action="reset" data-key="${key}">Clear answers</button>
+      </div>
+    </div>`;
+
+  // build meter band segments
+  const track = document.getElementById(`${key}_track`);
+  const span = m.max - m.min + 1;
+  m.bands.forEach(b=>{
+    const seg = document.createElement("div");
+    seg.className = "meter-seg";
+    const w = ((b.max - b.min + 1)/span)*100;
+    seg.style.width = w+"%";
+    seg.style.background = `var(${b.c})`;
+    seg.style.opacity = ".55";
+    track.appendChild(seg);
+  });
+  const marker = document.createElement("div");
+  marker.className = "meter-marker";
+  marker.id = `${key}_marker`;
+  marker.style.left = "0%";
+  marker.style.display = "none";
+  track.appendChild(marker);
+}
+
+/* ---------- Scoring ---------- */
+function bandFor(m, score){
+  return m.bands.find(b=>score>=b.min && score<=b.max) || m.bands[m.bands.length-1];
+}
+
+function score(key){
+  const m = MEASURES[key];
+  let total = 0, answered = 0;
+  const raw = [];
+  for(let i=1;i<=m.items.length;i++){
+    const sel = document.querySelector(`input[name="${key}_${i}"]:checked`);
+    if(sel){
+      answered++;
+      let v = parseInt(sel.value,10);
+      raw[i] = v;
+      if(m.reverse && m.reverse.includes(i)){
+        v = (m.scale.length+1) - v; // 1-5 -> 6-v
+      }
+      total += v;
+    } else {
+      raw[i] = null;
+    }
+  }
+  const complete = answered === m.items.length;
+
+  document.getElementById(`${key}_score`).textContent = total;
+
+  const bandEl = document.getElementById(`${key}_band`);
+  const b = bandFor(m, total);
+  bandEl.style.color = `var(${b.c})`;
+  bandEl.querySelector(".band-label").textContent = complete ? b.l : (answered? "In progress" : "Awaiting answers");
+
+  // marker
+  const marker = document.getElementById(`${key}_marker`);
+  const pct = ((total - m.min)/(m.max - m.min))*100;
+  marker.style.left = Math.max(0,Math.min(100,pct))+"%";
+  marker.style.display = answered ? "block" : "none";
+
+  // progress note
+  const prog = document.getElementById(`${key}_progress`);
+  prog.textContent = complete ? "" : `Answered ${answered} of ${m.items.length} items — total is provisional until all are complete.`;
+
+  // PHQ-9 item-9 safety callout
+  if(m.riskItem){
+    const c = document.getElementById(`${key}_callout`);
+    const r = raw[m.riskItem];
+    if(r && r >= 1){
+      c.classList.add("show");
+      c.innerHTML = `<strong>Item 9 was endorsed.</strong> Any level of thoughts of death or self-harm is worth taking seriously and discussing with a clinician promptly. If you or someone you're assessing is in immediate danger, contact local emergency services. In the U.S., the 988 Suicide &amp; Crisis Lifeline can be reached by calling or texting <strong>988</strong>; many countries have their own crisis lines.`;
+    } else {
+      c.classList.remove("show");
+      c.innerHTML = "";
+    }
+  }
+
+  // PCL-5 clusters
+  if(m.clusters){
+    const wrap = document.getElementById(`${key}_cluster`);
+    wrap.classList.add("show");
+    const need = {B:1,C:1,D:2,E:2};
+    const met = {};
+    Object.keys(m.clusters).forEach(cl=>{
+      const count = m.clusters[cl].filter(i=>raw[i] != null && raw[i] >= 2).length;
+      met[cl] = count >= need[cl];
+      const cell = document.getElementById(`${key}_cl_${cl}`);
+      cell.querySelector(".val").textContent = `${count} item${count===1?"":"s"} rated 2+ ${met[cl]?"✓":""}`;
+      cell.classList.toggle("met", met[cl]);
+      cell.classList.toggle("unmet", !met[cl]);
+    });
+    const all = met.B && met.C && met.D && met.E;
+    const verdict = document.getElementById(`${key}_verdict`);
+    if(!complete){
+      verdict.textContent = "Complete all 20 items for a valid cluster reading.";
+      verdict.style.color = "var(--ink-faint)";
+    } else if(all){
+      verdict.textContent = "All four clusters met — provisional PTSD criteria satisfied by the DSM-5 rule.";
+      verdict.style.color = "var(--s-severe)";
+    } else {
+      verdict.textContent = "Not all clusters met — provisional PTSD criteria not satisfied by the DSM-5 rule.";
+      verdict.style.color = "var(--ink-soft)";
+    }
+  }
+}
+
+/* ---------- Init & events ---------- */
+Object.keys(MEASURES).forEach(renderMeasure);
+Object.keys(MEASURES).forEach(score);
+
+document.addEventListener("change", e=>{
+  if(e.target.matches('input[type="radio"]')){
+    const key = e.target.name.split("_")[0];
+    if(MEASURES[key]) score(key);
+  }
+});
+
+document.addEventListener("click", e=>{
+  const btn = e.target.closest(".btn");
+  if(!btn) return;
+  const action = btn.dataset.action;
+  if(action === "print"){ window.print(); }
+  if(action === "reset"){
+    const key = btn.dataset.key;
+    document.querySelectorAll(`#${key} input[type="radio"]`).forEach(r=>r.checked=false);
+    const ev = document.getElementById(`${key}_event`);
+    if(ev) ev.value = "";
+    score(key);
+    document.getElementById(key).scrollIntoView({behavior:"smooth",block:"start"});
+  }
+});
+
+// tabs
+const tabs = document.querySelectorAll(".tab-btn");
+tabs.forEach(t=>{
+  t.addEventListener("click", ()=>{
+    tabs.forEach(x=>x.setAttribute("aria-selected","false"));
+    t.setAttribute("aria-selected","true");
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+    document.getElementById(t.dataset.target).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+</script>
+
+
+</body></html>
