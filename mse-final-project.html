@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unreliable Diagnosis — Final MSE Project · SOW6125</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#E5EAED;
+    --surface:#FFFFFF;
+    --chart:#FCFBF8;
+    --ink:#16232C;
+    --ink-soft:#495a65;
+    --ink-faint:#8494a0;
+    --line:#D4DDE2;
+    --line-soft:#E7EDF0;
+    --petrol:#1F5C5A;
+    --petrol-deep:#164543;
+    --petrol-tint:#E4EFEE;
+    --ochre:#A9641F;
+    --ochre-tint:#F5EADB;
+    --rose:#9c3743;
+    --rose-tint:#f6e6e7;
+    --green:#2f6b47;
+    --green-tint:#e5f0e8;
+    --shadow:0 1px 2px rgba(22,35,44,.06),0 8px 28px -12px rgba(22,35,44,.22);
+    --serif:'Spectral',Georgia,serif;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--petrol-deep);
+    color:#eaf3f2;
+    padding:34px 24px 30px;
+    border-bottom:3px solid var(--ochre);
+  }
+  .masthead-inner{max-width:1120px;margin:0 auto;}
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#8fc4c0;
+    margin:0 0 10px;
+  }
+  .masthead h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(28px,4.6vw,46px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  .masthead h1 em{font-style:italic;color:#e7b984;font-weight:500;}
+  .masthead p{
+    max-width:60ch;
+    margin:0;
+    color:#c4dbd9;
+    font-size:15.5px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px 90px;}
+
+  /* ---------- How it works ---------- */
+  .howto{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    margin:-26px 0 26px;
+    position:relative;
+    z-index:2;
+  }
+  .howto h2{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:0 0 16px;
+  }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+  }
+  .step-item{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:6px;
+    padding:3px 8px;
+    flex-shrink:0;
+    line-height:1.3;
+  }
+  .step-item p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .step-item strong{color:var(--ink);display:block;font-size:14.5px;}
+
+  /* ---------- Case navigator ---------- */
+  .nav-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin:6px 0 14px;
+  }
+  .nav-head h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:600;
+    margin:0;
+  }
+  .progress{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:.03em;
+  }
+  .progress b{color:var(--petrol);}
+  .caselist{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .case-chip{
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:11px 13px;
+    cursor:pointer;
+    font-family:var(--sans);
+    color:var(--ink);
+    transition:border-color .16s,box-shadow .16s,transform .16s;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .case-chip:hover{border-color:var(--petrol);transform:translateY(-1px);box-shadow:var(--shadow);}
+  .case-chip.active{border-color:var(--petrol);box-shadow:0 0 0 2px var(--petrol-tint);}
+  .case-chip .cid{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .case-chip .ctitle{font-size:13.5px;font-weight:500;line-height:1.25;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;}
+  .case-chip.done .dot{background:var(--green);}
+  .case-chip.active .cid{color:var(--petrol);}
+
+  /* ---------- Case file ---------- */
+  .casefile{
+    background:var(--chart);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:16px;
+  }
+  .file-header{
+    background:var(--petrol);
+    color:#eef6f5;
+    padding:18px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .file-header .fid{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    color:#a9d3cf;
+  }
+  .file-header .fname{
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:600;
+    margin:2px 0 0;
+    color:#fff;
+  }
+  .stamp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#e7b984;
+    border:1px solid rgba(231,185,132,.55);
+    border-radius:5px;
+    padding:5px 9px;
+    transform:rotate(-3deg);
+    white-space:nowrap;
+  }
+  .file-body{padding:26px;}
+
+  .demo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:1px;
+    background:var(--line-soft);
+    border:1px solid var(--line-soft);
+    border-radius:9px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .demo-cell{background:var(--chart);padding:11px 14px;}
+  .demo-cell .lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:2px;
+  }
+  .demo-cell .val{font-size:14px;font-weight:500;}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:24px 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .vignette{font-family:var(--serif);font-size:17px;line-height:1.65;color:#26333c;}
+  .vignette p{margin:0 0 13px;}
+  .vignette p:last-child{margin-bottom:0;}
+
+  /* ---------- Worksheet ---------- */
+  .worksheet{
+    margin-top:28px;
+    border-top:2px dashed var(--line);
+    padding-top:24px;
+  }
+  .ws-title{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .ws-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 20px;}
+  .ws-step{margin-bottom:18px;}
+  .ws-step label{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:6px;
+  }
+  .ws-step label .n{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:5px;
+    padding:1px 7px;
+    font-weight:600;
+  }
+  .ws-step .hint{font-weight:400;color:var(--ink-faint);font-size:12.5px;}
+  textarea,select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    resize:vertical;
+  }
+  textarea{min-height:58px;line-height:1.5;}
+  textarea:focus,select:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-tint);}
+  select{cursor:pointer;height:44px;}
+
+  .ws-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .btn{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14.5px;
+    border-radius:8px;
+    padding:11px 20px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .15s,border-color .15s,transform .12s;
+  }
+  .btn-primary{background:var(--petrol);color:#fff;}
+  .btn-primary:hover{background:var(--petrol-deep);}
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-ghost{background:transparent;color:var(--petrol);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--petrol);}
+
+  /* ---------- Answer key ---------- */
+  .answer{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    overflow:hidden;
+    background:var(--surface);
+    animation:reveal .32s ease;
+  }
+  @keyframes reveal{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .answer-head{
+    padding:14px 20px;
+    background:var(--ochre-tint);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .answer-head .akey-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .verdict{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    padding:4px 11px;
+    border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .verdict.match{background:var(--green-tint);color:var(--green);}
+  .verdict.miss{background:var(--rose-tint);color:var(--rose);}
+  .answer-body{padding:20px 22px;}
+  .dx-name{
+    font-family:var(--serif);
+    font-size:23px;
+    font-weight:600;
+    margin:0 0 2px;
+    color:var(--petrol-deep);
+  }
+  .dx-code{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin-bottom:16px;}
+  .akey-block{margin-bottom:16px;}
+  .akey-block h4{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 7px;
+  }
+  .akey-block ul{margin:0;padding-left:0;list-style:none;}
+  .akey-block li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:6px;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .akey-block li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--petrol);
+  }
+  .akey-block.diff li::before{background:var(--ochre);}
+  .akey-block p{margin:0;font-size:14.5px;line-height:1.55;}
+  .pearl{
+    background:var(--petrol-tint);
+    border-left:3px solid var(--petrol);
+    border-radius:0 8px 8px 0;
+    padding:12px 16px;
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .pearl strong{color:var(--petrol-deep);}
+
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    margin-top:34px;
+    background:var(--rose-tint);
+    border:1px solid #ecc9cd;
+    border-radius:11px;
+    padding:16px 20px;
+    font-size:13.5px;
+    line-height:1.55;
+    color:#6e2a33;
+  }
+  .disclaimer strong{color:var(--rose);}
+
+  .empty{
+    text-align:center;
+    color:var(--ink-faint);
+    font-style:italic;
+    padding:60px 20px;
+    font-family:var(--serif);
+    font-size:18px;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-faint);
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.05em;
+    padding:26px 20px 10px;
+  }
+
+  @media (max-width:560px){
+    .file-header{flex-direction:column;align-items:flex-start;}
+    .masthead{padding:28px 18px 26px;}
+    .wrap{padding:0 16px 70px;}
+    .howto{padding:20px;}
+    .file-body{padding:20px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto;}
+  }
+
+  .wrap{max-width:1000px;}
+  .meta-chips{display:flex;flex-wrap:wrap;gap:10px;margin:-14px 0 26px;position:relative;z-index:2;}
+  .chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;box-shadow:var(--shadow);}
+  .chip b{color:var(--petrol);font-family:var(--mono);font-size:12px;letter-spacing:.03em;}
+  h2.sec{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);margin:34px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--line);}
+  h2.sec .eyebrow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:6px;font-weight:600;}
+  .prose{font-size:16px;line-height:1.62;color:#26333c;}
+  .prose p{margin:0 0 14px;}
+  .prose strong{color:var(--ink);}
+  ol.obj{counter-reset:o;list-style:none;padding:0;margin:6px 0 0;}
+  ol.obj li{position:relative;padding:10px 0 10px 46px;border-top:1px solid var(--line-soft);font-size:15.5px;line-height:1.5;}
+  ol.obj li:first-child{border-top:none;}
+  ol.obj li::before{counter-increment:o;content:counter(o);position:absolute;left:0;top:9px;width:30px;height:30px;background:var(--petrol-tint);color:var(--petrol);font-family:var(--mono);font-weight:600;font-size:14px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .part{background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:22px 24px;margin:16px 0;}
+  .part-tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre);background:var(--ochre-tint);border-radius:6px;padding:3px 9px;display:inline-block;margin-bottom:8px;}
+  .part h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:0 0 4px;color:var(--petrol-deep);}
+  .part .when{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-bottom:12px;}
+  .part p{font-size:15px;line-height:1.55;margin:0 0 12px;color:#2c3a42;}
+  .twocol{width:100%;border-collapse:collapse;margin:8px 0 14px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .twocol th{background:var(--petrol);color:#eef6f5;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:9px 13px;text-align:left;}
+  .twocol td{padding:11px 13px;font-size:14px;line-height:1.5;border-top:1px solid var(--line-soft);vertical-align:top;background:var(--chart);color:#33424b;}
+  .twocol td:first-child{border-right:1px solid var(--line);}
+  .domains{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 4px;}
+  .domains span{background:var(--petrol-tint);color:var(--petrol-deep);border-radius:6px;padding:4px 10px;font-size:12.5px;font-weight:500;}
+  ul.tight{margin:4px 0 12px;padding-left:20px;}
+  ul.tight li{margin-bottom:6px;font-size:15px;line-height:1.5;}
+  .rubric{width:100%;border-collapse:collapse;margin:10px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);}
+  .rubric th{background:var(--petrol);color:#eef6f5;font-size:13px;padding:11px 13px;text-align:left;}
+  .rubric td{padding:11px 13px;border-top:1px solid var(--line-soft);font-size:14px;line-height:1.45;background:var(--surface);vertical-align:top;}
+  .rubric tr:nth-child(even) td{background:var(--chart);}
+  .rubric .pts{font-family:var(--mono);font-weight:600;color:var(--petrol);text-align:center;white-space:nowrap;}
+  .rubric tfoot td{background:var(--petrol-tint);font-weight:600;color:var(--petrol-deep);}
+  .case{background:var(--chart);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);overflow:hidden;margin:16px 0;}
+  .case-head{background:var(--petrol);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+  .case-head .cid{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#a9d3cf;}
+  .case-head h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:2px 0 0;}
+  .case-body{padding:20px 22px;}
+  .stage{border-left:3px solid var(--petrol);padding:2px 0 2px 16px;margin:0 0 14px;}
+  .stage .slabel{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);font-weight:600;margin-bottom:5px;}
+  .stage p{font-size:15px;line-height:1.58;margin:0 0 8px;color:#2b3941;}
+  .cue{font-style:italic;color:var(--ochre);font-size:13.5px;font-family:var(--serif);}
+  .locked{border-left-color:var(--line);}
+  .reveal-btn{font-family:var(--sans);font-weight:600;font-size:14px;background:transparent;color:var(--petrol);border:1px solid var(--line);border-radius:8px;padding:9px 16px;cursor:pointer;transition:border-color .15s,background .15s;margin:2px 0 14px;}
+  .reveal-btn:hover{border-color:var(--petrol);background:var(--petrol-tint);}
+  .hidden{display:none;}
+  .callout{background:var(--petrol-tint);border-left:4px solid var(--petrol);border-radius:0 10px 10px 0;padding:16px 20px;margin:22px 0;font-size:16px;line-height:1.6;color:#25333b;}
+  .callout strong{color:var(--petrol-deep);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">SOW6125 Psychopathology · Final Project</p>
+    <h1>The Unreliable <em>Diagnosis</em></h1>
+    <p>A comprehensive Mental Status Examination & diagnostic-reasoning challenge. You will be graded on the quality of your reasoning under uncertainty — not on landing the “right” label.</p>
+  </div>
+</header>
+<div class="wrap">
+  <div class="meta-chips">
+    <span class="chip"><b>FORMAT</b> &nbsp;Individual written portfolio (+ optional case-conference presentation)</span>
+    <span class="chip"><b>LENGTH</b> &nbsp;8–12 pages</span>
+    <span class="chip"><b>POINTS</b> &nbsp;100</span>
+    <span class="chip"><b>DUE</b> &nbsp;Mon, Nov 23</span>
+  </div>
+
+  <h2 class="sec"><span class="eyebrow">The premise</span>Why this assignment is different</h2>
+  <div class="prose">
+    <p>A traditional MSE write-up asks you to observe a client and record findings across standardized domains. It rewards thoroughness. It does not, by itself, reward thinking — and it can quietly teach a dangerous habit: that the goal of assessment is to arrive at the correct label as efficiently as possible.</p>
+    <p>In real practice, the first plausible diagnosis is frequently wrong, or incomplete, or actively harmful. Symptoms are mimicked by medical conditions, medications, substances, trauma responses, grief, poverty, and culturally normative experiences that the DSM was not built to see clearly. Clients get anchored to labels that follow them for years. Social workers, uniquely, are trained to hold the person-in-environment — which means we are the ones in the room most responsible for asking, <strong>“What else could this be, and what am I not seeing?”</strong></p>
+    <p>This assignment treats diagnosis as a <strong>reasoning process under uncertainty</strong>, not a lookup task. You will be graded on the quality of your observation, the rigor of your reasoning, your ability to revise, and your honesty about your own blind spots.</p>
+  </div>
+
+  <h2 class="sec"><span class="eyebrow">Objectives</span>What you will practice</h2>
+  <ol class="obj">
+    <li>Conduct and document a comprehensive MSE that cleanly separates <strong>observation</strong> from <strong>inference</strong>.</li>
+    <li>Generate a <strong>differential diagnosis</strong> and reason explicitly about what supports and contradicts each hypothesis.</li>
+    <li>Identify <strong>medical, substance-related, situational, and cultural confounders</strong> that mimic psychiatric presentations.</li>
+    <li>Detect and name <strong>cognitive and cultural biases</strong> in your own reasoning (anchoring, confirmation bias, diagnostic overshadowing, over- and under-pathologizing).</li>
+    <li>Integrate a <strong>person-in-environment / structural lens</strong> that reframes individual “pathology” in context.</li>
+    <li>Articulate the <strong>ethical stakes and potential harms</strong> of diagnostic labeling.</li>
+    <li>Practice <strong>intellectual humility</strong> by stating what would change your mind.</li>
+  </ol>
+
+  <h2 class="sec"><span class="eyebrow">The core premise</span>You are presenting at a case conference</h2>
+  <div class="prose">
+    <p>You are the clinical social worker presenting a new client at an interdisciplinary <strong>case conference</strong>. Your job is not to hand the team a verdict — it is to give them your best current thinking, transparent about its limits, so the team can reason together.</p>
+    <p>The twist: each case contains at least one <strong>deliberate diagnostic trap</strong> — information that will lead a hurried clinician toward a confident but flawed conclusion. Your instructor will not tell you where the trap is. Part of your work is to notice when the “obvious” answer is doing too much explaining.</p>
+    <p>You will move through the case in <strong>three stages of disclosure</strong>, revising your thinking as new information arrives — which makes visible whether you can update your beliefs or whether you dig in to defend your first impression.</p>
+  </div>
+
+  <h2 class="sec"><span class="eyebrow">Getting started</span>Choose your case</h2>
+  <div class="prose">
+    <p>Select <strong>one</strong> of the vignettes in the appendix below. Each is written in three stages. <strong>Read only Stage 1 first.</strong> Complete Part A before revealing Stage 2. Complete Parts B and C before revealing Stage 3. Do not read ahead — this assignment depends on you committing to reasoning before you have all the facts, exactly as you would in practice.</p>
+  </div>
+
+  <h2 class="sec"><span class="eyebrow">The deliverable</span>A five-part diagnostic portfolio</h2>
+
+  <div class="part">
+    <span class="part-tag">Part A</span>
+    <h3>The Two-Column MSE</h3>
+    <div class="when">After Stage 1 only</div>
+    <p>Document a full MSE in two parallel columns:</p>
+    <table class="twocol"><thead><tr><th>What I observed / was reported (data)</th><th>What I’m inferring from it (interpretation)</th></tr></thead>
+      <tbody><tr><td>e.g., “Client paused 8–10 seconds before answering most questions; looked toward the door repeatedly.”</td><td>e.g., “Possible psychomotor slowing vs. hypervigilance vs. distraction vs. hearing difficulty vs. discomfort with the interviewer.”</td></tr></tbody></table>
+    <p>Cover all standard MSE domains:</p>
+    <div class="domains"><span>Appearance</span><span>Behavior / psychomotor</span><span>Attitude / cooperation</span><span>Speech</span><span>Mood</span><span>Affect</span><span>Thought process</span><span>Thought content</span><span>Perception</span><span>Cognition (orientation, attention, memory)</span><span>Insight</span><span>Judgment</span><span>Impulse control</span><span>Reliability</span></div>
+    <p><strong>The rule:</strong> the left column may contain <em>only</em> what you could defend to a skeptic as directly observed or reported. Everything interpretive — every “appears depressed,” “seems paranoid,” “is guarded” — belongs on the right, and each right-column entry must list <strong>at least two possible explanations</strong>. This is the single most important skill the assignment teaches: most diagnostic errors are inferences that got smuggled in as observations.</p>
+  </div>
+
+  <div class="part">
+    <span class="part-tag">Part B</span>
+    <h3>The Living Differential</h3>
+    <div class="when">After Stage 2</div>
+    <ul class="tight">
+      <li>List <strong>3–5 diagnostic hypotheses</strong>, ranked by current likelihood. Include at least one <strong>non-psychiatric explanation</strong> (medical, medication/substance, situational/environmental, or culturally normative).</li>
+      <li>For each hypothesis, complete a brief <strong>rule-in / rule-out ledger</strong>: what supports it, what argues against it, and what information is still missing that you’d need to decide.</li>
+      <li>Write a short paragraph on how Stage 2 <strong>changed your thinking from Part A</strong>. If nothing changed, defend why — and be honest about whether that’s rigor or rigidity.</li>
+    </ul>
+  </div>
+
+  <div class="part">
+    <span class="part-tag">Part C</span>
+    <h3>The Bias & Culture Audit</h3>
+    <div class="when">After Stage 2</div>
+    <p>A structured self-examination, not a disclaimer. Address:</p>
+    <ul class="tight">
+      <li><strong>Anchoring:</strong> what was the first diagnosis that came to mind, and how might it have shaped everything you noticed afterward?</li>
+      <li><strong>Confirmation bias:</strong> where did you collect evidence for a hypothesis rather than testing it?</li>
+      <li><strong>Diagnostic overshadowing:</strong> did an obvious feature (an existing label, a disability, substance use, age, psychiatric history) tempt you to attribute everything to it?</li>
+      <li><strong>Over- vs. under-pathologizing:</strong> where might a culturally normative experience, a trauma response, or a rational reaction to intolerable circumstances be coded as disorder? Where might real risk be minimized as “just” situational?</li>
+      <li><strong>Your own social location:</strong> how might your identity, training, and assumptions shape what reads as “normal,” “resistant,” “articulate,” or “disorganized”?</li>
+    </ul>
+    <p>Reference at least one relevant framework (e.g., the DSM-5-TR <strong>Cultural Formulation Interview</strong>, cultural idioms of distress, structural competency, or trauma-informed principles).</p>
+  </div>
+
+  <div class="part">
+    <span class="part-tag">Part D</span>
+    <h3>The Person-in-Environment Reframe</h3>
+    <div class="when">After Stage 3</div>
+    <p>Now zoom out. Using the full case:</p>
+    <ul class="tight">
+      <li>Re-describe the presentation through a <strong>person-in-environment / structural lens</strong>. What looks different when you foreground housing, income, immigration status, racism, coercive control, caregiving load, medical access, or systemic contact (child welfare, carceral, immigration systems)?</li>
+      <li>Identify <strong>strengths and protective factors</strong> — not as a token gesture, but as genuine clinical data a deficit-only frame would miss.</li>
+      <li>Name at least one point where the <strong>environment, not the individual</strong>, is the appropriate target of intervention.</li>
+    </ul>
+  </div>
+
+  <div class="part">
+    <span class="part-tag">Part E</span>
+    <h3>The Formulation & the Falsifier</h3>
+    <div class="when">After Stage 3</div>
+    <ul class="tight">
+      <li>Write a <strong>biopsychosocial formulation</strong> (roughly one page) integrating everything: your leading impression(s), confidence level, the confounders you’re still holding, and your reasoning. Use DSM-5-TR language where appropriate, but frame diagnosis as a working hypothesis. Note where <strong>provisional</strong>, <strong>rule-out</strong>, or <strong>deferred</strong> designations are more honest than a firm diagnosis.</li>
+      <li>End with <strong>The Falsifier:</strong> state clearly what evidence would change your mind. A diagnosis you can’t imagine being wrong about is a diagnosis you haven’t finished thinking about.</li>
+      <li>Briefly address the <strong>ethics of labeling</strong> in this case: who benefits from this diagnosis, who could be harmed by it, and how you would communicate it to the client.</li>
+    </ul>
+  </div>
+
+  <h2 class="sec"><span class="eyebrow">Assessment</span>What we are (and aren’t) grading</h2>
+  <div class="prose">
+    <p>You are <strong>not</strong> graded on matching a secret answer key — several defensible formulations exist for each case. You <strong>are</strong> graded on reasoning. A student who reaches a “wrong” leading diagnosis with rigorous, self-aware, well-evidenced reasoning will score higher than one who lands on the “right” one by luck and confident hand-waving.</p>
+  </div>
+  <table class="rubric"><thead><tr><th>Criterion</th><th class="pts">Pts</th><th>What excellence looks like</th></tr></thead>
+    <tbody><tr><td>Observation vs. inference discipline (Part A)</td><td class="pts">20</td><td>Left column is clean, defensible data; every interpretation carries ≥2 explanations; no smuggled conclusions.</td></tr>
+<tr><td>Differential reasoning (Part B)</td><td class="pts">20</td><td>Genuine competing hypotheses including a non-psychiatric one; rigorous rule-in/rule-out; identifies missing data.</td></tr>
+<tr><td>Revision &amp; intellectual humility (Parts B &amp; E)</td><td class="pts">15</td><td>Demonstrably updates thinking across stages; states a real falsifier; distinguishes rigor from rigidity.</td></tr>
+<tr><td>Bias &amp; cultural audit (Part C)</td><td class="pts">15</td><td>Specific, honest, framework-informed; goes beyond disclaimers to name concrete moments of bias.</td></tr>
+<tr><td>Person-in-environment integration (Part D)</td><td class="pts">15</td><td>Structural reframe changes the clinical picture; strengths used as real data; targets environment where apt.</td></tr>
+<tr><td>Formulation quality &amp; ethics (Part E)</td><td class="pts">10</td><td>Coherent, integrated, appropriately tentative; thoughtful on labeling harms and client communication.</td></tr>
+<tr><td>Clarity, professionalism, use of evidence</td><td class="pts">5</td><td>Clear writing; accurate terminology; cites frameworks/literature appropriately.</td></tr></tbody>
+    <tfoot><tr><td>Total</td><td class="pts">100</td><td></td></tr></tfoot>
+  </table>
+
+  <h2 class="sec"><span class="eyebrow">Appendix</span>Case vignettes (staged)</h2>
+  <div class="prose"><p>Read one stage at a time. Complete the corresponding portfolio parts before advancing. Each case contains at least one confounder designed to reward careful reasoning and punish premature closure. The Stage 2 and Stage 3 buttons keep the later disclosures hidden until you’re ready — use them honestly.</p></div>
+  <div class="case"><div class="case-head"><div><div class="cid">Case 1</div><h3>“Mr. Okonkwo”</h3></div></div><div class="case-body"><div class="stage"><div class="slabel">Stage 1 — read this first</div><p>Mr. Okonkwo, 74, is brought to the emergency department by his adult daughter, who reports he has been “not himself” for about a week: confused, accusing family members of stealing, sleeping poorly, and at one point insisting he saw his late wife in the hallway. During your interview he is intermittently drowsy, then suddenly agitated. He is unsure of the date and thinks he is at his old workplace. His speech wanders. His daughter mentions, worriedly, “I think Dad has dementia — my grandmother had it too.”</p><p class="cue">→ Complete Part A now.</p></div><button class="reveal-btn" onclick="rev(1,2)" id="b12">Reveal Stage 2 (after Part A)</button><div class="stage locked hidden" id="s12"><div class="slabel">Stage 2</div><p>Chart review: Mr. Okonkwo was fully oriented and independent at a primary-care visit nine days ago. He was recently started on a new medication for urinary symptoms, takes several others, and his daughter isn’t sure he’s been drinking enough water. His temperature is mildly elevated. His attention fluctuates dramatically within a single conversation — lucid one moment, incoherent the next. He has no prior psychiatric history. His wife died four months ago.</p><p class="cue">→ Complete Parts B and C now.</p></div><button class="reveal-btn hidden" onclick="rev(1,3)" id="b13">Reveal Stage 3 (after Parts B &amp; C)</button><div class="stage locked hidden" id="s13"><div class="slabel">Stage 3</div><p>Labs reveal a urinary tract infection and mild dehydration. Over 48 hours of treatment, hydration, and medication review, his confusion and “hallucinations” substantially clear, though he remains understandably grief-stricken about his wife and has some lingering trouble sleeping. His daughter asks you, “So does he have dementia, or was it the infection, or is it the grief? Which one is it?”</p><p class="cue">→ Complete Parts D and E now.</p></div></div></div>
+<div class="case"><div class="case-head"><div><div class="cid">Case 2</div><h3>“Amara”</h3></div></div><div class="case-body"><div class="stage"><div class="slabel">Stage 1 — read this first</div><p>Amara, 23, was resettled as a refugee 14 months ago. She is referred by her caseworker for “possible psychosis.” In session she is tearful, reports poor sleep and nightmares, startles at a door closing in the hallway, and says — with visible distress — that she sometimes hears the voice of her brother, who was killed during her family’s flight, and occasionally “sees him” at night. She says he tells her to be strong. She describes intense guilt that she survived. Her affect is constricted; she avoids eye contact.</p><p class="cue">→ Complete Part A now.</p></div><button class="reveal-btn" onclick="rev(2,2)" id="b22">Reveal Stage 2 (after Part A)</button><div class="stage locked hidden" id="s22"><div class="slabel">Stage 2</div><p>With an interpreter and more time, a fuller picture emerges. Amara is oriented, her thought process is linear, and she has no other perceptual disturbances, no bizarre delusions, no disorganization, and no functional decline attributable to psychosis — she is working and caring for younger siblings. In her community, receiving visits or guidance from deceased loved ones during bereavement is a recognized, meaningful, and non-pathological experience. Her guilt, hypervigilance, nightmares, and startle response are prominent and impairing. She asks whether telling you about her brother means she is “going crazy,” and whether you will report it.</p><p class="cue">→ Complete Parts B and C now.</p></div><button class="reveal-btn hidden" onclick="rev(2,3)" id="b23">Reveal Stage 3 (after Parts B &amp; C)</button><div class="stage locked hidden" id="s23"><div class="slabel">Stage 3</div><p>You learn Amara is facing a pending immigration hearing, housing insecurity, and the full weight of caregiving for three siblings with almost no support. She is proud of holding her family together and deeply fears any label that could jeopardize her case or mark her as unfit to care for the children. She has never been offered a space to grieve.</p><p class="cue">→ Complete Parts D and E now.</p></div></div></div>
+<div class="case"><div class="case-head"><div><div class="cid">Case 3</div><h3>“Dani”</h3></div></div><div class="case-body"><div class="stage"><div class="slabel">Stage 1 — read this first</div><p>Dani, 29, arrives at your agency with a thick file. Prior clinicians have variously labeled them “borderline,” “treatment-resistant,” “manipulative,” and “non-compliant.” In session Dani is guarded, tests you (“You’re just going to give up on me like everyone else”), shifts rapidly between anger and tears, and describes chronic emptiness, unstable relationships, and past self-harm. They are reluctant to answer questions and watch you closely.</p><p class="cue">→ Complete Part A now.</p></div><button class="reveal-btn" onclick="rev(3,2)" id="b32">Reveal Stage 2 (after Part A)</button><div class="stage locked hidden" id="s32"><div class="slabel">Stage 2</div><p>As trust builds slightly, Dani discloses a childhood of severe, prolonged abuse and neglect, and reveals — reluctantly, minimizing throughout — that their current partner monitors their phone, controls their money, and has threatened them. Many of the “unstable” behaviors and “paranoia” in the file coincide with periods of active danger. Their vigilance in your office, it turns out, is an accurate read of a world that has repeatedly been unsafe. No prior clinician’s notes mention the abuse or the current relationship.</p><p class="cue">→ Complete Parts B and C now.</p></div><button class="reveal-btn hidden" onclick="rev(3,3)" id="b33">Reveal Stage 3 (after Parts B &amp; C)</button><div class="stage locked hidden" id="s33"><div class="slabel">Stage 3</div><p>Dani says the “borderline” label made them feel that the abuse was their fault — that they were “just too much.” They have avoided services for two years because of how a previous provider spoke to them. They are ambivalent about leaving the relationship, which also provides housing they cannot otherwise afford. They ask you, quietly, “Do you think there’s something wrong with me, or did things just happen to me?”</p><p class="cue">→ Complete Parts D and E now.</p></div></div></div>
+<div class="case"><div class="case-head"><div><div class="cid">Case 4</div><h3>“Ray”</h3></div></div><div class="case-body"><div class="stage"><div class="slabel">Stage 1 — read this first</div><p>Ray, 41, is referred after a supervisor reported he seemed “manic” at work — rapid speech, grandiose plans, irritability, barely sleeping, jumping between tasks. In session his speech is fast and hard to interrupt, his thoughts race, and he describes big plans and boundless energy over the past several days. He seems suspicious of why he’s been sent to you.</p><p class="cue">→ Complete Part A now.</p></div><button class="reveal-btn" onclick="rev(4,2)" id="b42">Reveal Stage 2 (after Part A)</button><div class="stage locked hidden" id="s42"><div class="slabel">Stage 2</div><p>Ray has no prior history of mood episodes. The current period has lasted about five days. He recently began working three jobs to avoid eviction after a rent increase, sleeping two to three hours a night, and has been using large amounts of caffeine and an over-the-counter stimulant to stay awake. He denies any prior episodes remotely like this and is frightened by how he feels. There is no family psychiatric history he knows of.</p><p class="cue">→ Complete Parts B and C now.</p></div><button class="reveal-btn hidden" onclick="rev(4,3)" id="b43">Reveal Stage 3 (after Parts B &amp; C)</button><div class="stage locked hidden" id="s43"><div class="slabel">Stage 3</div><p>After several nights of restored sleep and stopping the stimulants (with medical guidance), Ray’s presentation normalizes considerably within a week. He is left exhausted, anxious about money, and embarrassed. He asks whether he “has bipolar now” and whether it will be on his record.</p><p class="cue">→ Complete Parts D and E now.</p></div></div></div>
+
+  <div class="callout"><strong>A closing note.</strong> The most important sentence in any assessment is often the one clinicians are least comfortable writing: <em>“I’m not sure yet.”</em> This assignment gives you permission — and structure — to say it well. Holding uncertainty responsibly, staying curious about confounders, and refusing to let a label do your thinking for you are not signs of a weak clinician. They are the core of a good one.</div>
+
+  <div class="disclaimer"><strong>Submission.</strong> This is a course assignment for SOW6125. Complete your portfolio, then submit it in Canvas by the due date (print this page to PDF for your own reference if helpful). All cases are fictional teaching material; verify diagnostic criteria against the current DSM-5-TR.</div>
+  <footer>SOW6125 PSYCHOPATHOLOGY · FINAL MSE PROJECT · THE UNRELIABLE DIAGNOSIS</footer>
+</div>
+<script>
+function rev(ci,stage){
+  document.getElementById('s'+ci+stage).classList.remove('hidden','locked');
+  document.getElementById('b'+ci+stage).classList.add('hidden');
+  if(stage===2){ document.getElementById('b'+ci+'3').classList.remove('hidden'); }
+  document.getElementById('s'+ci+stage).scrollIntoView({block:'nearest'});
+}
+</script>
+</body>
+</html>

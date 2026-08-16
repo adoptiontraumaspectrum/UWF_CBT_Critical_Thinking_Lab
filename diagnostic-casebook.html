@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Differential Diagnosis Casebook — MSW Psychopathology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#E5EAED;
+    --surface:#FFFFFF;
+    --chart:#FCFBF8;
+    --ink:#16232C;
+    --ink-soft:#495a65;
+    --ink-faint:#8494a0;
+    --line:#D4DDE2;
+    --line-soft:#E7EDF0;
+    --petrol:#1F5C5A;
+    --petrol-deep:#164543;
+    --petrol-tint:#E4EFEE;
+    --ochre:#A9641F;
+    --ochre-tint:#F5EADB;
+    --rose:#9c3743;
+    --rose-tint:#f6e6e7;
+    --green:#2f6b47;
+    --green-tint:#e5f0e8;
+    --shadow:0 1px 2px rgba(22,35,44,.06),0 8px 28px -12px rgba(22,35,44,.22);
+    --serif:'Spectral',Georgia,serif;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--petrol-deep);
+    color:#eaf3f2;
+    padding:34px 24px 30px;
+    border-bottom:3px solid var(--ochre);
+  }
+  .masthead-inner{max-width:1120px;margin:0 auto;}
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#8fc4c0;
+    margin:0 0 10px;
+  }
+  .masthead h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(28px,4.6vw,46px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  .masthead h1 em{font-style:italic;color:#e7b984;font-weight:500;}
+  .masthead p{
+    max-width:60ch;
+    margin:0;
+    color:#c4dbd9;
+    font-size:15.5px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px 90px;}
+
+  /* ---------- How it works ---------- */
+  .howto{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    margin:-26px 0 26px;
+    position:relative;
+    z-index:2;
+  }
+  .howto h2{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:0 0 16px;
+  }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+  }
+  .step-item{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:6px;
+    padding:3px 8px;
+    flex-shrink:0;
+    line-height:1.3;
+  }
+  .step-item p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .step-item strong{color:var(--ink);display:block;font-size:14.5px;}
+
+  /* ---------- Case navigator ---------- */
+  .nav-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin:6px 0 14px;
+  }
+  .nav-head h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:600;
+    margin:0;
+  }
+  .progress{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:.03em;
+  }
+  .progress b{color:var(--petrol);}
+  .caselist{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .case-chip{
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:11px 13px;
+    cursor:pointer;
+    font-family:var(--sans);
+    color:var(--ink);
+    transition:border-color .16s,box-shadow .16s,transform .16s;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .case-chip:hover{border-color:var(--petrol);transform:translateY(-1px);box-shadow:var(--shadow);}
+  .case-chip.active{border-color:var(--petrol);box-shadow:0 0 0 2px var(--petrol-tint);}
+  .case-chip .cid{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .case-chip .ctitle{font-size:13.5px;font-weight:500;line-height:1.25;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;}
+  .case-chip.done .dot{background:var(--green);}
+  .case-chip.active .cid{color:var(--petrol);}
+
+  /* ---------- Case file ---------- */
+  .casefile{
+    background:var(--chart);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:16px;
+  }
+  .file-header{
+    background:var(--petrol);
+    color:#eef6f5;
+    padding:18px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .file-header .fid{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    color:#a9d3cf;
+  }
+  .file-header .fname{
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:600;
+    margin:2px 0 0;
+    color:#fff;
+  }
+  .stamp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#e7b984;
+    border:1px solid rgba(231,185,132,.55);
+    border-radius:5px;
+    padding:5px 9px;
+    transform:rotate(-3deg);
+    white-space:nowrap;
+  }
+  .file-body{padding:26px;}
+
+  .demo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:1px;
+    background:var(--line-soft);
+    border:1px solid var(--line-soft);
+    border-radius:9px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .demo-cell{background:var(--chart);padding:11px 14px;}
+  .demo-cell .lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:2px;
+  }
+  .demo-cell .val{font-size:14px;font-weight:500;}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:24px 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .vignette{font-family:var(--serif);font-size:17px;line-height:1.65;color:#26333c;}
+  .vignette p{margin:0 0 13px;}
+  .vignette p:last-child{margin-bottom:0;}
+
+  /* ---------- Worksheet ---------- */
+  .worksheet{
+    margin-top:28px;
+    border-top:2px dashed var(--line);
+    padding-top:24px;
+  }
+  .ws-title{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .ws-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 20px;}
+  .ws-step{margin-bottom:18px;}
+  .ws-step label{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:6px;
+  }
+  .ws-step label .n{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:5px;
+    padding:1px 7px;
+    font-weight:600;
+  }
+  .ws-step .hint{font-weight:400;color:var(--ink-faint);font-size:12.5px;}
+  textarea,select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    resize:vertical;
+  }
+  textarea{min-height:58px;line-height:1.5;}
+  textarea:focus,select:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-tint);}
+  select{cursor:pointer;height:44px;}
+
+  .ws-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .btn{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14.5px;
+    border-radius:8px;
+    padding:11px 20px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .15s,border-color .15s,transform .12s;
+  }
+  .btn-primary{background:var(--petrol);color:#fff;}
+  .btn-primary:hover{background:var(--petrol-deep);}
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-ghost{background:transparent;color:var(--petrol);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--petrol);}
+
+  /* ---------- Answer key ---------- */
+  .answer{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    overflow:hidden;
+    background:var(--surface);
+    animation:reveal .32s ease;
+  }
+  @keyframes reveal{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .answer-head{
+    padding:14px 20px;
+    background:var(--ochre-tint);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .answer-head .akey-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .verdict{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    padding:4px 11px;
+    border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .verdict.match{background:var(--green-tint);color:var(--green);}
+  .verdict.miss{background:var(--rose-tint);color:var(--rose);}
+  .answer-body{padding:20px 22px;}
+  .dx-name{
+    font-family:var(--serif);
+    font-size:23px;
+    font-weight:600;
+    margin:0 0 2px;
+    color:var(--petrol-deep);
+  }
+  .dx-code{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin-bottom:16px;}
+  .akey-block{margin-bottom:16px;}
+  .akey-block h4{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 7px;
+  }
+  .akey-block ul{margin:0;padding-left:0;list-style:none;}
+  .akey-block li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:6px;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .akey-block li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--petrol);
+  }
+  .akey-block.diff li::before{background:var(--ochre);}
+  .akey-block p{margin:0;font-size:14.5px;line-height:1.55;}
+  .pearl{
+    background:var(--petrol-tint);
+    border-left:3px solid var(--petrol);
+    border-radius:0 8px 8px 0;
+    padding:12px 16px;
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .pearl strong{color:var(--petrol-deep);}
+
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    margin-top:34px;
+    background:var(--rose-tint);
+    border:1px solid #ecc9cd;
+    border-radius:11px;
+    padding:16px 20px;
+    font-size:13.5px;
+    line-height:1.55;
+    color:#6e2a33;
+  }
+  .disclaimer strong{color:var(--rose);}
+
+  .empty{
+    text-align:center;
+    color:var(--ink-faint);
+    font-style:italic;
+    padding:60px 20px;
+    font-family:var(--serif);
+    font-size:18px;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-faint);
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.05em;
+    padding:26px 20px 10px;
+  }
+
+  @media (max-width:560px){
+    .file-header{flex-direction:column;align-items:flex-start;}
+    .masthead{padding:28px 18px 26px;}
+    .wrap{padding:0 16px 70px;}
+    .howto{padding:20px;}
+    .file-body{padding:20px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">MSW Psychopathology · Clinical Reasoning Lab</p>
+    <h1>Differential Diagnosis <em>Casebook</em></h1>
+    <p>Thirteen fictional case files for practicing structured diagnostic reasoning. Read the presentation, work the case, commit to a diagnosis — then check your formulation against the DSM-5-TR criteria.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="howto">
+    <h2>How to use this casebook</h2>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">01</span><p><strong>Read the file</strong>Review demographics, history, and mental status observations.</p></div>
+      <div class="step-item"><span class="step-num">02</span><p><strong>Work the worksheet</strong>Note symptoms, timeline, differentials, and impairment.</p></div>
+      <div class="step-item"><span class="step-num">03</span><p><strong>Commit</strong>Select a single provisional diagnosis before revealing.</p></div>
+      <div class="step-item"><span class="step-num">04</span><p><strong>Check & compare</strong>Map your reasoning against the criteria-based answer key.</p></div>
+    </div>
+  </section>
+
+  <div class="nav-head">
+    <h2>Case files</h2>
+    <p class="progress">Reviewed: <b id="doneCount">0</b> / 13</p>
+  </div>
+  <div class="caselist" id="caselist"></div>
+
+  <div id="stage">
+    <p class="empty">Select a case file above to begin.</p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Teaching tool — not for clinical use.</strong> All cases are fictional and written for instruction. They are simplified to foreground a teaching point; real presentations are rarely this clean, and diagnosis in practice requires a full assessment, collateral information, medical and substance rule-outs, and cultural context. Always verify criteria against the current DSM-5-TR. Diagnosis is a licensed clinical activity performed within scope of practice and supervision.
+  </div>
+
+  <footer>MSW PSYCHOPATHOLOGY · DIFFERENTIAL DIAGNOSIS CASEBOOK · FICTIONAL TRAINING CASES</footer>
+</div>
+
+<script>
+/* ---------- Diagnosis options, grouped by DSM chapter ----------
+   Each of the 13 answers sits among its plausible look-alikes so students
+   have to discriminate within a family, not just pick from a short list. */
+const DX_GROUPS = [
+  { group:"Schizophrenia spectrum & other psychotic disorders", items:[
+    "Schizophrenia",
+    "Schizophreniform Disorder",
+    "Schizoaffective Disorder",
+    "Brief Psychotic Disorder",
+    "Delusional Disorder",
+    "Substance/Medication-Induced Psychotic Disorder",
+    "Psychotic Disorder Due to Another Medical Condition"
+  ]},
+  { group:"Bipolar & related disorders", items:[
+    "Bipolar I Disorder",
+    "Bipolar II Disorder",
+    "Cyclothymic Disorder",
+    "Substance/Medication-Induced Bipolar Disorder"
+  ]},
+  { group:"Depressive disorders", items:[
+    "Major Depressive Disorder",
+    "Persistent Depressive Disorder (Dysthymia)",
+    "Disruptive Mood Dysregulation Disorder",
+    "Premenstrual Dysphoric Disorder",
+    "Adjustment Disorder with Depressed Mood",
+    "Substance/Medication-Induced Depressive Disorder"
+  ]},
+  { group:"Anxiety disorders", items:[
+    "Generalized Anxiety Disorder",
+    "Panic Disorder",
+    "Social Anxiety Disorder (Social Phobia)",
+    "Specific Phobia",
+    "Agoraphobia",
+    "Separation Anxiety Disorder"
+  ]},
+  { group:"Obsessive-compulsive & related disorders", items:[
+    "Obsessive-Compulsive Disorder",
+    "Body Dysmorphic Disorder",
+    "Hoarding Disorder",
+    "Trichotillomania (Hair-Pulling Disorder)",
+    "Excoriation (Skin-Picking) Disorder"
+  ]},
+  { group:"Trauma- & stressor-related disorders", items:[
+    "Posttraumatic Stress Disorder (PTSD)",
+    "Complex PTSD (ICD-11) / PTSD with disturbances in self-organization",
+    "Acute Stress Disorder",
+    "Adjustment Disorder",
+    "Reactive Attachment Disorder"
+  ]},
+  { group:"Feeding & eating disorders", items:[
+    "Anorexia Nervosa",
+    "Bulimia Nervosa",
+    "Binge-Eating Disorder",
+    "Avoidant/Restrictive Food Intake Disorder (ARFID)",
+    "Other Specified Feeding or Eating Disorder"
+  ]},
+  { group:"Neurodevelopmental disorders", items:[
+    "Autism Spectrum Disorder",
+    "ADHD, Predominantly Inattentive Presentation (\u201cADD\u201d)",
+    "ADHD, Predominantly Hyperactive-Impulsive Presentation",
+    "ADHD, Combined Presentation",
+    "Social (Pragmatic) Communication Disorder",
+    "Specific Learning Disorder",
+    "Language Disorder",
+    "Intellectual Developmental Disorder"
+  ]},
+  { group:"Disruptive, impulse-control & conduct disorders", items:[
+    "Oppositional Defiant Disorder",
+    "Conduct Disorder",
+    "Intermittent Explosive Disorder"
+  ]},
+  { group:"Personality disorders", items:[
+    "Borderline Personality Disorder",
+    "Antisocial Personality Disorder",
+    "Narcissistic Personality Disorder",
+    "Histrionic Personality Disorder",
+    "Avoidant Personality Disorder",
+    "Dependent Personality Disorder",
+    "Paranoid Personality Disorder",
+    "Schizotypal Personality Disorder"
+  ]},
+  { group:"Dissociative disorders", items:[
+    "Dissociative Identity Disorder",
+    "Depersonalization/Derealization Disorder",
+    "Dissociative Amnesia"
+  ]},
+  { group:"Somatic symptom & related disorders", items:[
+    "Somatic Symptom Disorder",
+    "Illness Anxiety Disorder"
+  ]},
+  { group:"Other relevant conditions", items:[
+    "Gender Dysphoria"
+  ]}
+];
+
+/* ---------- Case data ---------- */
+const CASES = [
+  {
+    id:"CF-01", title:"Withdrawn college student",
+    correct:"Schizophrenia",
+    demo:{Client:"\u201cMarcus,\u201d 22",Referral:"Family + university",Setting:"Community mental health"},
+    vignette:[
+      "Marcus withdrew from his second year of college fourteen months ago. His parents describe a slow decline: he stopped seeing friends, let his hygiene lapse, and now rarely leaves his room. Over the past three months the changes have sharpened.",
+      "He tells you, with little emotional expression, that the neighbors have been \u201crouting his thoughts through the building\u2019s wiring so everyone can hear them.\u201d He reports two voices that comment on his actions throughout the day \u2014 \u201cone of them narrates, the other criticizes.\u201d His speech drifts off topic and is at times hard to follow, jumping between loosely connected ideas.",
+      "His affect is flat and his motivation is markedly reduced. A medical work-up and toxicology screen are unremarkable, and there is no discrete period of elevated or persistently depressed mood across this timeline."
+    ],
+    dxName:"Schizophrenia",
+    dxCode:"DSM-5-TR 295.90 · ICD-10 F20.9",
+    criteria:[
+      "Delusions \u2014 thought broadcasting and persecutory beliefs about the neighbors.",
+      "Auditory hallucinations \u2014 two voices, including a running commentary.",
+      "Disorganized speech \u2014 tangential, loosely connected thought.",
+      "Negative symptoms \u2014 flat affect and avolition (Criterion A: \u22652 symptoms, \u22651 being a core positive symptom).",
+      "Continuous disturbance \u2265 6 months (14-month course) with \u22651 month of active-phase symptoms.",
+      "Marked decline in social and occupational functioning; not attributable to substances or another medical condition."
+    ],
+    diff:[
+      "Schizophreniform disorder \u2014 identical picture but duration is 1\u20136 months; here the course exceeds 6 months.",
+      "Schizoaffective disorder \u2014 ruled out: there is no major mood episode running alongside the psychosis.",
+      "Bipolar/MDD with psychotic features \u2014 ruled out: psychosis occurs without any mood episode.",
+      "Substance/medication-induced psychosis \u2014 ruled out by negative toxicology and medical work-up."
+    ],
+    pearl:"The 6-month duration criterion is what separates schizophrenia from schizophreniform disorder. Always establish the full timeline, including the prodrome, before landing on either label."
+  },
+  {
+    id:"CF-02", title:"Ten sleepless days",
+    correct:"Bipolar I Disorder",
+    demo:{Client:"\u201cDanielle,\u201d 29",Referral:"Partner \u2192 ER",Setting:"Emergency department"},
+    vignette:[
+      "Danielle\u2019s partner brings her to the ER after ten days of dramatic change. She has been sleeping two to three hours a night yet insists she feels \u201cbetter than ever \u2014 completely rested.\u201d",
+      "In that window she launched three new businesses, drained the couple\u2019s savings on equipment and \u201cinvestments,\u201d and has been talking so rapidly that others struggle to interrupt her. She describes herself as \u201cchosen to revolutionize the entire industry,\u201d has been uncharacteristically hypersexual, and became irritable and threatening when her partner questioned the spending.",
+      "Her history includes two prior episodes of several weeks of severe depression. There is no evidence of substance use driving the current state. Her judgment is clearly impaired and the presentation prompted the emergency visit."
+    ],
+    dxName:"Bipolar I Disorder, current episode manic",
+    dxCode:"DSM-5-TR 296.4x · ICD-10 F31.1x",
+    criteria:[
+      "Distinct period of abnormally elevated and irritable mood with increased goal-directed activity/energy, lasting \u2265 1 week (10 days).",
+      "\u2265 3 manic symptoms (DIGFAST): decreased need for sleep, grandiosity, pressured speech, distractibility toward new ventures, and excessive risky activity (spending, hypersexuality).",
+      "Marked impairment in functioning and safety concern \u2014 severe enough to require emergency evaluation.",
+      "One lifetime manic episode is sufficient for the diagnosis; a prior major depressive episode is common but not required."
+    ],
+    diff:[
+      "Bipolar II disorder \u2014 ruled out: this is full mania (\u22651 week, marked impairment, ER visit), not hypomania.",
+      "Substance/medication-induced \u2014 ruled out clinically; still confirm with toxicology in practice.",
+      "Schizoaffective disorder \u2014 would require psychosis persisting outside mood episodes; not present here.",
+      "ADHD \u2014 distractibility is episodic and mood-linked, not a lifelong baseline pattern."
+    ],
+    pearl:"\u201cDecreased need for sleep\u201d (feeling rested on 2\u20133 hours) is different from insomnia (wanting sleep and not getting it). That distinction is one of the highest-yield clues for mania."
+  },
+  {
+    id:"CF-03", title:"Productive spells, recurring lows",
+    correct:"Bipolar II Disorder",
+    demo:{Client:"\u201cAaron,\u201d 34",Referral:"Self-referred",Setting:"Outpatient therapy"},
+    vignette:[
+      "Aaron seeks help for what he calls \u201canother crash.\u201d For the past three weeks he has had low mood, loss of interest, hypersomnia, poor concentration, and feelings of worthlessness. He has had three or four similar episodes over the last decade.",
+      "When you ask about the periods between the lows, he describes recurring stretches of about five days when he sleeps only four hours, feels \u201cwired and sharp,\u201d talks more than usual, and takes on many projects at once. Colleagues have noticed \u2014 \u201cpeople say I\u2019m on fire\u201d \u2014 but he kept working, was never hospitalized, and has never had delusions or hallucinations.",
+      "These elevated periods represent a clear change from his usual self but never caused the kind of collapse in functioning that would require hospitalization."
+    ],
+    dxName:"Bipolar II Disorder",
+    dxCode:"DSM-5-TR 296.89 · ICD-10 F31.81",
+    criteria:[
+      "\u2265 1 hypomanic episode: \u2265 4 days of elevated mood + \u2265 3 associated symptoms (reduced sleep, talkativeness, increased activity), observable by others.",
+      "Hypomania is a clear change from baseline but is NOT severe enough to cause marked impairment or hospitalization, and there are no psychotic features.",
+      "\u2265 1 major depressive episode (the current three-week episode meets full criteria).",
+      "No lifetime full manic episode \u2014 which is what distinguishes Bipolar II from Bipolar I."
+    ],
+    diff:[
+      "Major depressive disorder \u2014 the classic trap: only ruled out by actively screening for hypomania, which patients rarely report as a problem.",
+      "Bipolar I disorder \u2014 ruled out: no episode ever reached full mania, hospitalization, or psychosis.",
+      "Cyclothymic disorder \u2014 ruled out: full major depressive episodes are present.",
+      "Borderline PD \u2014 mood shifts here last days as sustained episodes, not minute-to-minute reactivity to interpersonal triggers."
+    ],
+    pearl:"Bipolar II is chronically under-diagnosed because patients present in the depressed phase and never volunteer the hypomania \u2014 they experienced it as their best, most productive self. You have to ask directly."
+  },
+  {
+    id:"CF-04", title:"Storms in every relationship",
+    correct:"Borderline Personality Disorder",
+    demo:{Client:"\u201cSophie,\u201d 26",Referral:"Self-referred",Setting:"Outpatient therapy"},
+    vignette:[
+      "Sophie comes in after a breakup, her fourth intense relationship to end this way since her late teens. She describes a lifelong pattern: partners start as \u201cthe perfect person who finally gets me\u201d and end as \u201cmonsters who were never really there for me.\u201d",
+      "When a partner is even slightly late, she is flooded with panic that she is being abandoned. Breakups are followed by cutting and, twice, by impulsive overdoses she describes as \u201cnot really wanting to die, just needing it to stop.\u201d She reports chronic emptiness, sudden shifts in her sense of who she is (career, values, even style), impulsive spending and substance use, and \u201crage that comes out of nowhere.\u201d Under stress she briefly feels others are plotting against her, then it passes.",
+      "These patterns are pervasive across settings and relationships and have been stable since adolescence rather than occurring in discrete episodes."
+    ],
+    dxName:"Borderline Personality Disorder",
+    dxCode:"DSM-5-TR 301.83 · ICD-10 F60.3",
+    criteria:[
+      "\u2265 5 of 9 criteria met: frantic efforts to avoid abandonment; unstable, intense relationships alternating between idealization and devaluation; identity disturbance.",
+      "Impulsivity in \u2265 2 potentially self-damaging areas (spending, substances); recurrent self-harm and suicidal behavior.",
+      "Affective instability and chronic emptiness; intense, poorly controlled anger.",
+      "Transient, stress-related paranoid ideation.",
+      "The pattern is pervasive, stable, and long-standing (from adolescence), across contexts \u2014 the hallmark of a personality disorder."
+    ],
+    diff:[
+      "Bipolar disorder \u2014 ruled out: shifts are rapid and interpersonally triggered (hours), not sustained mood episodes of days to weeks.",
+      "Complex PTSD \u2014 shares affect dysregulation and relational difficulty; BPD is distinguished by abandonment fear and identity instability rather than a stably negative self-concept.",
+      "Major depressive disorder \u2014 emptiness and self-harm here are chronic-characterological, not a discrete depressive episode.",
+      "Substance use disorder \u2014 may co-occur; the pattern predates and extends beyond substance use."
+    ],
+    pearl:"Trait vs. state is the whole game with personality disorders: look for a pervasive, enduring pattern present across relationships and settings since adolescence \u2014 not a change from a previous baseline."
+  },
+  {
+    id:"CF-05", title:"Voices that outlast the mood",
+    correct:"Schizoaffective Disorder",
+    demo:{Client:"\u201cRenee,\u201d 31",Referral:"Case manager",Setting:"Assertive community treatment"},
+    vignette:[
+      "Renee has a documented history of recurrent major depressive episodes with low mood, anhedonia, hopelessness, and sleep and appetite disturbance. What makes her presentation complicated is what happens between those episodes.",
+      "For the past two years, records and your own observation show persecutory delusions and auditory hallucinations that persist for weeks at a time even when her mood is fully euthymic \u2014 she is neither depressed nor elevated, yet the voices and the belief that a government agency is monitoring her continue.",
+      "Across the full course of her illness, mood episodes have been present for the majority of the time. She has never had a manic or hypomanic episode. Substance use and medical causes have been excluded."
+    ],
+    dxName:"Schizoaffective Disorder, depressive type",
+    dxCode:"DSM-5-TR 295.70 · ICD-10 F25.1",
+    criteria:[
+      "An uninterrupted period with a major mood episode (depressive) concurrent with Criterion A of schizophrenia (delusions + hallucinations).",
+      "Delusions or hallucinations for \u2265 2 weeks in the ABSENCE of a major mood episode \u2014 the defining feature (voices persist while euthymic).",
+      "Mood episodes are present for the majority of the total illness duration.",
+      "Depressive type is specified because there has never been a manic episode.",
+      "Not attributable to substances or another medical condition."
+    ],
+    diff:[
+      "Major depressive disorder with psychotic features \u2014 THE key rule-out: there, psychosis occurs only during mood episodes. Here it outlasts them.",
+      "Schizophrenia \u2014 ruled out: mood episodes are substantial and present for the majority of the course, not brief.",
+      "Bipolar disorder \u2014 ruled out: no manic or hypomanic episode; hence depressive rather than bipolar type.",
+      "Substance-induced psychosis \u2014 excluded by history and work-up."
+    ],
+    pearl:"The pivot question for schizoaffective disorder: \u201cDo the psychotic symptoms ever occur when the mood is normal?\u201d If yes for \u2265 2 weeks, you are out of \u2018mood disorder with psychotic features\u2019 territory."
+  },
+  {
+    id:"CF-06", title:"Worry that won\u2019t switch off",
+    correct:"Generalized Anxiety Disorder",
+    demo:{Client:"\u201cHelen,\u201d 45",Referral:"Primary care",Setting:"Integrated behavioral health"},
+    vignette:[
+      "Helen was referred by her physician after repeated visits for muscle tension and fatigue with no medical cause. For about eight months she has felt \u201cwound up all the time,\u201d worrying most days about her finances, her teenagers\u2019 safety, her own health, and her performance at work.",
+      "She says the worry jumps from topic to topic and that she \u201ccan\u2019t turn it off no matter how hard I try.\u201d She reports restlessness, being easily fatigued, difficulty concentrating, irritability, muscle tension, and trouble staying asleep.",
+      "She does not describe discrete panic attacks as the core problem, a single feared object or situation, or intrusive unwanted thoughts with compulsions. Her mood is stressed but she retains interest in activities and denies a discrete depressive episode."
+    ],
+    dxName:"Generalized Anxiety Disorder",
+    dxCode:"DSM-5-TR 300.02 · ICD-10 F41.1",
+    criteria:[
+      "Excessive anxiety and worry, more days than not, for \u2265 6 months (8 months here), about multiple domains (finances, children, health, work).",
+      "The worry is experienced as difficult to control.",
+      "\u2265 3 of 6 associated symptoms: restlessness, easy fatigue, difficulty concentrating, irritability, muscle tension, sleep disturbance \u2014 all present.",
+      "Causes clinically significant distress/impairment and is not better explained by another disorder, substance, or medical condition."
+    ],
+    diff:[
+      "Panic disorder \u2014 ruled out: no recurrent unexpected panic attacks as the central feature.",
+      "Illness anxiety / somatic symptom disorder \u2014 health is one of several worry domains, not the sole focus.",
+      "OCD \u2014 ruled out: worries are about real-life concerns, not ego-dystonic obsessions with compulsions.",
+      "Major depressive disorder \u2014 ruled out: worry is not confined to a depressive episode; interest is preserved."
+    ],
+    pearl:"GAD\u2019s signature is the breadth and uncontrollability of the worry across many everyday domains \u2014 distinct from anxiety that is anchored to one focus (a phobia, a health fear, or panic)."
+  },
+  {
+    id:"CF-07", title:"Carrying the past into every room",
+    correct:"Complex PTSD (ICD-11) / PTSD with disturbances in self-organization",
+    demo:{Client:"\u201cJordan,\u201d 38 (they/them)",Referral:"Self-referred",Setting:"Trauma-focused clinic"},
+    vignette:[
+      "Jordan grew up with chronic physical abuse and emotional neglect that lasted throughout childhood \u2014 prolonged, repeated, and inescapable. They now present with the core features of post-traumatic stress: intrusive memories and nightmares, avoidance of reminders, hypervigilance, and an exaggerated startle response.",
+      "Beyond these, Jordan describes three enduring difficulties they trace back \u201cas far as I can remember.\u201d First, severe trouble regulating emotion \u2014 small stressors trigger overwhelming reactions that take hours to settle. Second, a persistent, global sense of being \u201cworthless, damaged, fundamentally different from other people.\u201d Third, chronic difficulty feeling close to anyone and sustaining relationships.",
+      "The picture is not one of unstable idealize-then-devalue relationships or frantic abandonment fears, but of steady withdrawal and a fixed negative view of the self."
+    ],
+    dxName:"Complex PTSD (ICD-11 6B41)",
+    dxCode:"ICD-11 6B41 · in DSM-5-TR: PTSD 309.81, often with dissociative subtype",
+    criteria:[
+      "Core PTSD present: intrusion (memories, nightmares), avoidance, and hyperarousal (hypervigilance, startle) following trauma.",
+      "PLUS the three disturbances in self-organization (DSO) that define Complex PTSD: (1) affect dysregulation, (2) persistent negative self-concept, (3) disturbances in relationships.",
+      "Trauma is typically prolonged/repeated and difficult to escape (chronic childhood abuse and neglect).",
+      "Terminology note: Complex PTSD is a formal ICD-11 diagnosis. DSM-5-TR does not list it separately \u2014 it captures this presentation as PTSD, frequently with the dissociative subtype."
+    ],
+    diff:[
+      "PTSD (classic) \u2014 shares the core symptoms; Complex PTSD adds the persistent self-organization disturbances.",
+      "Borderline PD \u2014 the closest mimic; distinguished here by a stably negative self-concept and relational withdrawal rather than identity instability, abandonment terror, and idealize/devalue swings.",
+      "Major depressive disorder \u2014 low self-worth here is trauma-linked and lifelong, not a discrete episode.",
+      "Dissociative disorders \u2014 assess for co-occurring dissociation, which is common in this population."
+    ],
+    pearl:"Know which manual you are in. \u2018Complex PTSD\u2019 is precise in ICD-11 but is not a standalone DSM-5-TR category \u2014 in the DSM you would document PTSD (often dissociative subtype) and describe the self-organization features explicitly."
+  },
+  {
+    id:"CF-08", title:"After the layoff",
+    correct:"Major Depressive Disorder",
+    demo:{Client:"\u201cThomas,\u201d 52",Referral:"EAP referral",Setting:"Outpatient therapy"},
+    vignette:[
+      "Six weeks ago Thomas was laid off after 20 years with the same employer. He presents with depressed mood nearly every day, loss of interest in things he used to enjoy, insomnia with early-morning waking, appetite and weight loss, low energy, and difficulty concentrating.",
+      "He describes pervasive guilt and worthlessness \u2014 \u201cI\u2019ve failed my family\u201d \u2014 that goes well beyond the situation, and passive thoughts that his family \u201cwould be better off without me,\u201d though he has no plan or intent. The symptoms are present most of the day, nearly every day, and have persisted for six weeks.",
+      "He has never experienced a period of elevated mood, decreased need for sleep, or grandiosity. There is no psychosis and no substance use accounting for the picture."
+    ],
+    dxName:"Major Depressive Disorder, single episode",
+    dxCode:"DSM-5-TR 296.2x · ICD-10 F32.x",
+    criteria:[
+      "\u2265 5 symptoms in the same 2-week period (6 weeks here), including at least one of depressed mood OR anhedonia \u2014 both present.",
+      "Additional symptoms: insomnia, appetite/weight change, fatigue, worthlessness/guilt, poor concentration, recurrent thoughts of death.",
+      "Symptoms cause clinically significant distress/impairment and are not attributable to substances or a medical condition.",
+      "No history of a manic or hypomanic episode \u2014 which keeps this unipolar rather than bipolar."
+    ],
+    diff:[
+      "Bipolar disorder \u2014 ruled out by screening: no lifetime mania/hypomania. Always ask before treating depression.",
+      "Adjustment disorder with depressed mood \u2014 ruled out: the presentation meets FULL major depressive episode criteria, so MDD takes precedence over adjustment disorder even with a clear stressor.",
+      "Persistent depressive disorder \u2014 requires \u2265 2 years; this is a 6-week acute episode.",
+      "Normal grief/stress response \u2014 severity, pervasiveness, worthlessness, and death thoughts exceed an expectable reaction."
+    ],
+    pearl:"A stressor does not automatically mean \u2018adjustment disorder.\u2019 If the full major depressive episode criteria are met, it is MDD \u2014 the presence of a precipitant does not downgrade the diagnosis."
+  },
+  {
+    id:"CF-09", title:"Constant battles at home and school",
+    correct:"Oppositional Defiant Disorder",
+    demo:{Client:"\u201cEthan,\u201d 9",Referral:"School + parents",Setting:"Child & family clinic"},
+    vignette:[
+      "Ethan\u2019s parents and teacher describe eight months of escalating conflict. He loses his temper frequently, argues persistently with adults, and actively refuses to follow rules and requests. He deliberately does things to annoy classmates, is easily annoyed himself, and consistently blames others for his own mistakes. On two occasions he has been spiteful, trying to \u201cget back at\u201d a teacher.",
+      "The behavior is most intense with authority figures he knows well and occurs across both home and school. It is causing problems with his family and his standing at school.",
+      "Importantly, Ethan has not seriously violated others\u2019 basic rights: no aggression that causes physical harm to people or animals, no destruction of property, no theft, and no pattern of deceit. His conduct is defiant and hostile rather than predatory."
+    ],
+    dxName:"Oppositional Defiant Disorder",
+    dxCode:"DSM-5-TR 313.81 · ICD-10 F91.3",
+    criteria:[
+      "\u2265 4 symptoms for \u2265 6 months (8 months) across three clusters: angry/irritable mood (loses temper, touchy, easily annoyed).",
+      "Argumentative/defiant behavior: argues with authority, actively defies rules, deliberately annoys others, blames others.",
+      "Vindictiveness: spiteful behavior on \u2265 2 occasions in the past 6 months.",
+      "Behaviors exceed developmental norms and cause distress/impairment; present with at least one non-sibling and, here, across settings."
+    ],
+    diff:[
+      "Conduct disorder \u2014 ruled out: NO serious violation of others\u2019 rights (no aggression causing harm, property destruction, theft, or deceit).",
+      "ADHD \u2014 frequently co-occurs; screen for it, but the core issue here is defiance rather than inattention/hyperactivity.",
+      "Disruptive mood dysregulation disorder \u2014 would require severe recurrent temper outbursts plus persistently irritable mood between outbursts.",
+      "Developmentally normative oppositionality \u2014 ruled out by the frequency, duration, cross-setting spread, and impairment."
+    ],
+    pearl:"The ODD-vs-conduct-disorder line is whether the child violates others\u2019 basic rights and major age-appropriate norms. Defiance and hostility = ODD; aggression, destruction, deceit, and theft = conduct disorder."
+  },
+  {
+    id:"CF-10", title:"The quiet daydreamer",
+    correct:"ADHD, Predominantly Inattentive Presentation (\u201cADD\u201d)",
+    demo:{Client:"\u201cMaya,\u201d 12",Referral:"Parent + teacher",Setting:"School-based services"},
+    vignette:[
+      "Maya\u2019s parents describe a bright child who is \u201calways somewhere else.\u201d Since early elementary school she has made careless mistakes on schoolwork, struggles to sustain attention on tasks, often seems not to listen when spoken to directly, and rarely follows through to finish assignments or chores.",
+      "She is disorganized, avoids tasks that require sustained mental effort, frequently loses materials (homework, jacket, water bottle), is easily distracted, and is forgetful in daily activities. Teachers note she is not disruptive \u2014 she is not fidgety, does not blurt out, and is not \u201con the go\u201d \u2014 she simply drifts.",
+      "These difficulties were present before age 12, occur both at home and at school, and are interfering with her grades and self-esteem despite clear ability."
+    ],
+    dxName:"ADHD, Predominantly Inattentive Presentation",
+    dxCode:"DSM-5-TR 314.00 · ICD-10 F90.0",
+    criteria:[
+      "\u2265 6 inattention symptoms (for children) for \u2265 6 months: careless mistakes, difficulty sustaining attention, seems not to listen, does not follow through, disorganization, avoids sustained effort, loses things, distractible, forgetful \u2014 all present.",
+      "Fewer than the required threshold of hyperactive-impulsive symptoms \u2014 hence the predominantly inattentive presentation.",
+      "Several symptoms present before age 12.",
+      "Symptoms occur in \u2265 2 settings (home and school) and impair functioning."
+    ],
+    diff:[
+      "Specific learning disorder \u2014 rule out; can co-occur and mimic inattention when material is too hard.",
+      "Generalized anxiety / depression \u2014 can impair concentration; here the pattern is lifelong and pervasive, not tied to a mood/anxiety episode.",
+      "Autism spectrum disorder \u2014 lacks the social-communication and restricted/repetitive features.",
+      "Hearing/vision problems \u2014 always exclude sensory causes for \u2018doesn\u2019t listen.\u2019"
+    ],
+    pearl:"\u2018ADD\u2019 is the older term; DSM-5-TR uses ADHD with a presentation specifier. The inattentive presentation is easily missed \u2014 especially in girls \u2014 precisely because there is no disruptive hyperactivity to draw attention."
+  },
+  {
+    id:"CF-11", title:"Lining up the trains",
+    correct:"Autism Spectrum Disorder",
+    demo:{Client:"\u201cLiam,\u201d 7",Referral:"Pediatrician + parents",Setting:"Developmental assessment"},
+    vignette:[
+      "Liam\u2019s parents raised concerns in toddlerhood that have persisted. He has limited back-and-forth conversation, rarely shares his interests or emotions with others, makes little eye contact, and has struggled to make friends or engage in imaginative pretend play with peers.",
+      "He lines his toy trains up in precise, unchanging rows and becomes very distressed by small changes to his routine \u2014 a different route to school can trigger a meltdown. He has an intense, highly focused interest in train timetables that dominates his play and conversation, and he covers his ears and becomes overwhelmed in noisy environments.",
+      "These features were present in early childhood and are causing meaningful difficulty in school and social settings. Cognitive testing shows his difficulties are not explained by global developmental delay alone."
+    ],
+    dxName:"Autism Spectrum Disorder",
+    dxCode:"DSM-5-TR 299.00 · ICD-10 F84.0",
+    criteria:[
+      "Criterion A \u2014 persistent deficits in social communication and interaction across contexts: social-emotional reciprocity (limited sharing), nonverbal communication (eye contact), and developing/maintaining relationships (peer play).",
+      "Criterion B \u2014 \u2265 2 of 4 restricted, repetitive behaviors: lining up toys (stereotyped), insistence on sameness/routine, a highly fixated interest (train timetables), and sensory sensitivity (covering ears).",
+      "Symptoms present in the early developmental period.",
+      "Cause clinically significant impairment and are not better explained by intellectual disability alone. Clinician specifies a level of support needed."
+    ],
+    diff:[
+      "Social (pragmatic) communication disorder \u2014 ruled out: SCD has NO restricted/repetitive behaviors, which are clearly present here.",
+      "ADHD \u2014 may co-occur; does not account for the social-communication deficits or RRBs.",
+      "Language disorder / intellectual disability \u2014 the social and repetitive features exceed what these alone would explain.",
+      "Childhood anxiety \u2014 does not account for the developmental social-communication profile."
+    ],
+    pearl:"The presence of restricted, repetitive behaviors is the fork in the road: social-communication deficits WITH RRBs = autism; the same social deficits WITHOUT RRBs = social (pragmatic) communication disorder."
+  },
+  {
+    id:"CF-12", title:"Hours in front of the mirror",
+    correct:"Body Dysmorphic Disorder",
+    demo:{Client:"\u201cNadia,\u201d 19",Referral:"Self-referred",Setting:"University counseling"},
+    vignette:[
+      "Nadia describes spending four or more hours a day preoccupied with her belief that her nose is \u201cdeformed\u201d and her skin is \u201chideous.\u201d To others, including you, her appearance is unremarkable and the perceived flaws are not observable.",
+      "She checks mirrors compulsively, camouflages with heavy makeup, repeatedly seeks reassurance from friends, and has begun avoiding classes and social events and refusing to be photographed. She has consulted a cosmetic surgeon about rhinoplasty. The distress is severe and her attendance and relationships are suffering.",
+      "Her preoccupation is specifically about the shape of facial features and skin \u2014 not about body weight, fat, or eating. Her eating is normal and her weight is in a healthy range. She also does not describe distress about her gender or a mismatch between her gender identity and her body."
+    ],
+    dxName:"Body Dysmorphic Disorder",
+    dxCode:"DSM-5-TR 300.7 · ICD-10 F45.22",
+    criteria:[
+      "Preoccupation with \u2265 1 perceived defect in physical appearance that is not observable or appears slight to others (nose, skin).",
+      "Repetitive behaviors (mirror checking, camouflaging, reassurance-seeking) or mental acts performed in response to the appearance concerns.",
+      "Causes clinically significant distress or impairment (avoiding class, social withdrawal).",
+      "The appearance preoccupation is NOT better explained by concerns about body fat/weight in an eating disorder."
+    ],
+    diff:[
+      "Anorexia nervosa \u2014 ruled out: the concern is about specific features (nose, skin), not weight/shape, and there is no restriction or low weight.",
+      "Obsessive-compulsive disorder \u2014 related family, but here obsessions/compulsions center specifically on appearance (BDD).",
+      "Social anxiety disorder \u2014 avoidance is driven by the appearance belief, not a general fear of scrutiny.",
+      "Gender dysphoria \u2014 distinct: that involves distress from incongruence between experienced gender and sex characteristics, which Nadia denies."
+    ],
+    pearl:"Terminology note: the request said \u2018body dysphoria,\u2019 which in clinical practice maps to Body Dysmorphic Disorder \u2014 preoccupation with perceived appearance defects. Do not confuse it with gender dysphoria (distress about gender-body incongruence); they are entirely different diagnoses."
+  },
+  {
+    id:"CF-13", title:"\u201cI just feel huge\u201d",
+    correct:"Anorexia Nervosa",
+    demo:{Client:"\u201cChloe,\u201d 17",Referral:"Pediatrician",Setting:"Adolescent medicine"},
+    vignette:[
+      "Chloe was referred after her pediatrician documented significant weight loss over the past year and a BMI now well below the healthy range for her age and height. She has been severely restricting her intake, tracking every calorie, and exercising for hours daily.",
+      "Despite being visibly underweight, she is intensely afraid of gaining weight and engages in persistent behaviors to prevent it. She insists she \u201cstill feels huge,\u201d perceives her body as larger than it is, and bases her self-worth almost entirely on her weight and shape. She minimizes and denies the seriousness of her current low weight, telling you she is \u201cfine\u201d and \u201cdoesn\u2019t see the problem.\u201d",
+      "She does not report regular binge eating or purging behaviors; the pattern is one of restriction and excessive exercise. Her preoccupation is specifically with weight and body shape."
+    ],
+    dxName:"Anorexia Nervosa, restricting type",
+    dxCode:"DSM-5-TR 307.1 · ICD-10 F50.01",
+    criteria:[
+      "Restriction of energy intake relative to needs, leading to a significantly low body weight for age, sex, and physical health.",
+      "Intense fear of gaining weight / of becoming fat, or persistent behavior that interferes with weight gain, despite being underweight.",
+      "Disturbance in the way body weight/shape is experienced, undue influence of weight on self-evaluation, and lack of recognition of the seriousness of the low weight.",
+      "Restricting type (not binge-eating/purging) over the last 3 months; severity is specified by BMI."
+    ],
+    diff:[
+      "Body dysmorphic disorder \u2014 ruled out: the preoccupation is with weight/shape and there is significant low weight and restriction, which define an eating disorder.",
+      "Bulimia nervosa \u2014 ruled out: no recurrent binge/purge pattern; and in AN weight is significantly low.",
+      "Avoidant/restrictive food intake disorder (ARFID) \u2014 ruled out: ARFID lacks the weight/shape concern and body-image disturbance that are central here.",
+      "Depression with appetite loss \u2014 ruled out: restriction is intentional and driven by fear of weight gain, not lost appetite."
+    ],
+    pearl:"The three pillars of anorexia nervosa are (1) restriction to significantly low weight, (2) intense fear of weight gain, and (3) body-image disturbance with lack of insight. Medical instability can be life-threatening \u2014 low weight always warrants urgent medical assessment."
+  }
+];
+
+/* ---------- State ---------- */
+const reviewed = new Set();
+let activeIdx = null;
+
+/* ---------- Build navigator ---------- */
+const caselist = document.getElementById('caselist');
+CASES.forEach((c, i) => {
+  const chip = document.createElement('button');
+  chip.className = 'case-chip';
+  chip.id = 'chip-' + i;
+  chip.innerHTML =
+    '<span class="cid"><span>' + c.id + '</span><span class="dot"></span></span>' +
+    '<span class="ctitle">' + c.title + '</span>';
+  chip.addEventListener('click', () => loadCase(i));
+  caselist.appendChild(chip);
+});
+
+/* ---------- Render a case ---------- */
+function loadCase(i){
+  activeIdx = i;
+  const c = CASES[i];
+
+  document.querySelectorAll('.case-chip').forEach(el => el.classList.remove('active'));
+  document.getElementById('chip-' + i).classList.add('active');
+
+  const demoCells = Object.entries(c.demo).map(([k,v]) =>
+    '<div class="demo-cell"><div class="lbl">' + k + '</div><div class="val">' + v + '</div></div>'
+  ).join('');
+
+  const vig = c.vignette.map(p => '<p>' + p + '</p>').join('');
+
+  const options = '<option value="">— Select one diagnosis —</option>' +
+    DX_GROUPS.map(g =>
+      '<optgroup label="' + escAttr(g.group) + '">' +
+      g.items.map(d => '<option value="' + escAttr(d) + '">' + d + '</option>').join('') +
+      '</optgroup>'
+    ).join('');
+
+  const stage = document.getElementById('stage');
+  stage.innerHTML =
+    '<article class="casefile" id="casefile">' +
+      '<div class="file-header">' +
+        '<div><div class="fid">CASE FILE ' + c.id + '</div><div class="fname">' + c.title + '</div></div>' +
+        '<div class="stamp">Fictional · Training</div>' +
+      '</div>' +
+      '<div class="file-body">' +
+        '<div class="demo-grid">' + demoCells + '</div>' +
+
+        '<div class="section-label">Presentation</div>' +
+        '<div class="vignette">' + vig + '</div>' +
+
+        '<div class="worksheet">' +
+          '<h3 class="ws-title">Diagnostic reasoning worksheet</h3>' +
+          '<p class="ws-sub">Work each step before revealing the key. Your notes stay on this page and are not saved.</p>' +
+
+          wsStep('01','Key symptoms & observations','What stands out? List the clinically significant signs and symptoms.','ws1') +
+          wsStep('02','Timeline & course','When did it start? How long has it lasted? Is it episodic or a pervasive, enduring pattern?','ws2') +
+          wsStep('03','Differentials considered','Which diagnoses are on the table, and what would rule each in or out?','ws3') +
+          wsStep('04','Functional impairment & rule-outs','What is impaired? Have you considered substances / medical causes / cultural context?','ws4') +
+
+          '<div class="ws-step">' +
+            '<label><span class="n">05</span> Provisional diagnosis <span class="hint">— commit before revealing</span></label>' +
+            '<select id="dxpick"></select>' +
+          '</div>' +
+
+          '<div class="ws-actions">' +
+            '<button class="btn btn-primary" id="revealBtn">Check my diagnosis</button>' +
+            '<button class="btn btn-ghost" id="clearBtn">Clear notes</button>' +
+          '</div>' +
+
+          '<div id="answerSlot"></div>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+
+  document.getElementById('dxpick').innerHTML = options;
+  document.getElementById('revealBtn').addEventListener('click', () => revealAnswer(i));
+  document.getElementById('clearBtn').addEventListener('click', clearNotes);
+
+  document.getElementById('casefile').scrollIntoView({block:'start'});
+}
+
+function wsStep(n, title, hint, id){
+  return '<div class="ws-step">' +
+    '<label><span class="n">' + n + '</span> ' + title + ' <span class="hint">— ' + hint + '</span></label>' +
+    '<textarea id="' + id + '" placeholder="Your notes\u2026"></textarea>' +
+  '</div>';
+}
+
+/* ---------- Reveal answer key ---------- */
+function revealAnswer(i){
+  const c = CASES[i];
+  const picked = document.getElementById('dxpick').value;
+  const isMatch = picked && picked === c.correct;
+
+  const verdict = !picked
+    ? '<span class="verdict miss">No diagnosis selected</span>'
+    : (isMatch
+        ? '<span class="verdict match">\u2713 Matches your selection</span>'
+        : '<span class="verdict miss">\u2717 Differs from your selection</span>');
+
+  const critList = c.criteria.map(x => '<li>' + x + '</li>').join('');
+  const diffList = c.diff.map(x => '<li>' + x + '</li>').join('');
+
+  const yourPick = picked
+    ? '<div class="akey-block"><h4>Your selection</h4><p>' + picked + '</p></div>'
+    : '';
+
+  document.getElementById('answerSlot').innerHTML =
+    '<div class="answer">' +
+      '<div class="answer-head"><span class="akey-lbl">Answer key</span>' + verdict + '</div>' +
+      '<div class="answer-body">' +
+        '<div class="dx-name">' + c.dxName + '</div>' +
+        '<div class="dx-code">' + c.dxCode + '</div>' +
+        yourPick +
+        '<div class="akey-block"><h4>Criteria illustrated</h4><ul>' + critList + '</ul></div>' +
+        '<div class="akey-block diff"><h4>Differentials &amp; how they\u2019re resolved</h4><ul>' + diffList + '</ul></div>' +
+        '<div class="pearl"><strong>Teaching point:</strong> ' + c.pearl + '</div>' +
+      '</div>' +
+    '</div>';
+
+  reviewed.add(i);
+  document.getElementById('chip-' + i).classList.add('done');
+  document.getElementById('doneCount').textContent = reviewed.size;
+  document.getElementById('answerSlot').scrollIntoView({block:'nearest'});
+}
+
+function clearNotes(){
+  ['ws1','ws2','ws3','ws4'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  const pick = document.getElementById('dxpick'); if(pick) pick.value='';
+  const slot = document.getElementById('answerSlot'); if(slot) slot.innerHTML='';
+}
+
+function escAttr(s){ return s.replace(/"/g,'&quot;'); }
+</script>
+</body>
+</html>

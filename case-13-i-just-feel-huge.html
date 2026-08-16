@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case CF-13 — “I just feel huge” · MSW Psychopathology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#E5EAED;
+    --surface:#FFFFFF;
+    --chart:#FCFBF8;
+    --ink:#16232C;
+    --ink-soft:#495a65;
+    --ink-faint:#8494a0;
+    --line:#D4DDE2;
+    --line-soft:#E7EDF0;
+    --petrol:#1F5C5A;
+    --petrol-deep:#164543;
+    --petrol-tint:#E4EFEE;
+    --ochre:#A9641F;
+    --ochre-tint:#F5EADB;
+    --rose:#9c3743;
+    --rose-tint:#f6e6e7;
+    --green:#2f6b47;
+    --green-tint:#e5f0e8;
+    --shadow:0 1px 2px rgba(22,35,44,.06),0 8px 28px -12px rgba(22,35,44,.22);
+    --serif:'Spectral',Georgia,serif;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--petrol-deep);
+    color:#eaf3f2;
+    padding:34px 24px 30px;
+    border-bottom:3px solid var(--ochre);
+  }
+  .masthead-inner{max-width:1120px;margin:0 auto;}
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#8fc4c0;
+    margin:0 0 10px;
+  }
+  .masthead h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(28px,4.6vw,46px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  .masthead h1 em{font-style:italic;color:#e7b984;font-weight:500;}
+  .masthead p{
+    max-width:60ch;
+    margin:0;
+    color:#c4dbd9;
+    font-size:15.5px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px 90px;}
+
+  /* ---------- How it works ---------- */
+  .howto{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    margin:-26px 0 26px;
+    position:relative;
+    z-index:2;
+  }
+  .howto h2{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:0 0 16px;
+  }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+  }
+  .step-item{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:6px;
+    padding:3px 8px;
+    flex-shrink:0;
+    line-height:1.3;
+  }
+  .step-item p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .step-item strong{color:var(--ink);display:block;font-size:14.5px;}
+
+  /* ---------- Case navigator ---------- */
+  .nav-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin:6px 0 14px;
+  }
+  .nav-head h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:600;
+    margin:0;
+  }
+  .progress{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:.03em;
+  }
+  .progress b{color:var(--petrol);}
+  .caselist{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .case-chip{
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:11px 13px;
+    cursor:pointer;
+    font-family:var(--sans);
+    color:var(--ink);
+    transition:border-color .16s,box-shadow .16s,transform .16s;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .case-chip:hover{border-color:var(--petrol);transform:translateY(-1px);box-shadow:var(--shadow);}
+  .case-chip.active{border-color:var(--petrol);box-shadow:0 0 0 2px var(--petrol-tint);}
+  .case-chip .cid{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .case-chip .ctitle{font-size:13.5px;font-weight:500;line-height:1.25;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;}
+  .case-chip.done .dot{background:var(--green);}
+  .case-chip.active .cid{color:var(--petrol);}
+
+  /* ---------- Case file ---------- */
+  .casefile{
+    background:var(--chart);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:16px;
+  }
+  .file-header{
+    background:var(--petrol);
+    color:#eef6f5;
+    padding:18px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .file-header .fid{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    color:#a9d3cf;
+  }
+  .file-header .fname{
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:600;
+    margin:2px 0 0;
+    color:#fff;
+  }
+  .stamp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#e7b984;
+    border:1px solid rgba(231,185,132,.55);
+    border-radius:5px;
+    padding:5px 9px;
+    transform:rotate(-3deg);
+    white-space:nowrap;
+  }
+  .file-body{padding:26px;}
+
+  .demo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:1px;
+    background:var(--line-soft);
+    border:1px solid var(--line-soft);
+    border-radius:9px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .demo-cell{background:var(--chart);padding:11px 14px;}
+  .demo-cell .lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:2px;
+  }
+  .demo-cell .val{font-size:14px;font-weight:500;}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:24px 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .vignette{font-family:var(--serif);font-size:17px;line-height:1.65;color:#26333c;}
+  .vignette p{margin:0 0 13px;}
+  .vignette p:last-child{margin-bottom:0;}
+
+  /* ---------- Worksheet ---------- */
+  .worksheet{
+    margin-top:28px;
+    border-top:2px dashed var(--line);
+    padding-top:24px;
+  }
+  .ws-title{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .ws-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 20px;}
+  .ws-step{margin-bottom:18px;}
+  .ws-step label{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:6px;
+  }
+  .ws-step label .n{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:5px;
+    padding:1px 7px;
+    font-weight:600;
+  }
+  .ws-step .hint{font-weight:400;color:var(--ink-faint);font-size:12.5px;}
+  textarea,select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    resize:vertical;
+  }
+  textarea{min-height:58px;line-height:1.5;}
+  textarea:focus,select:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-tint);}
+  select{cursor:pointer;height:44px;}
+
+  .ws-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .btn{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14.5px;
+    border-radius:8px;
+    padding:11px 20px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .15s,border-color .15s,transform .12s;
+  }
+  .btn-primary{background:var(--petrol);color:#fff;}
+  .btn-primary:hover{background:var(--petrol-deep);}
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-ghost{background:transparent;color:var(--petrol);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--petrol);}
+
+  /* ---------- Answer key ---------- */
+  .answer{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    overflow:hidden;
+    background:var(--surface);
+    animation:reveal .32s ease;
+  }
+  @keyframes reveal{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .answer-head{
+    padding:14px 20px;
+    background:var(--ochre-tint);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .answer-head .akey-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .verdict{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    padding:4px 11px;
+    border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .verdict.match{background:var(--green-tint);color:var(--green);}
+  .verdict.miss{background:var(--rose-tint);color:var(--rose);}
+  .answer-body{padding:20px 22px;}
+  .dx-name{
+    font-family:var(--serif);
+    font-size:23px;
+    font-weight:600;
+    margin:0 0 2px;
+    color:var(--petrol-deep);
+  }
+  .dx-code{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin-bottom:16px;}
+  .akey-block{margin-bottom:16px;}
+  .akey-block h4{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 7px;
+  }
+  .akey-block ul{margin:0;padding-left:0;list-style:none;}
+  .akey-block li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:6px;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .akey-block li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--petrol);
+  }
+  .akey-block.diff li::before{background:var(--ochre);}
+  .akey-block p{margin:0;font-size:14.5px;line-height:1.55;}
+  .pearl{
+    background:var(--petrol-tint);
+    border-left:3px solid var(--petrol);
+    border-radius:0 8px 8px 0;
+    padding:12px 16px;
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .pearl strong{color:var(--petrol-deep);}
+
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    margin-top:34px;
+    background:var(--rose-tint);
+    border:1px solid #ecc9cd;
+    border-radius:11px;
+    padding:16px 20px;
+    font-size:13.5px;
+    line-height:1.55;
+    color:#6e2a33;
+  }
+  .disclaimer strong{color:var(--rose);}
+
+  .empty{
+    text-align:center;
+    color:var(--ink-faint);
+    font-style:italic;
+    padding:60px 20px;
+    font-family:var(--serif);
+    font-size:18px;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-faint);
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.05em;
+    padding:26px 20px 10px;
+  }
+
+  @media (max-width:560px){
+    .file-header{flex-direction:column;align-items:flex-start;}
+    .masthead{padding:28px 18px 26px;}
+    .wrap{padding:0 16px 70px;}
+    .howto{padding:20px;}
+    .file-body{padding:20px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">MSW Psychopathology · Clinical Reasoning Lab · Case File CF-13</p>
+    <h1>Differential Diagnosis <em>Casebook</em></h1>
+    <p>A single practice case. Read the presentation, work the worksheet, commit to a diagnosis, then check your formulation against the DSM-5-TR criteria.</p>
+  </div>
+</header>
+<div class="wrap">
+  <section class="howto">
+    <h2>How to use this case</h2>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">01</span><p><strong>Read the file</strong>Review demographics, history, and mental status observations.</p></div>
+      <div class="step-item"><span class="step-num">02</span><p><strong>Work the worksheet</strong>Note symptoms, timeline, differentials, and impairment.</p></div>
+      <div class="step-item"><span class="step-num">03</span><p><strong>Commit</strong>Select a single provisional diagnosis before revealing.</p></div>
+      <div class="step-item"><span class="step-num">04</span><p><strong>Check &amp; compare</strong>Map your reasoning against the criteria-based answer key.</p></div>
+    </div>
+  </section>
+
+  <div id="stage"></div>
+
+  <div class="disclaimer">
+    <strong>Teaching tool — not for clinical use.</strong> This case is fictional and written for instruction. It is simplified to foreground a teaching point; real presentations are rarely this clean, and diagnosis in practice requires a full assessment, collateral information, medical and substance rule-outs, and cultural context. Always verify criteria against the current DSM-5-TR. Diagnosis is a licensed clinical activity performed within scope of practice and supervision.
+  </div>
+
+  <footer>MSW PSYCHOPATHOLOGY · DIFFERENTIAL DIAGNOSIS CASEBOOK · CASE CF-13 · FICTIONAL TRAINING CASE</footer>
+</div>
+<script>
+
+const DX_GROUPS = [{"group": "Schizophrenia spectrum & other psychotic disorders", "items": ["Schizophrenia", "Schizophreniform Disorder", "Schizoaffective Disorder", "Brief Psychotic Disorder", "Delusional Disorder", "Substance/Medication-Induced Psychotic Disorder", "Psychotic Disorder Due to Another Medical Condition"]}, {"group": "Bipolar & related disorders", "items": ["Bipolar I Disorder", "Bipolar II Disorder", "Cyclothymic Disorder", "Substance/Medication-Induced Bipolar Disorder"]}, {"group": "Depressive disorders", "items": ["Major Depressive Disorder", "Persistent Depressive Disorder (Dysthymia)", "Disruptive Mood Dysregulation Disorder", "Premenstrual Dysphoric Disorder", "Adjustment Disorder with Depressed Mood", "Substance/Medication-Induced Depressive Disorder"]}, {"group": "Anxiety disorders", "items": ["Generalized Anxiety Disorder", "Panic Disorder", "Social Anxiety Disorder (Social Phobia)", "Specific Phobia", "Agoraphobia", "Separation Anxiety Disorder"]}, {"group": "Obsessive-compulsive & related disorders", "items": ["Obsessive-Compulsive Disorder", "Body Dysmorphic Disorder", "Hoarding Disorder", "Trichotillomania (Hair-Pulling Disorder)", "Excoriation (Skin-Picking) Disorder"]}, {"group": "Trauma- & stressor-related disorders", "items": ["Posttraumatic Stress Disorder (PTSD)", "Complex PTSD (ICD-11) / PTSD with disturbances in self-organization", "Acute Stress Disorder", "Adjustment Disorder", "Reactive Attachment Disorder"]}, {"group": "Feeding & eating disorders", "items": ["Anorexia Nervosa", "Bulimia Nervosa", "Binge-Eating Disorder", "Avoidant/Restrictive Food Intake Disorder (ARFID)", "Other Specified Feeding or Eating Disorder"]}, {"group": "Neurodevelopmental disorders", "items": ["Autism Spectrum Disorder", "ADHD, Predominantly Inattentive Presentation (\u201cADD\u201d)", "ADHD, Predominantly Hyperactive-Impulsive Presentation", "ADHD, Combined Presentation", "Social (Pragmatic) Communication Disorder", "Specific Learning Disorder", "Language Disorder", "Intellectual Developmental Disorder"]}, {"group": "Disruptive, impulse-control & conduct disorders", "items": ["Oppositional Defiant Disorder", "Conduct Disorder", "Intermittent Explosive Disorder"]}, {"group": "Personality disorders", "items": ["Borderline Personality Disorder", "Antisocial Personality Disorder", "Narcissistic Personality Disorder", "Histrionic Personality Disorder", "Avoidant Personality Disorder", "Dependent Personality Disorder", "Paranoid Personality Disorder", "Schizotypal Personality Disorder"]}, {"group": "Dissociative disorders", "items": ["Dissociative Identity Disorder", "Depersonalization/Derealization Disorder", "Dissociative Amnesia"]}, {"group": "Somatic symptom & related disorders", "items": ["Somatic Symptom Disorder", "Illness Anxiety Disorder"]}, {"group": "Other relevant conditions", "items": ["Gender Dysphoria"]}];
+const CASE = {"id": "CF-13", "title": "\u201cI just feel huge\u201d", "correct": "Anorexia Nervosa", "demo": {"Client": "\u201cChloe,\u201d 17", "Referral": "Pediatrician", "Setting": "Adolescent medicine"}, "vignette": ["Chloe was referred after her pediatrician documented significant weight loss over the past year and a BMI now well below the healthy range for her age and height. She has been severely restricting her intake, tracking every calorie, and exercising for hours daily.", "Despite being visibly underweight, she is intensely afraid of gaining weight and engages in persistent behaviors to prevent it. She insists she \u201cstill feels huge,\u201d perceives her body as larger than it is, and bases her self-worth almost entirely on her weight and shape. She minimizes and denies the seriousness of her current low weight, telling you she is \u201cfine\u201d and \u201cdoesn\u2019t see the problem.\u201d", "She does not report regular binge eating or purging behaviors; the pattern is one of restriction and excessive exercise. Her preoccupation is specifically with weight and body shape."], "dxName": "Anorexia Nervosa, restricting type", "dxCode": "DSM-5-TR 307.1 \u00b7 ICD-10 F50.01", "criteria": ["Restriction of energy intake relative to needs, leading to a significantly low body weight for age, sex, and physical health.", "Intense fear of gaining weight / of becoming fat, or persistent behavior that interferes with weight gain, despite being underweight.", "Disturbance in the way body weight/shape is experienced, undue influence of weight on self-evaluation, and lack of recognition of the seriousness of the low weight.", "Restricting type (not binge-eating/purging) over the last 3 months; severity is specified by BMI."], "diff": ["Body dysmorphic disorder \u2014 ruled out: the preoccupation is with weight/shape and there is significant low weight and restriction, which define an eating disorder.", "Bulimia nervosa \u2014 ruled out: no recurrent binge/purge pattern; and in AN weight is significantly low.", "Avoidant/restrictive food intake disorder (ARFID) \u2014 ruled out: ARFID lacks the weight/shape concern and body-image disturbance that are central here.", "Depression with appetite loss \u2014 ruled out: restriction is intentional and driven by fear of weight gain, not lost appetite."], "pearl": "The three pillars of anorexia nervosa are (1) restriction to significantly low weight, (2) intense fear of weight gain, and (3) body-image disturbance with lack of insight. Medical instability can be life-threatening \u2014 low weight always warrants urgent medical assessment."};
+
+function escAttr(s){ return String(s).replace(/"/g,'&quot;'); }
+
+function wsStep(n, title, hint, id){
+  return '<div class="ws-step">' +
+    '<label><span class="n">' + n + '</span> ' + title + ' <span class="hint">\u2014 ' + hint + '</span></label>' +
+    '<textarea id="' + id + '" placeholder="Your notes\u2026"></textarea>' +
+  '</div>';
+}
+
+function renderCase(){
+  const c = CASE;
+  const demoCells = Object.entries(c.demo).map(([k,v]) =>
+    '<div class="demo-cell"><div class="lbl">' + k + '</div><div class="val">' + v + '</div></div>'
+  ).join('');
+  const vig = c.vignette.map(p => '<p>' + p + '</p>').join('');
+  const options = '<option value="">\u2014 Select one diagnosis \u2014</option>' +
+    DX_GROUPS.map(g =>
+      '<optgroup label="' + escAttr(g.group) + '">' +
+      g.items.map(d => '<option value="' + escAttr(d) + '">' + d + '</option>').join('') +
+      '</optgroup>'
+    ).join('');
+
+  document.getElementById('stage').innerHTML =
+    '<article class="casefile">' +
+      '<div class="file-header">' +
+        '<div><div class="fid">CASE FILE ' + c.id + '</div><div class="fname">' + c.title + '</div></div>' +
+        '<div class="stamp">Fictional \u00b7 Training</div>' +
+      '</div>' +
+      '<div class="file-body">' +
+        '<div class="demo-grid">' + demoCells + '</div>' +
+        '<div class="section-label">Presentation</div>' +
+        '<div class="vignette">' + vig + '</div>' +
+        '<div class="worksheet">' +
+          '<h3 class="ws-title">Diagnostic reasoning worksheet</h3>' +
+          '<p class="ws-sub">Work each step before revealing the key. Your notes stay on this page and are not saved.</p>' +
+          wsStep('01','Key symptoms &amp; observations','What stands out? List the clinically significant signs and symptoms.','ws1') +
+          wsStep('02','Timeline &amp; course','When did it start? How long has it lasted? Episodic or a pervasive, enduring pattern?','ws2') +
+          wsStep('03','Differentials considered','Which diagnoses are on the table, and what rules each in or out?','ws3') +
+          wsStep('04','Functional impairment &amp; rule-outs','What is impaired? Considered substances / medical causes / cultural context?','ws4') +
+          '<div class="ws-step">' +
+            '<label><span class="n">05</span> Provisional diagnosis <span class="hint">\u2014 commit before revealing</span></label>' +
+            '<select id="dxpick">' + options + '</select>' +
+          '</div>' +
+          '<div class="ws-actions">' +
+            '<button class="btn btn-primary" id="revealBtn">Check my diagnosis</button>' +
+            '<button class="btn btn-ghost" id="clearBtn">Clear notes</button>' +
+          '</div>' +
+          '<div id="answerSlot"></div>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+
+  document.getElementById('revealBtn').addEventListener('click', revealAnswer);
+  document.getElementById('clearBtn').addEventListener('click', clearNotes);
+}
+
+function revealAnswer(){
+  const c = CASE;
+  const picked = document.getElementById('dxpick').value;
+  const isMatch = picked && picked === c.correct;
+  const verdict = !picked
+    ? '<span class="verdict miss">No diagnosis selected</span>'
+    : (isMatch
+        ? '<span class="verdict match">\u2713 Matches your selection</span>'
+        : '<span class="verdict miss">\u2717 Differs from your selection</span>');
+  const critList = c.criteria.map(x => '<li>' + x + '</li>').join('');
+  const diffList = c.diff.map(x => '<li>' + x + '</li>').join('');
+  const yourPick = picked
+    ? '<div class="akey-block"><h4>Your selection</h4><p>' + picked + '</p></div>' : '';
+
+  document.getElementById('answerSlot').innerHTML =
+    '<div class="answer">' +
+      '<div class="answer-head"><span class="akey-lbl">Answer key</span>' + verdict + '</div>' +
+      '<div class="answer-body">' +
+        '<div class="dx-name">' + c.dxName + '</div>' +
+        '<div class="dx-code">' + c.dxCode + '</div>' +
+        yourPick +
+        '<div class="akey-block"><h4>Criteria illustrated</h4><ul>' + critList + '</ul></div>' +
+        '<div class="akey-block diff"><h4>Differentials &amp; how they\u2019re resolved</h4><ul>' + diffList + '</ul></div>' +
+        '<div class="pearl"><strong>Teaching point:</strong> ' + c.pearl + '</div>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('answerSlot').scrollIntoView({block:'nearest'});
+}
+
+function clearNotes(){
+  ['ws1','ws2','ws3','ws4'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  const pick = document.getElementById('dxpick'); if(pick) pick.value='';
+  const slot = document.getElementById('answerSlot'); if(slot) slot.innerHTML='';
+}
+
+renderCase();
+
+</script>
+</body>
+</html>

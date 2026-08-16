@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSM-5-TR Diagnostic Reference — SOW6125 Psychopathology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#E5EAED;
+    --surface:#FFFFFF;
+    --chart:#FCFBF8;
+    --ink:#16232C;
+    --ink-soft:#495a65;
+    --ink-faint:#8494a0;
+    --line:#D4DDE2;
+    --line-soft:#E7EDF0;
+    --petrol:#1F5C5A;
+    --petrol-deep:#164543;
+    --petrol-tint:#E4EFEE;
+    --ochre:#A9641F;
+    --ochre-tint:#F5EADB;
+    --rose:#9c3743;
+    --rose-tint:#f6e6e7;
+    --green:#2f6b47;
+    --green-tint:#e5f0e8;
+    --shadow:0 1px 2px rgba(22,35,44,.06),0 8px 28px -12px rgba(22,35,44,.22);
+    --serif:'Spectral',Georgia,serif;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:var(--petrol-deep);
+    color:#eaf3f2;
+    padding:34px 24px 30px;
+    border-bottom:3px solid var(--ochre);
+  }
+  .masthead-inner{max-width:1120px;margin:0 auto;}
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#8fc4c0;
+    margin:0 0 10px;
+  }
+  .masthead h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(28px,4.6vw,46px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  .masthead h1 em{font-style:italic;color:#e7b984;font-weight:500;}
+  .masthead p{
+    max-width:60ch;
+    margin:0;
+    color:#c4dbd9;
+    font-size:15.5px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px 90px;}
+
+  /* ---------- How it works ---------- */
+  .howto{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    margin:-26px 0 26px;
+    position:relative;
+    z-index:2;
+  }
+  .howto h2{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:0 0 16px;
+  }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+  }
+  .step-item{display:flex;gap:12px;align-items:flex-start;}
+  .step-num{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:6px;
+    padding:3px 8px;
+    flex-shrink:0;
+    line-height:1.3;
+  }
+  .step-item p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .step-item strong{color:var(--ink);display:block;font-size:14.5px;}
+
+  /* ---------- Case navigator ---------- */
+  .nav-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin:6px 0 14px;
+  }
+  .nav-head h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:600;
+    margin:0;
+  }
+  .progress{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:.03em;
+  }
+  .progress b{color:var(--petrol);}
+  .caselist{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .case-chip{
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:11px 13px;
+    cursor:pointer;
+    font-family:var(--sans);
+    color:var(--ink);
+    transition:border-color .16s,box-shadow .16s,transform .16s;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .case-chip:hover{border-color:var(--petrol);transform:translateY(-1px);box-shadow:var(--shadow);}
+  .case-chip.active{border-color:var(--petrol);box-shadow:0 0 0 2px var(--petrol-tint);}
+  .case-chip .cid{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .case-chip .ctitle{font-size:13.5px;font-weight:500;line-height:1.25;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;}
+  .case-chip.done .dot{background:var(--green);}
+  .case-chip.active .cid{color:var(--petrol);}
+
+  /* ---------- Case file ---------- */
+  .casefile{
+    background:var(--chart);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:16px;
+  }
+  .file-header{
+    background:var(--petrol);
+    color:#eef6f5;
+    padding:18px 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .file-header .fid{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    color:#a9d3cf;
+  }
+  .file-header .fname{
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:600;
+    margin:2px 0 0;
+    color:#fff;
+  }
+  .stamp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#e7b984;
+    border:1px solid rgba(231,185,132,.55);
+    border-radius:5px;
+    padding:5px 9px;
+    transform:rotate(-3deg);
+    white-space:nowrap;
+  }
+  .file-body{padding:26px;}
+
+  .demo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:1px;
+    background:var(--line-soft);
+    border:1px solid var(--line-soft);
+    border-radius:9px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .demo-cell{background:var(--chart);padding:11px 14px;}
+  .demo-cell .lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:2px;
+  }
+  .demo-cell .val{font-size:14px;font-weight:500;}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    margin:24px 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .vignette{font-family:var(--serif);font-size:17px;line-height:1.65;color:#26333c;}
+  .vignette p{margin:0 0 13px;}
+  .vignette p:last-child{margin-bottom:0;}
+
+  /* ---------- Worksheet ---------- */
+  .worksheet{
+    margin-top:28px;
+    border-top:2px dashed var(--line);
+    padding-top:24px;
+  }
+  .ws-title{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .ws-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 20px;}
+  .ws-step{margin-bottom:18px;}
+  .ws-step label{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:6px;
+  }
+  .ws-step label .n{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ochre);
+    background:var(--ochre-tint);
+    border-radius:5px;
+    padding:1px 7px;
+    font-weight:600;
+  }
+  .ws-step .hint{font-weight:400;color:var(--ink-faint);font-size:12.5px;}
+  textarea,select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    resize:vertical;
+  }
+  textarea{min-height:58px;line-height:1.5;}
+  textarea:focus,select:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-tint);}
+  select{cursor:pointer;height:44px;}
+
+  .ws-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .btn{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14.5px;
+    border-radius:8px;
+    padding:11px 20px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .15s,border-color .15s,transform .12s;
+  }
+  .btn-primary{background:var(--petrol);color:#fff;}
+  .btn-primary:hover{background:var(--petrol-deep);}
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-ghost{background:transparent;color:var(--petrol);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--petrol);}
+
+  /* ---------- Answer key ---------- */
+  .answer{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    overflow:hidden;
+    background:var(--surface);
+    animation:reveal .32s ease;
+  }
+  @keyframes reveal{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .answer-head{
+    padding:14px 20px;
+    background:var(--ochre-tint);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .answer-head .akey-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .verdict{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    padding:4px 11px;
+    border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .verdict.match{background:var(--green-tint);color:var(--green);}
+  .verdict.miss{background:var(--rose-tint);color:var(--rose);}
+  .answer-body{padding:20px 22px;}
+  .dx-name{
+    font-family:var(--serif);
+    font-size:23px;
+    font-weight:600;
+    margin:0 0 2px;
+    color:var(--petrol-deep);
+  }
+  .dx-code{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin-bottom:16px;}
+  .akey-block{margin-bottom:16px;}
+  .akey-block h4{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 7px;
+  }
+  .akey-block ul{margin:0;padding-left:0;list-style:none;}
+  .akey-block li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:6px;
+    font-size:14.5px;
+    line-height:1.5;
+  }
+  .akey-block li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--petrol);
+  }
+  .akey-block.diff li::before{background:var(--ochre);}
+  .akey-block p{margin:0;font-size:14.5px;line-height:1.55;}
+  .pearl{
+    background:var(--petrol-tint);
+    border-left:3px solid var(--petrol);
+    border-radius:0 8px 8px 0;
+    padding:12px 16px;
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .pearl strong{color:var(--petrol-deep);}
+
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    margin-top:34px;
+    background:var(--rose-tint);
+    border:1px solid #ecc9cd;
+    border-radius:11px;
+    padding:16px 20px;
+    font-size:13.5px;
+    line-height:1.55;
+    color:#6e2a33;
+  }
+  .disclaimer strong{color:var(--rose);}
+
+  .empty{
+    text-align:center;
+    color:var(--ink-faint);
+    font-style:italic;
+    padding:60px 20px;
+    font-family:var(--serif);
+    font-size:18px;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-faint);
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.05em;
+    padding:26px 20px 10px;
+  }
+
+  @media (max-width:560px){
+    .file-header{flex-direction:column;align-items:flex-start;}
+    .masthead{padding:28px 18px 26px;}
+    .wrap{padding:0 16px 70px;}
+    .howto{padding:20px;}
+    .file-body{padding:20px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto;}
+  }
+
+  .wrap{max-width:1080px;}
+  .toolbar{position:sticky;top:0;z-index:20;background:var(--page);padding:14px 0 12px;margin:-14px 0 8px;border-bottom:1px solid var(--line);}
+  .search{width:100%;font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 15px;box-shadow:var(--shadow);}
+  .search:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px var(--petrol-tint);}
+  .count{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-top:8px;letter-spacing:.02em;}
+  .navchips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px;}
+  .navchips a{text-decoration:none;font-size:12.5px;color:var(--petrol);background:var(--petrol-tint);border-radius:999px;padding:5px 12px;border:1px solid transparent;transition:border-color .14s;}
+  .navchips a:hover{border-color:var(--petrol);}
+  .catsec{margin-top:30px;scroll-margin-top:120px;}
+  .cathead{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--petrol-deep);margin:0 0 4px;padding-bottom:8px;border-bottom:2px solid var(--line);}
+  .catsub{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-faint);margin:0 0 14px;text-transform:uppercase;}
+  .entry{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:13px;}
+  .entry h3{font-family:var(--serif);font-size:19px;font-weight:600;margin:0 0 2px;color:var(--ink);}
+  .entry .alt{font-size:13px;color:var(--ink-faint);font-style:italic;margin-bottom:8px;}
+  .entry .essence{font-size:15px;line-height:1.55;color:#2b3941;margin:0 0 11px;}
+  .entry ul{margin:0 0 11px;padding-left:19px;}
+  .entry li{font-size:14.5px;line-height:1.5;margin-bottom:5px;color:#33424b;}
+  .meta-row{display:flex;gap:10px;margin-bottom:7px;font-size:14px;line-height:1.5;align-items:baseline;}
+  .meta-row .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--petrol);flex-shrink:0;min-width:88px;padding-top:2px;font-weight:600;}
+  .meta-row.diff .k{color:var(--ochre);}
+  .meta-row .v{color:#33424b;}
+  .meta-row.diff .v{color:#4a3a26;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--ink-faint);border:1px solid var(--line);border-radius:5px;padding:1px 7px;margin-bottom:8px;}
+  .near{border-left:3px solid var(--ochre);}
+  .near .tag{color:var(--ochre);border-color:var(--ochre-tint);background:var(--ochre-tint);}
+  .noresult{text-align:center;font-family:var(--serif);font-style:italic;color:var(--ink-faint);padding:50px;font-size:18px;display:none;}
+  .copyright{background:var(--ochre-tint);border:1px solid #e6d3b3;border-radius:11px;padding:15px 19px;margin:-10px 0 4px;font-size:13.5px;line-height:1.55;color:#6f4b18;}
+  .copyright strong{color:#8a5a15;}
+  mark{background:var(--ochre-tint);color:var(--petrol-deep);padding:0 2px;border-radius:3px;}
+  .cite{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--petrol);border-radius:0 10px 10px 0;box-shadow:var(--shadow);padding:15px 19px;margin:12px 0 4px;}
+  .cite-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:8px;}
+  .cite-ref{margin:0 0 8px;padding-left:2.2em;text-indent:-2.2em;font-size:15px;line-height:1.6;color:#28343c;}
+  .cite-ref a{color:var(--petrol);word-break:break-all;}
+  .cite-intext{margin:0;font-size:13px;color:var(--ink-soft);}
+  .cite-intext b{color:var(--ink);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">SOW6125 Psychopathology · Study Resource</p>
+    <h1>Diagnostic <em>Reference</em></h1>
+    <p>Plain-language summaries of every diagnosis and near-diagnosis covered in this course — core features, key thresholds, subtypes, and the differentials that matter. Search or jump by category.</p>
+  </div>
+</header>
+<div class="wrap">
+  <div class="copyright"><strong>About this resource.</strong> These are original, paraphrased summaries of each diagnostic construct written for study — <strong>not</strong> the verbatim DSM-5-TR criteria, which are copyrighted by the American Psychiatric Association. Use them to learn the shape of each diagnosis and to compare disorders; for official diagnostic criteria, always consult the DSM-5-TR itself. Nothing here is clinical advice, and diagnosis is a licensed activity performed within scope and supervision.</div>
+
+  <div class="cite">
+    <span class="cite-label">Source \u2014 cite as (APA 7th ed.)</span>
+    <p class="cite-ref">American Psychiatric Association. (2022). <em>Diagnostic and statistical manual of mental disorders</em> (5th ed., text rev.). <a href="https://doi.org/10.1176/appi.books.9780890425787" target="_blank" rel="noopener">https://doi.org/10.1176/appi.books.9780890425787</a></p>
+    <p class="cite-intext"><b>In-text:</b> first mention (American Psychiatric Association [APA], 2022); thereafter (APA, 2022).</p>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" class="search" id="search" placeholder="Search a diagnosis, symptom, or keyword (e.g. &quot;6 months&quot;, &quot;hypomania&quot;, &quot;low weight&quot;)…" oninput="filt()">
+    <div class="count" id="count">84 entries across 16 categories</div>
+    <div class="navchips"><a href="#neurodevelopmental-disorders">Neurodevelopmental Disorders</a><a href="#schizophrenia-spectrum-other-psychotic-disorders">Schizophrenia Spectrum &amp; Other Psychotic Disorders</a><a href="#bipolar-related-disorders">Bipolar &amp; Related Disorders</a><a href="#depressive-disorders">Depressive Disorders</a><a href="#anxiety-disorders">Anxiety Disorders</a><a href="#obsessive-compulsive-related-disorders">Obsessive-Compulsive &amp; Related Disorders</a><a href="#trauma-stressor-related-disorders">Trauma- &amp; Stressor-Related Disorders</a><a href="#dissociative-disorders">Dissociative Disorders</a><a href="#somatic-symptom-related-disorders">Somatic Symptom &amp; Related Disorders</a><a href="#feeding-eating-disorders">Feeding &amp; Eating Disorders</a><a href="#elimination-disorders">Elimination Disorders</a><a href="#disruptive-impulse-control-conduct-disorders">Disruptive, Impulse-Control &amp; Conduct Disorders</a><a href="#substance-related-addictive-disorders">Substance-Related &amp; Addictive Disorders</a><a href="#neurocognitive-disorders">Neurocognitive Disorders</a><a href="#personality-disorders">Personality Disorders</a><a href="#other-relevant-conditions">Other Relevant Conditions</a></div>
+  </div>
+
+  <div id="list"><section class="catsec" id="neurodevelopmental-disorders"><h2 class="cathead">Neurodevelopmental Disorders</h2><p class="catsub">DSM-5-TR · onset in the developmental period</p><div class="entry" data-search="intellectual developmental disorder intellectual disability deficits in intellectual functioning (reasoning, problem-solving, learning) and in adaptive functioning, beginning in the developmental period. confirmed by both clinical assessment and standardized testing adaptive deficits across conceptual, social, and practical domains limit independence global developmental delay (used under age 5 when severity can't yet be reliably assessed); specific learning disorder; neurocognitive disorders (acquired, later decline)."><span class="tag">DSM-5-TR</span><h3>Intellectual Developmental Disorder</h3><div class="alt">also: Intellectual Disability</div><p class="essence">Deficits in intellectual functioning (reasoning, problem-solving, learning) and in adaptive functioning, beginning in the developmental period.</p><ul><li>Confirmed by both clinical assessment and standardized testing</li><li>Adaptive deficits across conceptual, social, and practical domains limit independence</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Onset during the developmental period.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Severity (mild / moderate / severe / profound) is set by adaptive functioning, not IQ score alone.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Global developmental delay (used under age 5 when severity can't yet be reliably assessed); specific learning disorder; neurocognitive disorders (acquired, later decline).</span></div></div><div class="entry near" data-search="global developmental delay  reserved for children under 5 who fail to meet expected developmental milestones across several areas but cannot yet be reliably assessed.  provisional; re-evaluate as the child matures toward a specific diagnosis."><span class="tag">NEAR / RELATED</span><h3>Global Developmental Delay</h3><p class="essence">Reserved for children under 5 who fail to meet expected developmental milestones across several areas but cannot yet be reliably assessed.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Provisional; re-evaluate as the child matures toward a specific diagnosis.</span></div></div><div class="entry" data-search="communication disorders  a group covering difficulties with language, speech sounds, fluency, and social communication. language disorder — persistent difficulty acquiring/using language across modalities speech sound disorder — difficulty with speech-sound production affecting intelligibility childhood-onset fluency disorder (stuttering) — disturbance in fluency and time patterning social (pragmatic) communication disorder — difficulty with the social use of verbal/nonverbal communication social communication disorder vs. autism: autism additionally requires restricted, repetitive behaviors/interests; if those are present, it is not scd."><span class="tag">DSM-5-TR</span><h3>Communication Disorders</h3><p class="essence">A group covering difficulties with language, speech sounds, fluency, and social communication.</p><ul><li>Language Disorder — persistent difficulty acquiring/using language across modalities</li><li>Speech Sound Disorder — difficulty with speech-sound production affecting intelligibility</li><li>Childhood-Onset Fluency Disorder (Stuttering) — disturbance in fluency and time patterning</li><li>Social (Pragmatic) Communication Disorder — difficulty with the social use of verbal/nonverbal communication</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Social communication disorder vs. autism: autism additionally requires restricted, repetitive behaviors/interests; if those are present, it is not SCD.</span></div></div><div class="entry" data-search="autism spectrum disorder  persistent deficits in social communication and social interaction across contexts, together with restricted, repetitive patterns of behavior, interests, or activities. social-communication deficits in reciprocity, nonverbal communication, and relationships restricted/repetitive behaviors: stereotypies, insistence on sameness, fixated interests, sensory hyper-/hyporeactivity (≥2 of 4) present in early development; may be masked until social demands exceed capacity social (pragmatic) communication disorder (no rrbs); intellectual disability; adhd; language disorder; anxiety."><span class="tag">DSM-5-TR</span><h3>Autism Spectrum Disorder</h3><p class="essence">Persistent deficits in social communication and social interaction across contexts, together with restricted, repetitive patterns of behavior, interests, or activities.</p><ul><li>Social-communication deficits in reciprocity, nonverbal communication, and relationships</li><li>Restricted/repetitive behaviors: stereotypies, insistence on sameness, fixated interests, sensory hyper-/hyporeactivity (≥2 of 4)</li><li>Present in early development; may be masked until social demands exceed capacity</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Symptoms present in the early developmental period.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Severity levels 1–3 (support needs) specified separately for social communication and for restricted/repetitive behavior; with/without intellectual or language impairment.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Social (pragmatic) communication disorder (no RRBs); intellectual disability; ADHD; language disorder; anxiety.</span></div></div><div class="entry" data-search="attention-deficit/hyperactivity disorder adhd (“add” is the older term for the inattentive presentation) a persistent pattern of inattention and/or hyperactivity-impulsivity that interferes with functioning or development. inattention: careless errors, poor sustained attention, not following through, disorganization, distractibility, forgetfulness hyperactivity-impulsivity: fidgeting, restlessness, talking excessively, interrupting, difficulty waiting enough symptoms from one or both lists (6 for children, 5 for age 17+) age-appropriate activity; anxiety and depression (impair concentration); specific learning disorder; autism; oppositional defiant disorder; sensory problems."><span class="tag">DSM-5-TR</span><h3>Attention-Deficit/Hyperactivity Disorder</h3><div class="alt">also: ADHD (“ADD” is the older term for the inattentive presentation)</div><p class="essence">A persistent pattern of inattention and/or hyperactivity-impulsivity that interferes with functioning or development.</p><ul><li>Inattention: careless errors, poor sustained attention, not following through, disorganization, distractibility, forgetfulness</li><li>Hyperactivity-impulsivity: fidgeting, restlessness, talking excessively, interrupting, difficulty waiting</li><li>Enough symptoms from one or both lists (6 for children, 5 for age 17+)</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Several symptoms present before age 12, in ≥2 settings, causing impairment.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Predominantly inattentive / predominantly hyperactive-impulsive / combined; severity mild-moderate-severe.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Age-appropriate activity; anxiety and depression (impair concentration); specific learning disorder; autism; oppositional defiant disorder; sensory problems.</span></div></div><div class="entry" data-search="specific learning disorder  persistent difficulty learning and using academic skills (reading, written expression, or mathematics) well below age expectations. skills substantially below expected for age and cause impairment not explained by intellectual disability, sensory problems, or inadequate instruction intellectual disability; adhd; sensory deficits; lack of schooling/opportunity."><span class="tag">DSM-5-TR</span><h3>Specific Learning Disorder</h3><p class="essence">Persistent difficulty learning and using academic skills (reading, written expression, or mathematics) well below age expectations.</p><ul><li>Skills substantially below expected for age and cause impairment</li><li>Not explained by intellectual disability, sensory problems, or inadequate instruction</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Difficulties persist ≥6 months despite intervention; begin during school years.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Specify impairment in reading, written expression, and/or mathematics; severity.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Intellectual disability; ADHD; sensory deficits; lack of schooling/opportunity.</span></div></div><div class="entry near" data-search="tic disorders (incl. tourette's disorder)  sudden, rapid, recurrent motor and/or vocal tics with onset in childhood.  persistent (chronic) motor or vocal tic disorder; provisional tic disorder; stereotypic movement disorder."><span class="tag">NEAR / RELATED</span><h3>Tic Disorders (incl. Tourette's Disorder)</h3><p class="essence">Sudden, rapid, recurrent motor and/or vocal tics with onset in childhood.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Tourette's requires both multiple motor and ≥1 vocal tic for &gt;1 year.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Persistent (chronic) motor or vocal tic disorder; provisional tic disorder; stereotypic movement disorder.</span></div></div></section><section class="catsec" id="schizophrenia-spectrum-other-psychotic-disorders"><h2 class="cathead">Schizophrenia Spectrum &amp; Other Psychotic Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="schizophrenia  a syndrome of active-phase psychotic symptoms with functional decline and continuous disturbance over an extended period. criterion-a symptoms: delusions, hallucinations, disorganized speech, grossly disorganized/catatonic behavior, negative symptoms at least two present, and at least one must be delusions, hallucinations, or disorganized speech marked decline in work, relationships, or self-care schizophreniform (1–6 mo); brief psychotic (&lt;1 mo); schizoaffective (concurrent mood episodes); mood disorder with psychotic features; substance-induced; medical cause."><span class="tag">DSM-5-TR</span><h3>Schizophrenia</h3><p class="essence">A syndrome of active-phase psychotic symptoms with functional decline and continuous disturbance over an extended period.</p><ul><li>Criterion-A symptoms: delusions, hallucinations, disorganized speech, grossly disorganized/catatonic behavior, negative symptoms</li><li>At least two present, and at least one must be delusions, hallucinations, or disorganized speech</li><li>Marked decline in work, relationships, or self-care</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Continuous signs ≥6 months, including ≥1 month of active-phase symptoms.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Schizophreniform (1–6 mo); brief psychotic (&lt;1 mo); schizoaffective (concurrent mood episodes); mood disorder with psychotic features; substance-induced; medical cause.</span></div></div><div class="entry" data-search="schizophreniform disorder  the same symptom picture as schizophrenia but of shorter duration and without a required decline in functioning.  brief psychotic disorder (&lt;1 month); schizophrenia (≥6 months, with functional decline)."><span class="tag">DSM-5-TR</span><h3>Schizophreniform Disorder</h3><p class="essence">The same symptom picture as schizophrenia but of shorter duration and without a required decline in functioning.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Episode lasts 1–6 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Brief psychotic disorder (&lt;1 month); schizophrenia (≥6 months, with functional decline).</span></div></div><div class="entry" data-search="brief psychotic disorder  sudden onset of one or more positive psychotic symptoms with eventual full return to prior functioning.  schizophreniform/schizophrenia (longer); substance-induced; mood disorder with psychosis."><span class="tag">DSM-5-TR</span><h3>Brief Psychotic Disorder</h3><p class="essence">Sudden onset of one or more positive psychotic symptoms with eventual full return to prior functioning.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 day but &lt;1 month.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">With/without marked stressor; with peripartum onset.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Schizophreniform/schizophrenia (longer); substance-induced; mood disorder with psychosis.</span></div></div><div class="entry" data-search="schizoaffective disorder  an illness in which a major mood episode occurs alongside schizophrenia-level psychosis, but psychosis also persists on its own. a major mood episode (depressive or manic) is concurrent with criterion-a psychosis delusions/hallucinations occur for ≥2 weeks without a mood episode at some point mood symptoms are present for the majority of the total illness schizophrenia (mood episodes brief); mood disorder with psychotic features (psychosis only during mood episodes) — this is the key discriminator."><span class="tag">DSM-5-TR</span><h3>Schizoaffective Disorder</h3><p class="essence">An illness in which a major mood episode occurs alongside schizophrenia-level psychosis, but psychosis also persists on its own.</p><ul><li>A major mood episode (depressive or manic) is concurrent with Criterion-A psychosis</li><li>Delusions/hallucinations occur for ≥2 weeks without a mood episode at some point</li><li>Mood symptoms are present for the majority of the total illness</li></ul><div class="meta-row"><span class="k">Subtypes</span><span class="v">Bipolar type / depressive type.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Schizophrenia (mood episodes brief); mood disorder with psychotic features (psychosis only during mood episodes) — this is the key discriminator.</span></div></div><div class="entry" data-search="delusional disorder  one or more delusions without the other hallmark features of schizophrenia, and with relatively preserved functioning apart from the delusion.  schizophrenia (meets criterion a more broadly); ocd/bdd with absent insight; paranoid personality disorder."><span class="tag">DSM-5-TR</span><h3>Delusional Disorder</h3><p class="essence">One or more delusions without the other hallmark features of schizophrenia, and with relatively preserved functioning apart from the delusion.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Delusion(s) present ≥1 month.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Erotomanic, grandiose, jealous, persecutory, somatic, mixed, unspecified.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Schizophrenia (meets Criterion A more broadly); OCD/BDD with absent insight; paranoid personality disorder.</span></div></div><div class="entry" data-search="substance/medication-induced psychotic disorder  prominent delusions or hallucinations arising during or soon after intoxication, withdrawal, or medication exposure capable of producing them.  primary psychotic disorder (psychosis persists well beyond substance effects); delirium."><span class="tag">DSM-5-TR</span><h3>Substance/Medication-Induced Psychotic Disorder</h3><p class="essence">Prominent delusions or hallucinations arising during or soon after intoxication, withdrawal, or medication exposure capable of producing them.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Primary psychotic disorder (psychosis persists well beyond substance effects); delirium.</span></div></div><div class="entry" data-search="psychotic disorder due to another medical condition  prominent psychotic symptoms judged to be the direct physiological consequence of a medical condition.  delirium; substance-induced psychosis; primary psychotic disorder."><span class="tag">DSM-5-TR</span><h3>Psychotic Disorder Due to Another Medical Condition</h3><p class="essence">Prominent psychotic symptoms judged to be the direct physiological consequence of a medical condition.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Delirium; substance-induced psychosis; primary psychotic disorder.</span></div></div></section><section class="catsec" id="bipolar-related-disorders"><h2 class="cathead">Bipolar &amp; Related Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="manic episode (building block)  a distinct period of abnormally elevated, expansive, or irritable mood plus increased energy or goal-directed activity. associated symptoms (digfast): distractibility, indiscretion/risk, grandiosity, flight of ideas, activity increase, decreased need for sleep, talkativeness ≥3 symptoms (≥4 if mood is only irritable) causes marked impairment, hospitalization, or psychosis — this severity distinguishes mania from hypomania."><span class="tag">DSM-5-TR</span><h3>Manic Episode (building block)</h3><p class="essence">A distinct period of abnormally elevated, expansive, or irritable mood plus increased energy or goal-directed activity.</p><ul><li>Associated symptoms (DIGFAST): distractibility, indiscretion/risk, grandiosity, flight of ideas, activity increase, decreased need for sleep, talkativeness</li><li>≥3 symptoms (≥4 if mood is only irritable)</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 week (or any duration if hospitalization is required).</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Causes marked impairment, hospitalization, or psychosis — this severity distinguishes mania from hypomania.</span></div></div><div class="entry" data-search="hypomanic episode (building block)  the same symptom cluster as mania but milder and briefer, representing an observable change without severe impairment.  no marked impairment, no hospitalization, and no psychotic features (any of these would make it mania)."><span class="tag">DSM-5-TR</span><h3>Hypomanic Episode (building block)</h3><p class="essence">The same symptom cluster as mania but milder and briefer, representing an observable change without severe impairment.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥4 consecutive days.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">No marked impairment, no hospitalization, and no psychotic features (any of these would make it mania).</span></div></div><div class="entry" data-search="bipolar i disorder  defined by at least one lifetime manic episode; depressive and hypomanic episodes commonly occur but are not required.  bipolar ii (no full mania); schizoaffective (psychosis outside mood episodes); substance-induced; adhd (chronic, not episodic)."><span class="tag">DSM-5-TR</span><h3>Bipolar I Disorder</h3><p class="essence">Defined by at least one lifetime manic episode; depressive and hypomanic episodes commonly occur but are not required.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 manic episode ever.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bipolar II (no full mania); schizoaffective (psychosis outside mood episodes); substance-induced; ADHD (chronic, not episodic).</span></div></div><div class="entry" data-search="bipolar ii disorder  a pattern of at least one hypomanic episode and at least one major depressive episode, with no history of full mania.  bipolar i (mania present); major depressive disorder (hypomania missed if not asked about) — screening for hypomania is essential; cyclothymia (subthreshold)."><span class="tag">DSM-5-TR</span><h3>Bipolar II Disorder</h3><p class="essence">A pattern of at least one hypomanic episode and at least one major depressive episode, with no history of full mania.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 hypomanic episode + ≥1 major depressive episode.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bipolar I (mania present); major depressive disorder (hypomania missed if not asked about) — screening for hypomania is essential; cyclothymia (subthreshold).</span></div></div><div class="entry" data-search="cyclothymic disorder  chronic mood instability with numerous hypomanic-level and depressive-level symptoms that never reach full episode criteria.  bipolar i/ii (full episodes); borderline personality disorder (reactive, rapid shifts)."><span class="tag">DSM-5-TR</span><h3>Cyclothymic Disorder</h3><p class="essence">Chronic mood instability with numerous hypomanic-level and depressive-level symptoms that never reach full episode criteria.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥2 years (≥1 year in youth); symptoms present at least half the time with no symptom-free stretch &gt;2 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bipolar I/II (full episodes); borderline personality disorder (reactive, rapid shifts).</span></div></div><div class="entry" data-search="substance/medication-induced bipolar disorder  mood elevation clearly tied to a substance or medication capable of producing it.  primary bipolar disorder (episodes independent of substances)."><span class="tag">DSM-5-TR</span><h3>Substance/Medication-Induced Bipolar Disorder</h3><p class="essence">Mood elevation clearly tied to a substance or medication capable of producing it.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Primary bipolar disorder (episodes independent of substances).</span></div></div></section><section class="catsec" id="depressive-disorders"><h2 class="cathead">Depressive Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="major depressive episode (building block)  a two-week period of depressed mood or loss of interest/pleasure plus additional symptoms. the nine symptoms: mood, anhedonia, weight/appetite change, sleep change, psychomotor change, fatigue, worthlessness/guilt, concentration, thoughts of death ≥5 symptoms, at least one being depressed mood or loss of interest/pleasure building block for mdd; also seen in bipolar disorders."><span class="tag">DSM-5-TR</span><h3>Major Depressive Episode (building block)</h3><p class="essence">A two-week period of depressed mood or loss of interest/pleasure plus additional symptoms.</p><ul><li>The nine symptoms: mood, anhedonia, weight/appetite change, sleep change, psychomotor change, fatigue, worthlessness/guilt, concentration, thoughts of death</li><li>≥5 symptoms, at least one being depressed mood OR loss of interest/pleasure</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Same 2-week period, most of the day nearly every day.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Building block for MDD; also seen in bipolar disorders.</span></div></div><div class="entry" data-search="major depressive disorder  one or more major depressive episodes without any history of mania or hypomania.  bipolar disorders (screen for mania/hypomania before treating); persistent depressive disorder (≥2 years); adjustment disorder (does not meet full mde); prolonged grief; medical/substance causes."><span class="tag">DSM-5-TR</span><h3>Major Depressive Disorder</h3><p class="essence">One or more major depressive episodes without any history of mania or hypomania.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥2 weeks per episode; single or recurrent.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Specifiers: anxious distress, mixed, melancholic, atypical, psychotic, peripartum, seasonal.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bipolar disorders (screen for mania/hypomania before treating); persistent depressive disorder (≥2 years); adjustment disorder (does not meet full MDE); prolonged grief; medical/substance causes.</span></div></div><div class="entry" data-search="persistent depressive disorder dysthymia chronic, lower-grade depressed mood present more days than not over a long period. depressed mood plus ≥2 of: appetite change, sleep change, low energy, low self-esteem, poor concentration, hopelessness major depressive disorder (episodic); the two can co-occur (“double depression”)."><span class="tag">DSM-5-TR</span><h3>Persistent Depressive Disorder</h3><div class="alt">also: Dysthymia</div><p class="essence">Chronic, lower-grade depressed mood present more days than not over a long period.</p><ul><li>Depressed mood plus ≥2 of: appetite change, sleep change, low energy, low self-esteem, poor concentration, hopelessness</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">≥2 years in adults (≥1 year in children/adolescents), without a symptom-free period &gt;2 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Major depressive disorder (episodic); the two can co-occur (“double depression”).</span></div></div><div class="entry" data-search="disruptive mood dysregulation disorder  chronic, severe irritability in children marked by frequent temper outbursts and a persistently angry mood between them. severe recurrent temper outbursts out of proportion to the situation persistently irritable/angry mood between outbursts oppositional defiant disorder (dmdd is more severe and mood-based); pediatric bipolar disorder (episodic); adhd; anxiety."><span class="tag">DSM-5-TR</span><h3>Disruptive Mood Dysregulation Disorder</h3><p class="essence">Chronic, severe irritability in children marked by frequent temper outbursts and a persistently angry mood between them.</p><ul><li>Severe recurrent temper outbursts out of proportion to the situation</li><li>Persistently irritable/angry mood between outbursts</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Onset before age 10; diagnosed between ages 6 and 18; present ≥12 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Oppositional defiant disorder (DMDD is more severe and mood-based); pediatric bipolar disorder (episodic); ADHD; anxiety.</span></div></div><div class="entry" data-search="premenstrual dysphoric disorder  mood and physical symptoms that recur in the final premenstrual week and remit after menses begins. mood lability, irritability, depressed mood, anxiety plus physical/behavioral symptoms confirmed by prospective daily ratings over ≥2 cycles premenstrual syndrome (milder); exacerbation of another disorder premenstrually."><span class="tag">DSM-5-TR</span><h3>Premenstrual Dysphoric Disorder</h3><p class="essence">Mood and physical symptoms that recur in the final premenstrual week and remit after menses begins.</p><ul><li>Mood lability, irritability, depressed mood, anxiety plus physical/behavioral symptoms</li><li>Confirmed by prospective daily ratings over ≥2 cycles</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Luteal-phase pattern that improves shortly after onset of menses.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Premenstrual syndrome (milder); exacerbation of another disorder premenstrually.</span></div></div><div class="entry" data-search="substance/medication-induced depressive disorder  prominent depressed mood clearly linked to a substance or medication.  primary depressive disorder (persists beyond substance effects)."><span class="tag">DSM-5-TR</span><h3>Substance/Medication-Induced Depressive Disorder</h3><p class="essence">Prominent depressed mood clearly linked to a substance or medication.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Primary depressive disorder (persists beyond substance effects).</span></div></div><div class="entry near" data-search="prolonged grief disorder  added in dsm-5-tr: intense, persistent grief that exceeds expected social/cultural norms and impairs functioning. persistent yearning/preoccupation with the deceased plus symptoms such as identity disruption, disbelief, avoidance, emotional pain, numbness, loneliness, meaninglessness normative grief; major depressive disorder; ptsd."><span class="tag">NEAR / RELATED</span><h3>Prolonged Grief Disorder</h3><p class="essence">Added in DSM-5-TR: intense, persistent grief that exceeds expected social/cultural norms and impairs functioning.</p><ul><li>Persistent yearning/preoccupation with the deceased plus symptoms such as identity disruption, disbelief, avoidance, emotional pain, numbness, loneliness, meaninglessness</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Death ≥12 months ago (≥6 months in children/adolescents); grief present most days ≥1 month.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Normative grief; major depressive disorder; PTSD.</span></div></div></section><section class="catsec" id="anxiety-disorders"><h2 class="cathead">Anxiety Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="separation anxiety disorder  developmentally excessive fear or anxiety about separation from attachment figures.  generalized anxiety; agoraphobia; autism; illness anxiety."><span class="tag">DSM-5-TR</span><h3>Separation Anxiety Disorder</h3><p class="essence">Developmentally excessive fear or anxiety about separation from attachment figures.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥4 weeks in children/adolescents; typically ≥6 months in adults.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Generalized anxiety; agoraphobia; autism; illness anxiety.</span></div></div><div class="entry" data-search="selective mutism  consistent failure to speak in specific social situations where speech is expected, despite speaking elsewhere.  social anxiety disorder; communication disorders; autism."><span class="tag">DSM-5-TR</span><h3>Selective Mutism</h3><p class="essence">Consistent failure to speak in specific social situations where speech is expected, despite speaking elsewhere.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 month (not limited to the first month of school).</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Social anxiety disorder; communication disorders; autism.</span></div></div><div class="entry" data-search="specific phobia  marked, out-of-proportion fear of a specific object or situation that is actively avoided.  agoraphobia; social anxiety; panic disorder; ocd."><span class="tag">DSM-5-TR</span><h3>Specific Phobia</h3><p class="essence">Marked, out-of-proportion fear of a specific object or situation that is actively avoided.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥6 months.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Animal, natural environment, blood-injection-injury, situational, other.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Agoraphobia; social anxiety; panic disorder; OCD.</span></div></div><div class="entry" data-search="social anxiety disorder social phobia marked fear of social situations involving possible scrutiny, driven by fear of negative evaluation or embarrassment.  panic disorder; agoraphobia; autism; avoidant personality disorder; body dysmorphic disorder."><span class="tag">DSM-5-TR</span><h3>Social Anxiety Disorder</h3><div class="alt">also: Social Phobia</div><p class="essence">Marked fear of social situations involving possible scrutiny, driven by fear of negative evaluation or embarrassment.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥6 months.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Performance-only specifier.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Panic disorder; agoraphobia; autism; avoidant personality disorder; body dysmorphic disorder.</span></div></div><div class="entry" data-search="panic disorder  recurrent unexpected panic attacks followed by persistent worry about attacks or maladaptive change in behavior.  agoraphobia; other anxiety disorders where attacks are expected/cued; medical causes (cardiac, thyroid)."><span class="tag">DSM-5-TR</span><h3>Panic Disorder</h3><p class="essence">Recurrent unexpected panic attacks followed by persistent worry about attacks or maladaptive change in behavior.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 month of worry or behavioral change after an attack.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Agoraphobia; other anxiety disorders where attacks are expected/cued; medical causes (cardiac, thyroid).</span></div></div><div class="entry near" data-search="panic attack (specifier)  an abrupt surge of intense fear or discomfort peaking within minutes, with physical and cognitive symptoms.  not a codable disorder on its own; used as a specifier across many diagnoses."><span class="tag">NEAR / RELATED</span><h3>Panic Attack (specifier)</h3><p class="essence">An abrupt surge of intense fear or discomfort peaking within minutes, with physical and cognitive symptoms.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Not a codable disorder on its own; used as a specifier across many diagnoses.</span></div></div><div class="entry" data-search="agoraphobia  marked fear or avoidance of two or more situations (transit, open spaces, enclosed spaces, crowds/lines, being outside the home alone) due to fear of not escaping or getting help.  specific phobia (situational); social anxiety; panic disorder; ptsd."><span class="tag">DSM-5-TR</span><h3>Agoraphobia</h3><p class="essence">Marked fear or avoidance of two or more situations (transit, open spaces, enclosed spaces, crowds/lines, being outside the home alone) due to fear of not escaping or getting help.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥6 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Specific phobia (situational); social anxiety; panic disorder; PTSD.</span></div></div><div class="entry" data-search="generalized anxiety disorder  excessive, hard-to-control worry about multiple domains, accompanied by physical tension symptoms. ≥3 of 6 symptoms in adults (1 in children): restlessness, fatigue, poor concentration, irritability, muscle tension, sleep disturbance panic disorder; social anxiety; ocd; illness anxiety; depression; medical/substance causes."><span class="tag">DSM-5-TR</span><h3>Generalized Anxiety Disorder</h3><p class="essence">Excessive, hard-to-control worry about multiple domains, accompanied by physical tension symptoms.</p><ul><li>≥3 of 6 symptoms in adults (1 in children): restlessness, fatigue, poor concentration, irritability, muscle tension, sleep disturbance</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">More days than not for ≥6 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Panic disorder; social anxiety; OCD; illness anxiety; depression; medical/substance causes.</span></div></div></section><section class="catsec" id="obsessive-compulsive-related-disorders"><h2 class="cathead">Obsessive-Compulsive &amp; Related Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="obsessive-compulsive disorder  recurrent obsessions (intrusive thoughts/urges/images) and/or compulsions (repetitive behaviors or mental acts) that are time-consuming or distressing.  generalized anxiety (realistic worries); body dysmorphic disorder; hoarding; illness anxiety; ocpd (ego-syntonic traits, no true obsessions/compulsions)."><span class="tag">DSM-5-TR</span><h3>Obsessive-Compulsive Disorder</h3><p class="essence">Recurrent obsessions (intrusive thoughts/urges/images) and/or compulsions (repetitive behaviors or mental acts) that are time-consuming or distressing.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Typically &gt;1 hour/day or causing marked distress/impairment.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Insight specifier (good/fair, poor, absent); tic-related.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Generalized anxiety (realistic worries); body dysmorphic disorder; hoarding; illness anxiety; OCPD (ego-syntonic traits, no true obsessions/compulsions).</span></div></div><div class="entry" data-search="body dysmorphic disorder  preoccupation with one or more perceived defects in appearance that are not observable or appear slight to others, with repetitive checking or grooming. repetitive behaviors: mirror checking, grooming, reassurance-seeking, comparing anorexia/eating disorders (concern is weight/shape); ocd; social anxiety; gender dysphoria (distress about gender, not appearance defect)."><span class="tag">DSM-5-TR</span><h3>Body Dysmorphic Disorder</h3><p class="essence">Preoccupation with one or more perceived defects in appearance that are not observable or appear slight to others, with repetitive checking or grooming.</p><ul><li>Repetitive behaviors: mirror checking, grooming, reassurance-seeking, comparing</li></ul><div class="meta-row"><span class="k">Subtypes</span><span class="v">With muscle dysmorphia; insight specifier.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Anorexia/eating disorders (concern is weight/shape); OCD; social anxiety; gender dysphoria (distress about gender, not appearance defect).</span></div></div><div class="entry" data-search="hoarding disorder  persistent difficulty discarding possessions regardless of value, leading to accumulation that congests living spaces.  ocd; major neurocognitive disorder; depression; autism."><span class="tag">DSM-5-TR</span><h3>Hoarding Disorder</h3><p class="essence">Persistent difficulty discarding possessions regardless of value, leading to accumulation that congests living spaces.</p><div class="meta-row"><span class="k">Subtypes</span><span class="v">With excessive acquisition; insight specifier.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">OCD; major neurocognitive disorder; depression; autism.</span></div></div><div class="entry" data-search="trichotillomania hair-pulling disorder recurrent pulling out of one's hair causing hair loss, with repeated attempts to stop.  ocd; body dysmorphic disorder; another medical/dermatologic cause; stereotypic movement disorder."><span class="tag">DSM-5-TR</span><h3>Trichotillomania</h3><div class="alt">also: Hair-Pulling Disorder</div><p class="essence">Recurrent pulling out of one's hair causing hair loss, with repeated attempts to stop.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">OCD; body dysmorphic disorder; another medical/dermatologic cause; stereotypic movement disorder.</span></div></div><div class="entry" data-search="excoriation disorder skin-picking disorder recurrent skin picking resulting in lesions, with repeated attempts to stop.  ocd; body dysmorphic disorder; nonsuicidal self-injury; dermatologic/substance causes."><span class="tag">DSM-5-TR</span><h3>Excoriation Disorder</h3><div class="alt">also: Skin-Picking Disorder</div><p class="essence">Recurrent skin picking resulting in lesions, with repeated attempts to stop.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">OCD; body dysmorphic disorder; nonsuicidal self-injury; dermatologic/substance causes.</span></div></div></section><section class="catsec" id="trauma-stressor-related-disorders"><h2 class="cathead">Trauma- &amp; Stressor-Related Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="reactive attachment disorder  a pattern of inhibited, emotionally withdrawn behavior toward caregivers in a child who experienced insufficient care.  autism; depression; intellectual disability; disinhibited social engagement disorder."><span class="tag">DSM-5-TR</span><h3>Reactive Attachment Disorder</h3><p class="essence">A pattern of inhibited, emotionally withdrawn behavior toward caregivers in a child who experienced insufficient care.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Evident before age 5; developmental age ≥9 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Autism; depression; intellectual disability; disinhibited social engagement disorder.</span></div></div><div class="entry" data-search="disinhibited social engagement disorder  overly familiar, culturally inappropriate approach to unfamiliar adults, arising from a history of insufficient care.  adhd; reactive attachment disorder (withdrawn rather than disinhibited)."><span class="tag">DSM-5-TR</span><h3>Disinhibited Social Engagement Disorder</h3><p class="essence">Overly familiar, culturally inappropriate approach to unfamiliar adults, arising from a history of insufficient care.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">ADHD; reactive attachment disorder (withdrawn rather than disinhibited).</span></div></div><div class="entry" data-search="posttraumatic stress disorder  a syndrome following exposure to actual or threatened death, serious injury, or sexual violence, spanning four symptom clusters. intrusion (memories, nightmares, flashbacks) avoidance of reminders negative alterations in cognition and mood alterations in arousal and reactivity (hypervigilance, startle, sleep, irritability) acute stress disorder (&lt;1 month); adjustment disorder; complex ptsd (icd-11); depression; panic; dissociative disorders."><span class="tag">DSM-5-TR</span><h3>Posttraumatic Stress Disorder</h3><p class="essence">A syndrome following exposure to actual or threatened death, serious injury, or sexual violence, spanning four symptom clusters.</p><ul><li>Intrusion (memories, nightmares, flashbacks)</li><li>Avoidance of reminders</li><li>Negative alterations in cognition and mood</li><li>Alterations in arousal and reactivity (hypervigilance, startle, sleep, irritability)</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Symptoms persist &gt;1 month.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">With dissociative symptoms; with delayed expression; preschool subtype (≤6 years).</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Acute stress disorder (&lt;1 month); adjustment disorder; complex PTSD (ICD-11); depression; panic; dissociative disorders.</span></div></div><div class="entry" data-search="acute stress disorder  a trauma-response syndrome occurring in the first month, drawn from intrusion, negative mood, dissociation, avoidance, and arousal symptoms.  ptsd (&gt;1 month); adjustment disorder; normative acute reactions."><span class="tag">DSM-5-TR</span><h3>Acute Stress Disorder</h3><p class="essence">A trauma-response syndrome occurring in the first month, drawn from intrusion, negative mood, dissociation, avoidance, and arousal symptoms.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">From 3 days to 1 month after exposure.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">PTSD (&gt;1 month); adjustment disorder; normative acute reactions.</span></div></div><div class="entry" data-search="adjustment disorders  emotional or behavioral symptoms that develop in response to an identifiable stressor and exceed what would be expected or impair functioning.  major depressive disorder / ptsd / anxiety disorders (if full criteria are met, diagnose those instead); normative stress reactions."><span class="tag">DSM-5-TR</span><h3>Adjustment Disorders</h3><p class="essence">Emotional or behavioral symptoms that develop in response to an identifiable stressor and exceed what would be expected or impair functioning.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Onset within 3 months of the stressor; resolves within 6 months after the stressor (or its consequences) end.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">With depressed mood, anxiety, mixed, conduct disturbance, or mixed emotions/conduct.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Major depressive disorder / PTSD / anxiety disorders (if full criteria are met, diagnose those instead); normative stress reactions.</span></div></div><div class="entry near" data-search="complex ptsd  an icd-11 diagnosis (not a separate dsm-5-tr category) for prolonged or repeated trauma: core ptsd plus disturbances in self-organization. core ptsd (re-experiencing, avoidance, threat sense) plus affect dysregulation, negative self-concept, and relationship disturbances in the dsm-5-tr this presentation is captured as ptsd (often with the dissociative subtype); borderline personality disorder (identity instability and abandonment fear vs. stable negative self-concept)."><span class="tag">NEAR / RELATED</span><h3>Complex PTSD</h3><p class="essence">An ICD-11 diagnosis (not a separate DSM-5-TR category) for prolonged or repeated trauma: core PTSD plus disturbances in self-organization.</p><ul><li>Core PTSD (re-experiencing, avoidance, threat sense) PLUS affect dysregulation, negative self-concept, and relationship disturbances</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">In the DSM-5-TR this presentation is captured as PTSD (often with the dissociative subtype); borderline personality disorder (identity instability and abandonment fear vs. stable negative self-concept).</span></div></div></section><section class="catsec" id="dissociative-disorders"><h2 class="cathead">Dissociative Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="dissociative identity disorder  disruption of identity involving two or more distinct personality states, with recurrent gaps in recall. marked discontinuity in sense of self and agency recurrent amnesia for everyday events, personal information, or trauma ptsd; borderline personality disorder; psychotic disorders; malingering; seizure disorders."><span class="tag">DSM-5-TR</span><h3>Dissociative Identity Disorder</h3><p class="essence">Disruption of identity involving two or more distinct personality states, with recurrent gaps in recall.</p><ul><li>Marked discontinuity in sense of self and agency</li><li>Recurrent amnesia for everyday events, personal information, or trauma</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">PTSD; borderline personality disorder; psychotic disorders; malingering; seizure disorders.</span></div></div><div class="entry" data-search="dissociative amnesia  inability to recall important autobiographical information, usually of a traumatic or stressful nature, beyond ordinary forgetting.  neurocognitive disorders; substance effects; ptsd; ordinary forgetting."><span class="tag">DSM-5-TR</span><h3>Dissociative Amnesia</h3><p class="essence">Inability to recall important autobiographical information, usually of a traumatic or stressful nature, beyond ordinary forgetting.</p><div class="meta-row"><span class="k">Subtypes</span><span class="v">With dissociative fugue.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Neurocognitive disorders; substance effects; PTSD; ordinary forgetting.</span></div></div><div class="entry" data-search="depersonalization/derealization disorder  persistent or recurrent experiences of detachment from oneself (depersonalization) or from surroundings (derealization). reality testing remains intact throughout panic disorder; ptsd; psychotic disorders (reality testing lost); substance effects."><span class="tag">DSM-5-TR</span><h3>Depersonalization/Derealization Disorder</h3><p class="essence">Persistent or recurrent experiences of detachment from oneself (depersonalization) or from surroundings (derealization).</p><ul><li>Reality testing remains intact throughout</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Panic disorder; PTSD; psychotic disorders (reality testing lost); substance effects.</span></div></div></section><section class="catsec" id="somatic-symptom-related-disorders"><h2 class="cathead">Somatic Symptom &amp; Related Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="somatic symptom disorder  one or more distressing physical symptoms accompanied by excessive thoughts, feelings, or behaviors about them. the symptom(s) may or may not have a clear medical explanation; the disproportionate response is the focus illness anxiety disorder (few/no somatic symptoms); factitious disorder (deliberate falsification); medical conditions; adjustment disorder."><span class="tag">DSM-5-TR</span><h3>Somatic Symptom Disorder</h3><p class="essence">One or more distressing physical symptoms accompanied by excessive thoughts, feelings, or behaviors about them.</p><ul><li>The symptom(s) may or may not have a clear medical explanation; the disproportionate response is the focus</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">Symptomatic state typically &gt;6 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Illness anxiety disorder (few/no somatic symptoms); factitious disorder (deliberate falsification); medical conditions; adjustment disorder.</span></div></div><div class="entry" data-search="illness anxiety disorder  preoccupation with having or acquiring a serious illness when somatic symptoms are minimal or absent. high health anxiety; excessive checking or maladaptive avoidance of care somatic symptom disorder (prominent somatic symptoms); gad; ocd; panic; adjustment disorder."><span class="tag">DSM-5-TR</span><h3>Illness Anxiety Disorder</h3><p class="essence">Preoccupation with having or acquiring a serious illness when somatic symptoms are minimal or absent.</p><ul><li>High health anxiety; excessive checking or maladaptive avoidance of care</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">≥6 months (the feared illness may change).</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Somatic symptom disorder (prominent somatic symptoms); GAD; OCD; panic; adjustment disorder.</span></div></div><div class="entry near" data-search="functional neurological symptom disorder conversion disorder neurological symptoms (weakness, movement, sensory, or seizure-like) that are internally inconsistent with recognized neurological disease.  neurological/medical disease; factitious disorder; malingering."><span class="tag">NEAR / RELATED</span><h3>Functional Neurological Symptom Disorder</h3><div class="alt">also: Conversion Disorder</div><p class="essence">Neurological symptoms (weakness, movement, sensory, or seizure-like) that are internally inconsistent with recognized neurological disease.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Neurological/medical disease; factitious disorder; malingering.</span></div></div><div class="entry near" data-search="factitious disorder  falsification of physical or psychological signs or symptoms, or induction of injury/disease, with deceptive presentation even absent external reward.  somatic symptom disorder (symptoms not intentionally produced); malingering (external incentive present)."><span class="tag">NEAR / RELATED</span><h3>Factitious Disorder</h3><p class="essence">Falsification of physical or psychological signs or symptoms, or induction of injury/disease, with deceptive presentation even absent external reward.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Somatic symptom disorder (symptoms not intentionally produced); malingering (external incentive present).</span></div></div></section><section class="catsec" id="feeding-eating-disorders"><h2 class="cathead">Feeding &amp; Eating Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry near" data-search="pica  persistent eating of non-nutritive, non-food substances that is developmentally inappropriate.  other eating disorders; intellectual disability/autism (may co-occur); medical causes."><span class="tag">NEAR / RELATED</span><h3>Pica</h3><p class="essence">Persistent eating of non-nutritive, non-food substances that is developmentally inappropriate.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 month.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Other eating disorders; intellectual disability/autism (may co-occur); medical causes.</span></div></div><div class="entry near" data-search="rumination disorder  repeated regurgitation of food that is re-chewed, re-swallowed, or spit out.  gastrointestinal conditions; other eating disorders."><span class="tag">NEAR / RELATED</span><h3>Rumination Disorder</h3><p class="essence">Repeated regurgitation of food that is re-chewed, re-swallowed, or spit out.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1 month.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Gastrointestinal conditions; other eating disorders.</span></div></div><div class="entry" data-search="avoidant/restrictive food intake disorder arfid restricted or avoidant eating leading to nutritional, weight, or psychosocial consequences, without weight/shape concerns.  anorexia nervosa (arfid lacks body-image disturbance and fear of weight gain); medical causes; autism-related selectivity."><span class="tag">DSM-5-TR</span><h3>Avoidant/Restrictive Food Intake Disorder</h3><div class="alt">also: ARFID</div><p class="essence">Restricted or avoidant eating leading to nutritional, weight, or psychosocial consequences, without weight/shape concerns.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Anorexia nervosa (ARFID lacks body-image disturbance and fear of weight gain); medical causes; autism-related selectivity.</span></div></div><div class="entry" data-search="anorexia nervosa  restriction of intake leading to significantly low body weight, intense fear of weight gain, and a disturbance in body-image/weight perception. persistent behaviors that interfere with weight gain undue influence of weight/shape on self-evaluation, or lack of recognition of the seriousness of low weight bulimia (weight not significantly low); body dysmorphic disorder (concern isn't weight/shape); arfid; depression; medical causes. low weight can be medically life-threatening."><span class="tag">DSM-5-TR</span><h3>Anorexia Nervosa</h3><p class="essence">Restriction of intake leading to significantly low body weight, intense fear of weight gain, and a disturbance in body-image/weight perception.</p><ul><li>Persistent behaviors that interfere with weight gain</li><li>Undue influence of weight/shape on self-evaluation, or lack of recognition of the seriousness of low weight</li></ul><div class="meta-row"><span class="k">Subtypes</span><span class="v">Restricting type vs. binge-eating/purging type; severity by BMI.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bulimia (weight not significantly low); body dysmorphic disorder (concern isn't weight/shape); ARFID; depression; medical causes. Low weight can be medically life-threatening.</span></div></div><div class="entry" data-search="bulimia nervosa  recurrent binge eating with recurrent inappropriate compensatory behaviors, and self-evaluation unduly influenced by shape and weight.  anorexia, binge/purge type (occurs at significantly low weight); binge-eating disorder (no compensation)."><span class="tag">DSM-5-TR</span><h3>Bulimia Nervosa</h3><p class="essence">Recurrent binge eating with recurrent inappropriate compensatory behaviors, and self-evaluation unduly influenced by shape and weight.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">On average ≥1×/week for 3 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Anorexia, binge/purge type (occurs at significantly low weight); binge-eating disorder (no compensation).</span></div></div><div class="entry" data-search="binge-eating disorder  recurrent binge eating with marked distress, without the regular compensatory behaviors of bulimia.  bulimia (compensation present); obesity without binge episodes; depression."><span class="tag">DSM-5-TR</span><h3>Binge-Eating Disorder</h3><p class="essence">Recurrent binge eating with marked distress, without the regular compensatory behaviors of bulimia.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">On average ≥1×/week for 3 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bulimia (compensation present); obesity without binge episodes; depression.</span></div></div></section><section class="catsec" id="elimination-disorders"><h2 class="cathead">Elimination Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry near" data-search="enuresis  repeated voiding of urine into bed or clothes, whether involuntary or intentional.  medical causes (uti, diabetes); medication effects."><span class="tag">NEAR / RELATED</span><h3>Enuresis</h3><p class="essence">Repeated voiding of urine into bed or clothes, whether involuntary or intentional.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥2×/week for 3 months or clinically significant distress/impairment; chronological age ≥5.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Nocturnal only / diurnal only / combined.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Medical causes (UTI, diabetes); medication effects.</span></div></div><div class="entry near" data-search="encopresis  repeated passage of feces into inappropriate places.  medical/gastrointestinal causes."><span class="tag">NEAR / RELATED</span><h3>Encopresis</h3><p class="essence">Repeated passage of feces into inappropriate places.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥1×/month for 3 months; chronological age ≥4.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">With / without constipation and overflow incontinence.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Medical/gastrointestinal causes.</span></div></div></section><section class="catsec" id="disruptive-impulse-control-conduct-disorders"><h2 class="cathead">Disruptive, Impulse-Control &amp; Conduct Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="oppositional defiant disorder  a pattern of angry/irritable mood, argumentative/defiant behavior, and vindictiveness, primarily toward authority figures. ≥4 symptoms across the three groupings; vindictiveness requires ≥2 instances in 6 months conduct disorder (no rights violations in odd); dmdd (persistent irritability + severe outbursts); adhd; normative defiance."><span class="tag">DSM-5-TR</span><h3>Oppositional Defiant Disorder</h3><p class="essence">A pattern of angry/irritable mood, argumentative/defiant behavior, and vindictiveness, primarily toward authority figures.</p><ul><li>≥4 symptoms across the three groupings; vindictiveness requires ≥2 instances in 6 months</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">≥6 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Conduct disorder (no rights violations in ODD); DMDD (persistent irritability + severe outbursts); ADHD; normative defiance.</span></div></div><div class="entry" data-search="intermittent explosive disorder  recurrent impulsive aggressive outbursts grossly out of proportion to provocation and not premeditated.  conduct disorder / antisocial pd (planned, instrumental aggression); dmdd; substance effects."><span class="tag">DSM-5-TR</span><h3>Intermittent Explosive Disorder</h3><p class="essence">Recurrent impulsive aggressive outbursts grossly out of proportion to provocation and not premeditated.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Frequent verbal/minor aggression, or fewer damaging/injurious outbursts, over specified periods; age ≥6.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Conduct disorder / antisocial PD (planned, instrumental aggression); DMDD; substance effects.</span></div></div><div class="entry" data-search="conduct disorder  a repetitive pattern violating the basic rights of others or major age-appropriate norms. categories: aggression to people/animals, destruction of property, deceitfulness/theft, serious rule violations ≥3 behaviors in the past 12 months oppositional defiant disorder (no serious rights violations); antisocial personality disorder (adults ≥18); adjustment disorder."><span class="tag">DSM-5-TR</span><h3>Conduct Disorder</h3><p class="essence">A repetitive pattern violating the basic rights of others or major age-appropriate norms.</p><ul><li>Categories: aggression to people/animals, destruction of property, deceitfulness/theft, serious rule violations</li><li>≥3 behaviors in the past 12 months</li></ul><div class="meta-row"><span class="k">Subtypes</span><span class="v">Childhood-onset / adolescent-onset / unspecified; with limited prosocial emotions.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Oppositional defiant disorder (no serious rights violations); antisocial personality disorder (adults ≥18); adjustment disorder.</span></div></div><div class="entry near" data-search="kleptomania  recurrent failure to resist impulses to steal objects not needed for use or value, with tension before and relief after.  ordinary theft (for gain); conduct disorder/antisocial pd; manic episode."><span class="tag">NEAR / RELATED</span><h3>Kleptomania</h3><p class="essence">Recurrent failure to resist impulses to steal objects not needed for use or value, with tension before and relief after.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Ordinary theft (for gain); conduct disorder/antisocial PD; manic episode.</span></div></div><div class="entry near" data-search="pyromania  deliberate, purposeful fire-setting on more than one occasion, with fascination and tension/relief around fire.  arson for gain; conduct disorder; manic or psychotic states."><span class="tag">NEAR / RELATED</span><h3>Pyromania</h3><p class="essence">Deliberate, purposeful fire-setting on more than one occasion, with fascination and tension/relief around fire.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Arson for gain; conduct disorder; manic or psychotic states.</span></div></div></section><section class="catsec" id="substance-related-addictive-disorders"><h2 class="cathead">Substance-Related &amp; Addictive Disorders</h2><p class="catsub">DSM-5-TR</p><div class="entry" data-search="substance use disorder  a problematic pattern of use leading to clinically significant impairment or distress, graded by number of criteria met. criteria span impaired control, social impairment, risky use, and pharmacological features (tolerance, withdrawal) applied per substance (alcohol, opioids, stimulants, cannabis, etc.) nonproblematic use; medical/other mental disorders."><span class="tag">DSM-5-TR</span><h3>Substance Use Disorder</h3><p class="essence">A problematic pattern of use leading to clinically significant impairment or distress, graded by number of criteria met.</p><ul><li>Criteria span impaired control, social impairment, risky use, and pharmacological features (tolerance, withdrawal)</li><li>Applied per substance (alcohol, opioids, stimulants, cannabis, etc.)</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">≥2 of 11 criteria within a 12-month period.</span></div><div class="meta-row"><span class="k">Subtypes</span><span class="v">Severity: mild (2–3), moderate (4–5), severe (6+); in early/sustained remission; on maintenance therapy.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Nonproblematic use; medical/other mental disorders.</span></div></div><div class="entry near" data-search="tolerance &amp; withdrawal (concepts)  tolerance = needing more for the same effect (or reduced effect at the same dose). withdrawal = a substance-specific syndrome on reducing/stopping.  expected physiological adaptation under appropriate medical use is weighed separately from a use disorder."><span class="tag">NEAR / RELATED</span><h3>Tolerance &amp; Withdrawal (concepts)</h3><p class="essence">Tolerance = needing more for the same effect (or reduced effect at the same dose). Withdrawal = a substance-specific syndrome on reducing/stopping.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Expected physiological adaptation under appropriate medical use is weighed separately from a use disorder.</span></div></div><div class="entry" data-search="gambling disorder  persistent, problematic gambling behavior causing significant impairment or distress — the one behavioral addiction in this chapter.  professional/social gambling; manic episode; other impulse-control problems."><span class="tag">DSM-5-TR</span><h3>Gambling Disorder</h3><p class="essence">Persistent, problematic gambling behavior causing significant impairment or distress — the one behavioral addiction in this chapter.</p><div class="meta-row"><span class="k">Threshold</span><span class="v">≥4 of 9 criteria within 12 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Professional/social gambling; manic episode; other impulse-control problems.</span></div></div></section><section class="catsec" id="neurocognitive-disorders"><h2 class="cathead">Neurocognitive Disorders</h2><p class="catsub">DSM-5-TR · acquired decline from a prior level</p><div class="entry" data-search="delirium  an acute, fluctuating disturbance in attention and awareness with additional cognitive changes, caused by a medical condition, substance, or multiple factors. develops over hours to days; severity fluctuates during the day attention and orientation are prominently affected major/mild neurocognitive disorder (gradual, stable); primary psychotic or mood disorders. a medical emergency to work up. classic mimic of “dementia” in older adults (e.g., uti, dehydration, medications)."><span class="tag">DSM-5-TR</span><h3>Delirium</h3><p class="essence">An acute, fluctuating disturbance in attention and awareness with additional cognitive changes, caused by a medical condition, substance, or multiple factors.</p><ul><li>Develops over hours to days; severity fluctuates during the day</li><li>Attention and orientation are prominently affected</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Major/mild neurocognitive disorder (gradual, stable); primary psychotic or mood disorders. A medical emergency to work up. Classic mimic of “dementia” in older adults (e.g., UTI, dehydration, medications).</span></div></div><div class="entry" data-search="major neurocognitive disorder dementia significant decline in one or more cognitive domains that interferes with independence in everyday activities.  mild neurocognitive disorder (independence preserved); delirium (acute/fluctuating); depression (“pseudodementia”); normal aging."><span class="tag">DSM-5-TR</span><h3>Major Neurocognitive Disorder</h3><div class="alt">also: Dementia</div><p class="essence">Significant decline in one or more cognitive domains that interferes with independence in everyday activities.</p><div class="meta-row"><span class="k">Subtypes</span><span class="v">Specify etiology (Alzheimer's, vascular, Lewy body, frontotemporal, TBI, etc.); with/without behavioral disturbance; severity.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Mild neurocognitive disorder (independence preserved); delirium (acute/fluctuating); depression (“pseudodementia”); normal aging.</span></div></div><div class="entry" data-search="mild neurocognitive disorder  modest cognitive decline that does not yet interfere with independence, though greater effort or compensation may be needed.  major neurocognitive disorder (loss of independence); normal aging; delirium."><span class="tag">DSM-5-TR</span><h3>Mild Neurocognitive Disorder</h3><p class="essence">Modest cognitive decline that does not yet interfere with independence, though greater effort or compensation may be needed.</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Major neurocognitive disorder (loss of independence); normal aging; delirium.</span></div></div></section><section class="catsec" id="personality-disorders"><h2 class="cathead">Personality Disorders</h2><p class="catsub">DSM-5-TR · enduring, pervasive, inflexible patterns</p><div class="entry" data-search="general personality disorder  an enduring pattern of inner experience and behavior deviating markedly from cultural expectations, across cognition, affect, interpersonal functioning, and impulse control. pervasive and inflexible across situations stable and long-standing, traceable to adolescence or early adulthood leads to distress or impairment distinguish trait (enduring pattern) from state (episodic disorder). rule out another mental disorder, substances, and medical conditions."><span class="tag">DSM-5-TR</span><h3>General Personality Disorder</h3><p class="essence">An enduring pattern of inner experience and behavior deviating markedly from cultural expectations, across cognition, affect, interpersonal functioning, and impulse control.</p><ul><li>Pervasive and inflexible across situations</li><li>Stable and long-standing, traceable to adolescence or early adulthood</li><li>Leads to distress or impairment</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Distinguish trait (enduring pattern) from state (episodic disorder). Rule out another mental disorder, substances, and medical conditions.</span></div></div><div class="entry" data-search="paranoid personality disorder  pervasive distrust and suspiciousness; others' motives are read as malevolent (cluster a).  delusional disorder/schizophrenia (frank psychosis); ptsd; schizotypal/schizoid pd."><span class="tag">DSM-5-TR</span><h3>Paranoid Personality Disorder</h3><p class="essence">Pervasive distrust and suspiciousness; others' motives are read as malevolent (Cluster A).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Delusional disorder/schizophrenia (frank psychosis); PTSD; schizotypal/schizoid PD.</span></div></div><div class="entry" data-search="schizoid personality disorder  detachment from social relationships and a restricted range of emotional expression (cluster a).  autism; schizotypal pd; avoidant pd (desires closeness but fears it)."><span class="tag">DSM-5-TR</span><h3>Schizoid Personality Disorder</h3><p class="essence">Detachment from social relationships and a restricted range of emotional expression (Cluster A).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Autism; schizotypal PD; avoidant PD (desires closeness but fears it).</span></div></div><div class="entry" data-search="schizotypal personality disorder  acute discomfort with close relationships plus cognitive/perceptual distortions and eccentric behavior (cluster a; also in the schizophrenia spectrum).  schizophrenia (frank psychosis); autism; paranoid/schizoid pd."><span class="tag">DSM-5-TR</span><h3>Schizotypal Personality Disorder</h3><p class="essence">Acute discomfort with close relationships plus cognitive/perceptual distortions and eccentric behavior (Cluster A; also in the schizophrenia spectrum).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Schizophrenia (frank psychosis); autism; paranoid/schizoid PD.</span></div></div><div class="entry" data-search="antisocial personality disorder  a pervasive disregard for and violation of the rights of others (cluster b).  conduct disorder (under 18); narcissistic pd; substance use disorders; manic episodes."><span class="tag">DSM-5-TR</span><h3>Antisocial Personality Disorder</h3><p class="essence">A pervasive disregard for and violation of the rights of others (Cluster B).</p><div class="meta-row"><span class="k">Threshold</span><span class="v">Age ≥18 with evidence of conduct disorder before age 15.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Conduct disorder (under 18); narcissistic PD; substance use disorders; manic episodes.</span></div></div><div class="entry" data-search="borderline personality disorder  pervasive instability of relationships, self-image, and affect, together with marked impulsivity (cluster b). ≥5 of 9: abandonment fears, unstable intense relationships, identity disturbance, impulsivity, suicidal/self-harm behavior, affective instability, emptiness, anger, transient paranoia/dissociation bipolar disorder (sustained episodes vs. reactive shifts); complex ptsd; other cluster b pds; depression."><span class="tag">DSM-5-TR</span><h3>Borderline Personality Disorder</h3><p class="essence">Pervasive instability of relationships, self-image, and affect, together with marked impulsivity (Cluster B).</p><ul><li>≥5 of 9: abandonment fears, unstable intense relationships, identity disturbance, impulsivity, suicidal/self-harm behavior, affective instability, emptiness, anger, transient paranoia/dissociation</li></ul><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Bipolar disorder (sustained episodes vs. reactive shifts); complex PTSD; other Cluster B PDs; depression.</span></div></div><div class="entry" data-search="histrionic personality disorder  pervasive excessive emotionality and attention-seeking (cluster b).  borderline/narcissistic pd; dependent pd."><span class="tag">DSM-5-TR</span><h3>Histrionic Personality Disorder</h3><p class="essence">Pervasive excessive emotionality and attention-seeking (Cluster B).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Borderline/narcissistic PD; dependent PD.</span></div></div><div class="entry" data-search="narcissistic personality disorder  pervasive grandiosity, need for admiration, and lack of empathy (cluster b).  antisocial/borderline/histrionic pd; manic episodes."><span class="tag">DSM-5-TR</span><h3>Narcissistic Personality Disorder</h3><p class="essence">Pervasive grandiosity, need for admiration, and lack of empathy (Cluster B).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Antisocial/borderline/histrionic PD; manic episodes.</span></div></div><div class="entry" data-search="avoidant personality disorder  pervasive social inhibition, feelings of inadequacy, and hypersensitivity to negative evaluation (cluster c).  social anxiety disorder (substantial overlap); schizoid pd (avoidant desires closeness); dependent pd."><span class="tag">DSM-5-TR</span><h3>Avoidant Personality Disorder</h3><p class="essence">Pervasive social inhibition, feelings of inadequacy, and hypersensitivity to negative evaluation (Cluster C).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Social anxiety disorder (substantial overlap); schizoid PD (avoidant desires closeness); dependent PD.</span></div></div><div class="entry" data-search="dependent personality disorder  a pervasive, excessive need to be taken care of, leading to submissive and clinging behavior (cluster c).  borderline/histrionic pd; avoidant pd; agoraphobia."><span class="tag">DSM-5-TR</span><h3>Dependent Personality Disorder</h3><p class="essence">A pervasive, excessive need to be taken care of, leading to submissive and clinging behavior (Cluster C).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Borderline/histrionic PD; avoidant PD; agoraphobia.</span></div></div><div class="entry" data-search="obsessive-compulsive personality disorder  pervasive preoccupation with orderliness, perfectionism, and control at the expense of flexibility and openness (cluster c).  ocd (true obsessions/compulsions; ocpd traits are ego-syntonic); hoarding disorder; narcissistic pd."><span class="tag">DSM-5-TR</span><h3>Obsessive-Compulsive Personality Disorder</h3><p class="essence">Pervasive preoccupation with orderliness, perfectionism, and control at the expense of flexibility and openness (Cluster C).</p><div class="meta-row diff"><span class="k">Differentials</span><span class="v">OCD (true obsessions/compulsions; OCPD traits are ego-syntonic); hoarding disorder; narcissistic PD.</span></div></div></section><section class="catsec" id="other-relevant-conditions"><h2 class="cathead">Other Relevant Conditions</h2><p class="catsub">DSM-5-TR · cross-cutting / differential</p><div class="entry" data-search="gender dysphoria  marked incongruence between one's experienced/expressed gender and assigned gender, accompanied by clinically significant distress or impairment. separate criteria sets for children and for adolescents/adults body dysmorphic disorder (concern is a perceived appearance defect, not gender); note that gender nonconformity by itself is not a disorder."><span class="tag">DSM-5-TR</span><h3>Gender Dysphoria</h3><p class="essence">Marked incongruence between one's experienced/expressed gender and assigned gender, accompanied by clinically significant distress or impairment.</p><ul><li>Separate criteria sets for children and for adolescents/adults</li></ul><div class="meta-row"><span class="k">Threshold</span><span class="v">≥6 months.</span></div><div class="meta-row diff"><span class="k">Differentials</span><span class="v">Body dysmorphic disorder (concern is a perceived appearance defect, not gender); note that gender nonconformity by itself is not a disorder.</span></div></div></section></div>
+  <div class="noresult" id="noresult">No entries match your search.</div>
+
+  <div class="disclaimer"><strong>Reminder.</strong> Summaries are for learning and quick comparison only. They omit many inclusion/exclusion details, specifiers, and coding notes. The DSM-5-TR (APA, 2022) is the authoritative source; the ICD-11 is noted where a construct (e.g., Complex PTSD) lives there rather than in the DSM.</div>
+  <footer>SOW6125 PSYCHOPATHOLOGY · DSM-5-TR DIAGNOSTIC REFERENCE · PARAPHRASED STUDY SUMMARIES</footer>
+</div>
+<script>
+function filt(){
+  var q=document.getElementById('search').value.trim().toLowerCase();
+  var entries=document.querySelectorAll('.entry');
+  var shown=0;
+  entries.forEach(function(el){
+    var hit=!q || el.getAttribute('data-search').indexOf(q)>-1;
+    el.style.display=hit?'':'none'; if(hit)shown++;
+  });
+  document.querySelectorAll('.catsec').forEach(function(sec){
+    var any=sec.querySelectorAll('.entry:not([style*="none"])').length>0;
+    sec.style.display=any?'':'none';
+  });
+  document.getElementById('noresult').style.display=shown?'none':'block';
+  document.getElementById('count').textContent = q ? (shown+' matching entr'+(shown===1?'y':'ies')) : ('84 entries across 16 categories');
+}
+</script>
+</body>
+</html>
