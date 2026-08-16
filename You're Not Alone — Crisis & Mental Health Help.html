@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/atola/Downloads/crisis-mental-health-resources.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Not Alone — Crisis &amp; Mental Health Help</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./You&#39;re Not Alone — Crisis &amp; Mental Health Help_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECEFE7;
+    --surface:#FBFCF9;
+    --surface-2:#F3F6EF;
+    --ink:#212B26;
+    --ink-soft:#54605A;
+    --ink-faint:#818D86;
+    --line:#DCE1D6;
+    --teal:#2C6E63;
+    --teal-deep:#1F5049;
+    --teal-tint:#DFEAE5;
+    --amber-bg:#F7EFDD;
+    --amber-line:#E3D2A6;
+    --amber-ink:#6A5622;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(31,45,40,.04),0 10px 30px rgba(31,45,40,.06);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,sans-serif;
+    line-height:1.55;
+    font-size:16.5px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+
+  /* Header */
+  header{padding:46px 0 8px;text-align:center;}
+  header .kicker{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--teal);font-weight:600;margin:0 0 14px;
+  }
+  header h1{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:500;font-size:clamp(30px,6vw,46px);
+    line-height:1.05;letter-spacing:-.015em;margin:0 auto 16px;max-width:16ch;
+  }
+  header p.intro{
+    margin:0 auto;max-width:56ch;color:var(--ink-soft);font-size:17px;
+  }
+
+  /* Immediate danger banner */
+  .now{
+    margin:30px 0 10px;
+    background:var(--amber-bg);
+    border:1px solid var(--amber-line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+  }
+  .now h2{
+    font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin:0 0 6px;color:var(--amber-ink);
+  }
+  .now p{margin:0;font-size:15.5px;color:#5c4d24;}
+  .now .call911{
+    display:inline-block;margin-top:12px;
+    background:var(--amber-ink);color:#fff;text-decoration:none;
+    font-weight:600;padding:11px 20px;border-radius:11px;font-size:16px;
+  }
+  .now .call911:hover{background:#54431a;}
+
+  /* 988 hero */
+  .hero{
+    margin:14px 0 8px;
+    background:var(--teal);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:26px 24px;
+    box-shadow:var(--shadow);
+  }
+  .hero .badge{
+    display:inline-block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+    font-weight:600;background:rgba(255,255,255,.16);padding:4px 11px;border-radius:999px;margin-bottom:12px;
+  }
+  .hero h2{font-family:"Fraunces",serif;font-weight:500;font-size:26px;margin:0 0 6px;letter-spacing:-.01em;}
+  .hero p{margin:0 0 18px;color:rgba(255,255,255,.9);font-size:16px;max-width:54ch;}
+  .hero .btns{display:flex;flex-wrap:wrap;gap:10px;}
+  .hero a{
+    text-decoration:none;font-weight:600;font-size:16.5px;
+    padding:13px 22px;border-radius:12px;
+    background:#fff;color:var(--teal-deep);
+    transition:transform .1s,background .12s;
+  }
+  .hero a.ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);}
+  .hero a:hover{background:#eef5f2;}
+  .hero a.ghost:hover{background:rgba(255,255,255,.24);}
+  .hero .extra{margin:14px 0 0;font-size:13.5px;color:rgba(255,255,255,.82);}
+
+  /* Sections */
+  section.block{margin:44px 0 0;}
+  .block > .lead{margin-bottom:20px;}
+  .block h2.sect{
+    font-family:"Fraunces",serif;font-weight:500;font-size:25px;margin:0 0 4px;letter-spacing:-.01em;
+    display:flex;align-items:baseline;gap:12px;
+  }
+  .block h2.sect .step{
+    font-size:13px;font-family:"Inter";font-weight:600;color:var(--teal);
+    letter-spacing:.08em;text-transform:uppercase;
+  }
+  .block p.sub{margin:0;color:var(--ink-soft);font-size:15.5px;max-width:60ch;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;}
+  @media (max-width:620px){.grid{grid-template-columns:1fr;}}
+
+  article.res{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 18px 16px;
+    display:flex;flex-direction:column;
+  }
+  article.res.wide{grid-column:1 / -1;}
+  .res-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .res-head h3{font-size:17px;font-weight:600;margin:0;line-height:1.25;}
+  .tag{
+    flex-shrink:0;font-size:11px;font-weight:600;letter-spacing:.03em;
+    color:var(--teal-deep);background:var(--teal-tint);
+    padding:3px 9px;border-radius:999px;white-space:nowrap;margin-top:2px;
+  }
+  .res .who{margin:8px 0 0;font-size:14px;color:var(--ink-soft);line-height:1.5;flex-grow:1;}
+  .contacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:6px;
+    text-decoration:none;font-weight:600;font-size:14px;
+    padding:9px 14px;border-radius:10px;
+    border:1px solid var(--teal);color:var(--teal-deep);background:var(--surface);
+    transition:background .12s;
+  }
+  .chip.solid{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .chip:hover{background:var(--teal-tint);}
+  .chip.solid:hover{background:var(--teal-deep);}
+  .chip .ic{font-weight:400;font-size:15px;line-height:1;}
+
+  .note{
+    margin-top:22px;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:12px;padding:14px 18px;font-size:14px;color:var(--ink-soft);
+  }
+  .note strong{color:var(--ink);font-weight:600;}
+
+  /* toolbar */
+  .toolbar{display:flex;justify-content:center;margin:30px 0 0;}
+  .toolbar button{
+    font-family:inherit;font-size:14px;font-weight:600;
+    background:var(--surface);border:1px solid var(--line);color:var(--ink);
+    padding:10px 18px;border-radius:10px;cursor:pointer;
+  }
+  .toolbar button:hover{border-color:var(--teal);}
+
+  footer{margin:40px 0 70px;color:var(--ink-faint);font-size:13px;line-height:1.6;text-align:center;}
+  footer a{color:var(--teal);}
+
+  @media print{
+    body{background:#fff;font-size:12px;}
+    .toolbar{display:none;}
+    .hero,.now{box-shadow:none;}
+    article.res,.hero,.now{break-inside:avoid;}
+    .chip{border:1px solid #999;color:#000;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="kicker">Crisis &amp; mental health resources</p>
+    <h1>You matter, and help is here.</h1>
+    <p class="intro">If you're feeling suicidal, overwhelmed, or just need someone to talk to, you don't have to carry it alone. You don't need the right words, and you don't have to be in crisis to reach out. Below are people who are ready to help — right now, and for the longer road too.</p>
+  </header>
+
+  <!-- Immediate danger -->
+  <div class="now">
+    <h2>If you or someone else is in immediate danger</h2>
+    <p>If there's a risk to life happening right now, this is what 911 is for. It's okay to call.</p>
+    <a class="call911" href="tel:911">Call 911</a>
+  </div>
+
+  <!-- 988 hero -->
+  <div class="hero">
+    <span class="badge">Free · Confidential · 24/7</span>
+    <h2>988 Suicide &amp; Crisis Lifeline</h2>
+    <p>Talk or text with a trained counselor any time, about anything — suicidal thoughts, a mental health or substance use crisis, or any kind of emotional distress. You can also reach out because you're worried about someone else.</p>
+    <div class="btns">
+      <a href="tel:988">Call 988</a>
+      <a href="sms:988">Text 988</a>
+      <a class="ghost" href="https://988lifeline.org/chat" target="_blank" rel="noopener">Chat online</a>
+    </div>
+    <p class="extra">Veterans &amp; service members: call 988, then press 1. En español: llama y presiona 2, o envía AYUDA al 988. Deaf/Hard of hearing: 988 offers ASL video support.</p>
+  </div>
+
+  <!-- Nationwide -->
+  <section class="block">
+    <div class="lead">
+      <h2 class="sect"><span class="step">Nationwide</span> Talk to someone now</h2>
+      <p class="sub">These lines cover the whole United States and are available around the clock unless noted.</p>
+    </div>
+    <div class="grid">
+
+      <article class="res">
+        <div class="res-head"><h3>Crisis Text Line</h3><span class="tag">24/7</span></div>
+        <p class="who">Prefer texting? A trained crisis counselor will text back to help you through any hard moment — anxiety, self-harm, suicidal thoughts, or feeling overwhelmed.</p>
+        <div class="contacts">
+          <a class="chip solid" href="sms:741741"><span class="ic">✉</span>Text HOME to 741741</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Veterans / Military Crisis Line</h3><span class="tag">24/7</span></div>
+        <p class="who">Confidential support for veterans, active service members, National Guard and Reserve, and their loved ones — no VA enrollment needed.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:988"><span class="ic">☎</span>Call 988, press 1</a>
+          <a class="chip" href="sms:838255"><span class="ic">✉</span>Text 838255</a>
+          <a class="chip" href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">Chat</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>The Trevor Project</h3><span class="tag">24/7</span></div>
+        <p class="who">Crisis support and a judgment-free place to talk for LGBTQ+ young people (through age 24). Available by phone, text, and chat.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18664887386"><span class="ic">☎</span>1-866-488-7386</a>
+          <a class="chip" href="sms:678678"><span class="ic">✉</span>Text START to 678-678</a>
+          <a class="chip" href="https://www.thetrevorproject.org/get-help/" target="_blank" rel="noopener">Chat</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Trans Lifeline</h3><span class="tag">Peer support</span></div>
+        <p class="who">A peer support hotline run by and for trans people. A place to talk with someone who understands, about anything you're facing.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18775658860"><span class="ic">☎</span>1-877-565-8860</a>
+          <a class="chip" href="https://translifeline.org/" target="_blank" rel="noopener">translifeline.org</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>SAMHSA National Helpline</h3><span class="tag">24/7</span></div>
+        <p class="who">Free, confidential help finding treatment and support for mental health and substance use — including referrals to local services. In English and Spanish.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18006624357"><span class="ic">☎</span>1-800-662-4357</a>
+          <a class="chip" href="sms:435748"><span class="ic">✉</span>Text ZIP to 435748</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>National Domestic Violence Hotline</h3><span class="tag">24/7</span></div>
+        <p class="who">Confidential support, safety planning, and referrals if you're experiencing abuse or are worried about someone who is.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18007997233"><span class="ic">☎</span>1-800-799-7233</a>
+          <a class="chip" href="sms:88788"><span class="ic">✉</span>Text START to 88788</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>NAMI HelpLine</h3><span class="tag">Mon–Fri</span></div>
+        <p class="who">Not a crisis line, but a warm place for information, guidance, and support navigating mental health — for you or a loved one. Staffed weekdays, 10am–10pm ET.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18009506264"><span class="ic">☎</span>1-800-950-6264</a>
+          <a class="chip" href="sms:62640"><span class="ic">✉</span>Text NAMI to 62640</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>National Sexual Assault Hotline</h3><span class="tag">24/7</span></div>
+        <p class="who">RAINN's confidential hotline connects you with a trained staff member at a local support provider.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18006564673"><span class="ic">☎</span>1-800-656-4673</a>
+          <a class="chip" href="https://hotline.rainn.org/online" target="_blank" rel="noopener">Chat</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Florida -->
+  <section class="block">
+    <div class="lead">
+      <h2 class="sect"><span class="step">Florida</span> Statewide support</h2>
+      <p class="sub">Resources anywhere in Florida. When you dial 988 or 211 from a Florida phone, you're connected to counselors who know local services.</p>
+    </div>
+    <div class="grid">
+
+      <article class="res wide">
+        <div class="res-head"><h3>Florida 211 Network</h3><span class="tag">24/7</span></div>
+        <p class="who">Dial 2-1-1 from any phone for free, confidential help — crisis counseling, plus connections to counseling, food, housing, and other local services across the state. If you're not sure who to call, this is a good first step.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:211"><span class="ic">☎</span>Dial 211</a>
+          <a class="chip" href="https://www.211.org/" target="_blank" rel="noopener">Find your local 211</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Hope for Healing Florida</h3><span class="tag">Statewide</span></div>
+        <p class="who">Florida's mental health and substance use resource hub, with tools for finding help and understanding what you're going through.</p>
+        <div class="contacts">
+          <a class="chip solid" href="https://www.hopeforhealingfl.com/" target="_blank" rel="noopener">hopeforhealingfl.com</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Florida Veterans Support Line</h3><span class="tag">Peer support</span></div>
+        <p class="who">Talk with a fellow veteran for emotional support and connections to services and resources across Florida.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18446935838"><span class="ic">☎</span>1-844-MYFLVET</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Florida Abuse Hotline</h3><span class="tag">24/7</span></div>
+        <p class="who">Report abuse, neglect, or exploitation of a child or vulnerable adult, or get help if you're worried about someone's safety.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18009622873"><span class="ic">☎</span>1-800-962-2873</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Escambia -->
+  <section class="block">
+    <div class="lead">
+      <h2 class="sect"><span class="step">Escambia County</span> Local help in Pensacola</h2>
+      <p class="sub">Services based right in Escambia County and the surrounding Northwest Florida area, staffed by people who know the community.</p>
+    </div>
+    <div class="grid">
+
+      <article class="res wide">
+        <div class="res-head"><h3>Lakeview Center — Mobile Response Team</h3><span class="tag">24/7 · comes to you</span></div>
+        <p class="who">A mental health crisis team for Escambia and Northwest Florida that meets people where they are — at home, school, or in the community. Call for phone support or an in-person response during a crisis. Lakeview also operates the county's Central Receiving Facility (adult Baker Act screening for Escambia &amp; Santa Rosa) and a Crisis Stabilization Unit on its downtown Pensacola campus.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18665177766"><span class="ic">☎</span>1-866-517-7766</a>
+          <a class="chip solid" href="tel:18502815334"><span class="ic">☎</span>850-281-5334</a>
+        </div>
+      </article>
+
+      <article class="res wide">
+        <div class="res-head"><h3>211 Northwest Florida</h3><span class="tag">24/7 · local</span></div>
+        <p class="who">United Way of West Florida's local team answers both 2-1-1 and 988 calls for the Pensacola area, offering crisis counseling and referrals to nearby help. Serves Escambia, Santa Rosa, and neighboring counties.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:211"><span class="ic">☎</span>Dial 211</a>
+          <a class="chip" href="sms:898211"><span class="ic">✉</span>Text your ZIP to 898211</a>
+          <a class="chip" href="https://www.211nwfl.org/" target="_blank" rel="noopener">211nwfl.org</a>
+        </div>
+      </article>
+
+      <article class="res wide">
+        <div class="res-head"><h3>UWF Counseling &amp; Psychological Services (CAPS)</h3><span class="tag">UWF students</span></div>
+        <p class="who">Free, confidential counseling, triage, and psychiatric care for currently enrolled University of West Florida students. Call to set up a triage appointment (Mon–Fri, 8am–5pm CT); walk-in crisis evaluations are offered 8–10am and 1–4pm. The same number reaches an after-hours phone counselor — just call and follow the prompts. On campus in Building 960, Suite 200A (11000 University Parkway). Students can also use TalkCampus, a free anonymous peer-support app (sign up with a UWF email). In immediate danger on campus, call UWF Police or 911.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18504742420"><span class="ic">☎</span>850-474-2420</a>
+          <a class="chip" href="tel:18504742415"><span class="ic">☎</span>Campus Police 850-474-2415</a>
+          <a class="chip" href="https://uwf.edu/academic-engagement-and-student-affairs/departments/counseling-and-psychological-services/" target="_blank" rel="noopener">UWF CAPS</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Lakeview Center — Care &amp; Treatment</h3><span class="tag">Ongoing care</span></div>
+        <p class="who">For non-emergency mental health and addiction services — counseling, outpatient care, and connecting to the right program. More than 60 programs across the region.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18504693500"><span class="ic">☎</span>850-469-3500</a>
+          <a class="chip" href="https://elakeviewcenter.org/" target="_blank" rel="noopener">eLakeviewCenter.org</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Baptist Health Care</h3><span class="tag">Youth crisis</span></div>
+        <p class="who">The designated crisis receiving facility for children and adolescents under 18 in Escambia County. In an emergency for a young person, go to the ER or call 911; 988 and the Mobile Response Team can also help.</p>
+        <div class="contacts">
+          <a class="chip" href="https://www.ebaptisthealthcare.org/services/behavioral-health" target="_blank" rel="noopener">Behavioral health</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>NAMI Pensacola</h3><span class="tag">Support &amp; education</span></div>
+        <p class="who">The local NAMI affiliate offers peer support groups, education, and community for people living with mental health conditions and their families. Reach them through the NAMI HelpLine.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18009506264"><span class="ic">☎</span>1-800-950-6264</a>
+          <a class="chip" href="https://www.nami.org/affiliate/florida/nami-pensacola/" target="_blank" rel="noopener">NAMI Pensacola</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Finding a therapist -->
+  <section class="block">
+    <div class="lead">
+      <h2 class="sect"><span class="step">Ongoing care</span> Finding a therapist</h2>
+      <p class="sub">When you're ready to look for regular support, these can help you find a counselor or program — including low-cost options.</p>
+    </div>
+    <div class="grid">
+
+      <article class="res">
+        <div class="res-head"><h3>FindTreatment.gov &amp; FindSupport.gov</h3><span class="tag">Free locator</span></div>
+        <p class="who">SAMHSA's confidential, anonymous tools for finding mental health and substance use treatment near you, with guidance on payment and what to expect.</p>
+        <div class="contacts">
+          <a class="chip solid" href="https://findtreatment.gov/" target="_blank" rel="noopener">findtreatment.gov</a>
+          <a class="chip" href="https://www.findsupport.gov/" target="_blank" rel="noopener">findsupport.gov</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Psychology Today — Find a Therapist</h3><span class="tag">Directory</span></div>
+        <p class="who">Search therapists by location, insurance, specialty, and identity. Each profile shows how to reach out directly.</p>
+        <div class="contacts">
+          <a class="chip solid" href="https://www.psychologytoday.com/us/therapists" target="_blank" rel="noopener">Search therapists</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>Open Path Collective</h3><span class="tag">Affordable</span></div>
+        <p class="who">A network of therapists offering reduced-fee sessions for people without adequate insurance. Good if cost is a barrier.</p>
+        <div class="contacts">
+          <a class="chip solid" href="https://openpathcollective.org/" target="_blank" rel="noopener">openpathcollective.org</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="res-head"><h3>SAMHSA National Helpline</h3><span class="tag">24/7</span></div>
+        <p class="who">Talk to a real person who can give you referrals to local treatment and support, at no cost.</p>
+        <div class="contacts">
+          <a class="chip solid" href="tel:18006624357"><span class="ic">☎</span>1-800-662-4357</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="note">
+      <strong>Not sure where to start?</strong> Both <strong>988</strong> and <strong>211</strong> can help you figure out the next step, even if you're not in crisis. You can simply say, "I'm struggling and I don't know what I need" — that's enough.
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <button onclick="window.print()">Print or save as PDF</button>
+  </div>
+
+  <footer>
+    <p>This sheet is for information and support; it isn't a substitute for professional or emergency care. Services and numbers can change — if something doesn't connect, dial <strong>988</strong> or <strong>211</strong> and they can point you the right way. Compiled August 2026.</p>
+  </footer>
+
+</div>
+
+
+</body></html>
